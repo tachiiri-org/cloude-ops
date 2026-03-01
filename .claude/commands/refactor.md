@@ -1,44 +1,17 @@
-# refactor Command
+# refactor command
+
+## Mode
+
+- Enter plan mode before making any changes.
 
 ## Goals
 
-- make this repository less inference for claude code
-- reduce complexity of architecture and codes
-- modify file tree to direct projection of the system model.
-- erase possibility for god files, classes, utility
-
-## NOT Goals
-
-- modify codes in this command
-- suggest to add docs(should suggest to modify architecture or codes)
+- Read all files in `issues/`
+- Plan and apply the changes described in each file
+- Delete each `issues/` file immediately after its changes are applied
 
 ## Constraints
 
-- Work only from files already in the conversation context.
-- Do not read, glob, or explore additional files.
-
-## What to do
-
-- write how to modify in `refactor/{yyyyMMdd_hhmmss}_{i}.md`
-- 1 markdown file should have 1 issue
-
-## Output Format
-
-```
-
-# Suggestion
-
-## What confused
-
--
-
-## Caused by
-
--
-
-## How should be
-
--
-
-## How to refactor
-```
+- Apply one issue at a time
+- Delete the issue file before moving to the next
+- Do not apply changes without user approval in plan mode
