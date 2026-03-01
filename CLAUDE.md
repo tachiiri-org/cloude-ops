@@ -29,6 +29,7 @@ This document defines Claude's behavioral constraints in this repository.
 - Don't merge files based on size or convenience.
 - Don't create multi-responsibility or god files.
 - Don't deploy with Wrangler.
+- Don't commit with no .gitigonore in repository
 - Setup tools if default tools not installed
 - Deploy only via merge to main.
 - Do not push directly to main.
