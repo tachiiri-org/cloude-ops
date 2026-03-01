@@ -1,9 +1,5 @@
 # refactor Command
 
-## Scope
-
-- Include files that were opened for inspection, even if not modified.
-
 ## Goals
 
 - make this repository less inference for claude code
@@ -16,9 +12,14 @@
 - modify codes in this command
 - suggest to add docs(should suggest to modify architecture or codes)
 
+## Constraints
+
+- Work only from files already in the conversation context.
+- Do not read, glob, or explore additional files.
+
 ## What to do
 
-- write how to modify in `retro/{yyyyMMdd_hhmmss}_{i}.md`
+- write how to modify in `refactor/{yyyyMMdd_hhmmss}_{i}.md`
 - 1 markdown file should have 1 issue
 
 ## Output Format
