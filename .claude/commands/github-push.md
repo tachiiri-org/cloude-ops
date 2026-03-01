@@ -10,5 +10,5 @@
 
 ## Constrains
 
-- commit with no .gitignore
-- push to main branch directly
+- don't commit with no .gitignore
+- don't push to main branch directly

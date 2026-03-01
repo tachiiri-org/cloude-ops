@@ -2,6 +2,7 @@
 
 ## Goals
 
+- read CLAUDE.md
 - verify working tree is clean
 - fetch remote changes
 - get remote changes of github
@@ -12,7 +13,7 @@
 - verify availability of codex via mcp
 - verify availability of serena via mcp
 - read last 3 commit logs
-- read CLAUDE.md
+- bun add github:tachiiri-org/cloude-ops
 - classify repository role (front / bff / gateway / adapter)
 
 ## Constrains
