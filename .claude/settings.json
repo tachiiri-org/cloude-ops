@@ -13,7 +13,7 @@
       }
     ]
   },
-    "permissions": {
+  "permissions": {
     "allow": [
       "mcp__codex__*",
       "mcp__serena__*",

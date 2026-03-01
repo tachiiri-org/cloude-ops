@@ -35,18 +35,8 @@ echo "[bootstrap] running bun install"
 bun install
 
 # Step: ensure required devDependencies are present
-DEV_DEPS=()
-for pkg in prettier eslint typescript vitest @playwright/test; do
-  if ! bun pm ls 2>/dev/null | grep -q "^$pkg@\|\"$pkg\"" && \
-     ! grep -q "\"$pkg\"" package.json 2>/dev/null; then
-    DEV_DEPS+=("$pkg")
-  fi
-done
-
-if [[ ${#DEV_DEPS[@]} -gt 0 ]]; then
-  echo "[bootstrap] adding missing devDependencies: ${DEV_DEPS[*]}"
-  bun add -D "${DEV_DEPS[@]}"
-fi
+echo "[bootstrap] ensuring devDependencies"
+bun add -D prettier eslint typescript vitest @playwright/test
 
 # Step: add claude-ops package
 echo "[bootstrap] adding github:tachiiri-org/cloude-ops"
