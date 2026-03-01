@@ -1,22 +1,17 @@
 # setup command
 
+> **Prerequisite:** `bootstrap.sh` must have been run before this command.
+
 ## Goals
 
-1. read CLAUDE.md
-2. verify working tree is clean
-3. fetch remote changes
-4. get remote changes of github
-5. create a new branch and switch to it
-6. check if `package.json` exists; if absent run `bun init -y`
-7. install dependencies (`bun install`)
-8. ensure devDependencies include: `prettier`, `eslint`, `typescript`, `vitest`, `@playwright/test` — add missing with `bun add -D`
-9. verify auth status of wrangler
-10. verify auth status of github
-11. verify availability of Codex via MCP; if unavailable output configuration instructions and stop
-12. verify availability of Serena via MCP; if unavailable output configuration instructions and stop
-13. read last 3 commit logs
-14. `bun add github:tachiiri-org/cloude-ops`
-15. classify repository role (front / bff / gateway / adapter)
+1. Read CLAUDE.md
+2. Verify working tree is clean
+3. Create a new branch and switch to it
+4. Verify auth status of wrangler
+5. Verify auth status of GitHub
+6. Verify availability of Codex via MCP
+7. Verify availability of Serena via MCP; if unavailable output configuration instructions and stop; if available call `activate_project` with the current repository path
+8. Call `activate_project` of Serena with the current repository path
 
 ## Constrains
 
