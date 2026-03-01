@@ -3,9 +3,11 @@
 ## Goals
 
 - make this repository less ambiguous for claude code
-- reduce complexity of architecture and codes
+- reduce complexity and ambiguity of architecture and codes
 - identify file tree misalignments with the system model
 - flag possibilities for god files, classes, or utilities
+- find lack of unit test
+- divide each type, state, component by 1 file
 
 ## NOT Goals
 

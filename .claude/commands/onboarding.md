@@ -8,7 +8,8 @@ Assumes authentication and environment setup are already complete.
 1. Read CLAUDE.md (and any project-specific instruction files if present)
 2. Verify working tree is clean and show current status
 3. Read last 10 commit logs
-4. Classify repository role (front / bff / gateway / adapter)
+4. Use Serena via MCP to retrieve project structure and key symbols
+5. Classify repository role (front / bff / gateway / adapter)
 
 ## Constrains
 
