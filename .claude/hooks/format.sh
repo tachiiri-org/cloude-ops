@@ -6,5 +6,5 @@ if (f) process.stdout.write(f);
 ")
 if [ -n "$FILE" ]; then
   PROJECT_DIR="$(cd "$(dirname "$0")/../.." && pwd)"
-  "$PROJECT_DIR/node_modules/.bin/prettier" --check --ignore-unknown "$FILE"
+  bunx prettier --check --ignore-unknown "$FILE"
 fi

@@ -37,6 +37,20 @@ This document defines Claude's behavioral constraints in this repository.
 - Prioritize loose coupling, scalability, and AI-readable structure.
 - Delegate implementation to Codex after planning.
 - Do not use `any` except at explicit external boundaries.
+- Do not add destructive git operations to settings.local.json allow list.
+
+## Frontend
+
+- Frontend is presentation only.
+- No business logic in UI.
+- Use composition patterns only.
+- Explicitly model loading and error states.
+- Keep components stateless by default.
+- Interact with domain only via BFF contracts.
+- Accessibility is mandatory.
+- Lazy-load non-critical UI.
+- Wrap app routes with an ErrorBoundary.
+- Avoid global state unless strictly necessary.
 
 ## Merge Semantics
 
