@@ -15,7 +15,7 @@ This document defines Claude's behavioral constraints in this repository.
 - Use ESLint for linting.
 - Use Vitest for testing.
 - Use tsc for type checking.
-- Use Serena as the default helper tool.
+- Use Playwright to check UI.
 - Use Codex via MCP for implementation.
 - Use Serena via MCP to read and locate code.
 - Use GitHub for version control.
