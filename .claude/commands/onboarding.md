@@ -1,18 +1,26 @@
 # onboarding command
 
-Understand the repository structure without starting development work.
-Assumes authentication and environment setup are already complete.
-
 ## Goals
 
-1. Read CLAUDE.md (and any project-specific instruction files if present)
-2. Verify working tree is clean and show current status
+- understand how to behave
+
+## Steps
+
+1. Read CLAUDE.md
+2. Verify working tree is clean
 3. Read last 10 commit logs
-4. Use Serena via MCP to retrieve project structure and key symbols
-5. Classify repository role (front / bff / gateway / adapter)
+4. Classify repository role (front / bff / gateway / adapter)
+5. Ask human goals
+6. Call mcp__codex__codex and make Codex run its implement skill.
+7. Codex returns reply after implemention and commit
+8. Consider codex achieves goals with reading git
+9. Modify codes if needed
+10. Suggest review command
 
 ## Constrains
 
+- don't read codes
+- don't change codes
 - no authentication checks
 - no tool installation
 - don't start development work
