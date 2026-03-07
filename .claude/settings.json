@@ -37,7 +37,8 @@
       "Bash(npx wrangler dev*)",
       "Bash(npx wrangler whoami)",
       "Bash(npx wrangler --version)",
-      "Bash(bun install*)"
+      "Bash(bun install*)",
+      "Bash(bun run deploy:dev)"
     ],
     "ask": [
       
@@ -54,6 +55,13 @@
       "Bash(wget *)",
       "Read(./.env)",
       "Read(./.env.*)",
-      "Read(./secrets/**)"    ]
+      "Read(./secrets/**)",
+      "Bash(wrangler deploy*)",
+      "Bash(npx wrangler deploy*)",
+      "Bash(bunx wrangler deploy*)",
+      "Bash(npm run deploy*)",
+      "Bash(wrangler pages deploy*)",
+      "Bash(npx wrangler pages deploy*)"
+    ]
   }
 }

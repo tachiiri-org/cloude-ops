@@ -4,6 +4,8 @@ Project guidance for automated coding agents.
 
 ## Defaults
 
+### TypeScript
+
 - Use bun for package management.
 - Use Prettier for formatting.
 - Use ESLint for linting.
@@ -12,6 +14,16 @@ Project guidance for automated coding agents.
 - Use Playwright for UI checks when UI changes.
 - Use Cloudflare Pages for frontend.
 - Use Cloudflare Workers for BFF, gateway, and adapter.
+
+### Python
+
+- Use uv for package management.
+- Use ruff for formatting and linting.
+- Use pyright for type checking.
+- Use pytest for testing.
+
+### Common
+
 - Prefer delegation workflows (plan first, then implement).
 
 ## Global Constraints
@@ -25,7 +37,7 @@ Project guidance for automated coding agents.
 
 ## Git / Release
 
-- Do not deploy with Wrangler.
+- Do not deploy to production with Wrangler; use `bun run deploy:dev` for staging only.
 - Deploy only via merge to main.
 - Do not push directly to main.
 - Use pull requests for all merges.

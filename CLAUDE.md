@@ -10,17 +10,29 @@ This document defines Claude's behavioral constraints in this repository.
 
 ## Tools Default
 
+### TypeScript
+
 - Use bun for package management.
 - Use Prettier for formatting.
 - Use ESLint for linting.
 - Use Vitest for testing.
 - Use tsc for type checking.
 - Use Playwright to check UI.
+- Use Cloudflare Pages for frontend.
+- Use Cloudflare Workers for bff, gateway, and adapter.
+
+### Python
+
+- Use uv for package management.
+- Use ruff for formatting and linting.
+- Use pyright for type checking.
+- Use pytest for testing.
+
+### Common
+
 - Use Codex via MCP for implementation.
 - Use Serena via MCP to read and locate code.
 - Use GitHub for version control.
-- Use Cloudflare Pages for frontend.
-- Use Cloudflare Workers for bff, gateway, and adapter.
 
 ## Behavioral Constraints
 
@@ -28,7 +40,7 @@ This document defines Claude's behavioral constraints in this repository.
 - Write tests before implementation.
 - Don't merge files based on size or convenience.
 - Don't create multi-responsibility or god files.
-- Don't deploy with Wrangler.
+- Don't deploy to prod with Wrangler
 - Don't commit with no .gitigonore in repository
 - Setup tools if default tools not installed
 - Deploy only via merge to main.
