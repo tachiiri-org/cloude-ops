@@ -14,6 +14,7 @@ architecture-beta
   service laptop(internet)[laptop] in trusted
   service client_laptop(internet)[laptop] in client
   service AI(internet)[AI] in client
+  service ops(disk)[ops] in wsl
   service code(disk)[code] in wsl
   service electron(disk)[electron] in windows
   service gpu_engine(disk)[python] in ubunts
@@ -30,10 +31,13 @@ architecture-beta
   service adapter_dbg(cloud)[Adapter] in private_dbg
   service cf_engine_dbg(cloud)[CF Services] in private_dbg
 
+  service github(internet)[GitHub]
   service service_provider(internet)[service_provider]
 
+  github:B -- T:ops
+  ops:R -- L:code
   laptop:B -- T:electron
-  laptop:R -- L:code
+  laptop:R -- L:ops
   electron:B -- T:gpu_engine
 
   client_laptop:B -- T:pages_prod

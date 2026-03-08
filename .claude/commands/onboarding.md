@@ -10,7 +10,7 @@
 2. Read `architecture.mmd` (system topology)
 3. Verify working tree is clean
 4. Read last 10 commit logs
-5. Classify repository role (front / bff / gateway / adapter / electron / python)
+5. Classify repository role by cross-referencing `architecture.mmd` (front / bff / gateway / adapter / electron / python / ops)
 6. Ask human goals
 7. Create a feature branch off `dev` based on stated goals (e.g. feature/xxx, fix/xxx)
 
