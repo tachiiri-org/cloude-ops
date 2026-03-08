@@ -1,64 +1,45 @@
-.claude/settings.local.json
-issues/
-.serena/
+# whitelist mode: ignore everything by default
+*
 
-# local home environment files
-.bash_history
-.bash_logout
-.bashrc
-.profile
-.motd_shown
-.sudo_as_admin_successful
-.viminfo
-.git-credentials
-.gitconfig
+# keep root tracked files
+!/.gitattributes
+!/.gitignore
+!/.mcp.json
+!/AGENTS.md
+!/CLAUDE.md
+!/README.md
+!/architecture.mmd
+!/install.sh
+!/package.template.json
+!/principles.md
 
-# local tool caches and system dirs
-.bun/
-.cache/
-.config/
-.landscape/
-.local/
-.npm/
-.nvm/
-.pki/
-.ssh/
-.wine/
-snap/
-project/
+# keep tracked .claude files only
+!/.claude/
+/.claude/*
+!/.claude/commands/
+!/.claude/scripts/
+!/.claude/settings.json
+/.claude/commands/*
+!/.claude/commands/*.md
+/.claude/scripts/*
+!/.claude/scripts/*.sh
 
-# claude local runtime artifacts (keep tracked commands/scripts/settings.json)
-.claude.json
-.claude.json.backup
-.claude/.credentials.json
-.claude/backups/
-.claude/cache/
-.claude/debug/
-.claude/file-history/
-.claude/history.jsonl
-.claude/paste-cache/
-.claude/plans/
-.claude/plugins/
-.claude/projects/
-.claude/shell-snapshots/
-.claude/statsig/
-.claude/tasks/
-.claude/telemetry/
-.claude/todos/
+# keep tracked .codex files only
+!/.codex/
+/.codex/*
+!/.codex/config.toml
+!/.codex/rules/
+!/.codex/rules/default.rules
+!/.codex/skills/
 
-# codex local runtime artifacts (keep tracked config/rules/skills)
-.codex/.personality_migration
-.codex/auth.json
-.codex/history.jsonl
-.codex/log/
-.codex/models_cache.json
-.codex/sessions/
-.codex/shell_snapshots/
-.codex/skills/.system/.codex-system-skills.marker
-.codex/skills/.system/skill-creator/
-.codex/skills/.system/skill-installer/
-.codex/state_5.sqlite
-.codex/state_5.sqlite-shm
-.codex/state_5.sqlite-wal
-.codex/tmp/
-.codex/version.json
+# top-level skills: keep only SKILL.md
+!/.codex/skills/*/
+/.codex/skills/*/*
+!/.codex/skills/*/SKILL.md
+
+# system skills: keep only tracked slides/spreadsheets trees
+/.codex/skills/.system/*
+!/.codex/skills/.system/slides/
+!/.codex/skills/.system/spreadsheets/
+!/.codex/skills/.system/slides/**
+!/.codex/skills/.system/spreadsheets/**
