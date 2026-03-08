@@ -7,15 +7,12 @@
 ## Steps
 
 1. Read CLAUDE.md
-2. Verify working tree is clean
-3. Read last 10 commit logs
-4. Classify repository role (front / bff / gateway / adapter)
-5. Ask human goals
-6. Call mcp__codex__codex and make Codex run its implement skill.
-7. Codex returns reply after implemention and commit
-8. Consider codex achieves goals with reading git
-9. Modify codes if needed
-10. Suggest review command
+2. Read `architecture.mmd` (system topology)
+3. Verify working tree is clean
+4. Read last 10 commit logs
+5. Classify repository role (front / bff / gateway / adapter / electron / python)
+6. Ask human goals
+7. Create a feature branch off `dev` based on stated goals (e.g. feature/xxx, fix/xxx)
 
 ## Constrains
 

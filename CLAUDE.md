@@ -46,11 +46,16 @@ This document defines Claude's behavioral constraints in this repository.
 - Deploy only via merge to main.
 - Do not push directly to main.
 - Use pull requests for all changes to merge.
-- Prioritize loose coupling, scalability, and AI-readable structure.
 - Delegate implementation to Codex after planning.
 - Do not use `any` except at explicit external boundaries.
 - Annotate all function signatures and variables with types.
 - Do not add destructive git operations to settings.local.json allow list.
+
+## Architectural Principles
+
+- Prioritize loose coupling between modules.
+- Divide files by single responsibility.
+- Design for scalability from the start.
 
 ## Frontend
 

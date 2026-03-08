@@ -6,13 +6,12 @@
 
 ## Goals
 
-- Read all files in `issues/`
-- Plan and apply the changes described in each file
-- Delete each `issues/` file immediately after its changes are applied
-- commit changes
+- Read Goals provided in the conversation (from onboarding step 5 or explicit user input)
+- Plan and apply changes targeting those Goals
+- Commit after completing changes
 
 ## Constraints
 
-- Apply one issue at a time
-- Delete the issue file before moving to the next
+- Apply one logical change at a time
 - Do not create pr
+- Do not read or write issues/ folder
