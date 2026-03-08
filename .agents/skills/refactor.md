@@ -10,6 +10,22 @@
 - Plan and apply changes targeting those Goals
 - Commit after completing changes
 
+## Role Perspectives
+
+### front
+
+### bff
+
+### gateway
+
+### adapter
+
+### electron
+
+### python
+
+### ops
+
 ## Constraints
 
 - Apply one logical change at a time

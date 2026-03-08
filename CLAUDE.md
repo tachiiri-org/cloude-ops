@@ -30,7 +30,6 @@ This document defines Claude's behavioral constraints in this repository.
 
 ### Common
 
-- Use Codex via MCP for implementation.
 - Use Serena via MCP to read and locate code.
 - Use GitHub for version control.
 
@@ -46,29 +45,9 @@ This document defines Claude's behavioral constraints in this repository.
 - Deploy only via merge to main.
 - Do not push directly to main.
 - Use pull requests for all changes to merge.
-- Delegate implementation to Codex after planning.
 - Do not use `any` except at explicit external boundaries.
 - Annotate all function signatures and variables with types.
 - Do not add destructive git operations to settings.local.json allow list.
-
-## Architectural Principles
-
-- Prioritize loose coupling between modules.
-- Divide files by single responsibility.
-- Design for scalability from the start.
-
-## Frontend
-
-- Frontend is presentation only.
-- No business logic in UI.
-- Use composition patterns only.
-- Explicitly model loading and error states.
-- Keep components stateless by default.
-- Interact with domain only via BFF contracts.
-- Accessibility is mandatory.
-- Lazy-load non-critical UI.
-- Wrap app routes with an ErrorBoundary.
-- Avoid global state unless strictly necessary.
 
 ## Merge Semantics
 
