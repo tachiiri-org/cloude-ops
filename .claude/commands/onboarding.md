@@ -1,3 +1,4 @@
+
 # onboarding command
 
 ## Goals
@@ -6,15 +7,23 @@
 
 ## Steps
 
-1. Read CLAUDE.md
-2. Read `architecture.mmd` (system topology)
-3. Read `principles.md` (architectural principles and role perspectives)
-4. Verify working tree is clean
-5. Read last 10 commit logs
-6. Classify repository role by cross-referencing `architecture.mmd` (front / bff / gateway / adapter / electron / python / ops)
-7. Ask human goals
-8. Create a feature branch off `dev` based on stated goals (e.g. feature/xxx, fix/xxx)
-9. Execute the implement skill matching the repo role:
+1. Copy root guidance files from `/home/tachiiri` into the current working directory:
+   - `cp /home/tachiiri/agents.md ./agents.md`
+   - `cp /home/tachiiri/architecture.md ./architecture.md`
+   - `cp /home/tachiiri/claude.md ./claude.md`
+   - `cp /home/tachiiri/principles.md ./principles.md`
+2. Read `agents.md`
+3. Read `architecture.md` (system topology)
+4. Read `principles.md` (architectural principles and role perspectives)
+5. Read `claude.md`
+6. Fetch latest remote refs (`git fetch origin`) before branch/status decisions
+7. Verify working tree is clean
+8. Verify local `dev` alignment with `origin/dev`; if behind, fast-forward (`git checkout dev` then `git pull --ff-only origin dev`)
+9. Read last 10 commit logs (prefer checking `origin/dev` after fetch)
+10. Classify repository role by cross-referencing `architecture.md` (front / bff / gateway / adapter / electron / python / ops)
+11. Ask human goals
+12. Create a feature branch off up-to-date `dev` based on stated goals (e.g. feature/xxx, fix/xxx)
+13. Execute the implement skill matching the repo role:
    - front / bff / gateway / adapter → `implement-ts`
    - electron → `implement-electron`
    - python → `implement-py`
@@ -22,6 +31,7 @@
 
 ## Constrains
 
+- run each Bash command separately, not as compound commands (e.g. `&&`)
 - don't read codes
 - don't change codes
 - no authentication checks
