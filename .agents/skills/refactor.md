@@ -1,14 +1,24 @@
 # refactor command
 
-## Mode
+## Steps
 
-- Enter plan mode before making any changes.
+1. Run the onboarding skill to gather project context.
+2. Read `principles.md` from the repository root.
+3. Identify which Role Perspectives in `principles.md` apply to the current task.
+4. Enter plan mode.
+5. Build a refactoring plan that combines:
+   - Goals from onboarding step 5 or explicit user input
+   - Architectural principles from `principles.md`
+   - Role-specific principles relevant to the scope of change
+6. Get user approval on the plan.
+7. Implement one logical change at a time.
+8. Commit after completing all changes.
 
 ## Goals
 
-- Read Goals provided in the conversation (from onboarding step 5 or explicit user input)
-- Plan and apply changes targeting those Goals
-- Commit after completing changes
+- Apply structural improvements aligned with `principles.md`
+- Eliminate violations of architectural or role-specific principles
+- Preserve existing behavior unless explicitly instructed otherwise
 
 ## Role Perspectives
 
