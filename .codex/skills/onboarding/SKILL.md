@@ -1,6 +1,6 @@
 ---
 name: onboarding
-description: Run repository onboarding workflow: sync guidance files, inspect git state, classify role, and start feature branch.
+description: "Run repository onboarding workflow: sync guidance files, inspect git state, classify role, and start feature branch."
 ---
 
 # onboarding command
