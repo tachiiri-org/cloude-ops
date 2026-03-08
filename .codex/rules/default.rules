@@ -1,0 +1,55 @@
+# allow: read-only git
+prefix_rule(pattern=["git", "status"], decision="allow")
+prefix_rule(pattern=["git", "diff"], decision="allow")
+prefix_rule(pattern=["git", "log"], decision="allow")
+prefix_rule(pattern=["git", "show"], decision="allow")
+
+# allow: git write (safe)
+prefix_rule(pattern=["git", "commit"], decision="allow")
+prefix_rule(pattern=["git", "add"], decision="allow")
+
+# prompt: git destructive
+prefix_rule(pattern=["git", "push"], decision="prompt")
+prefix_rule(pattern=["git", "checkout"], decision="prompt")
+prefix_rule(pattern=["git", "rebase"], decision="prompt")
+prefix_rule(pattern=["git", "reset"], decision="prompt")
+
+# allow: bun
+prefix_rule(pattern=["bun", "install"], decision="allow")
+prefix_rule(pattern=["bun", "run", "prettier"], decision="allow")
+prefix_rule(pattern=["bun", "run", "format"], decision="allow")
+prefix_rule(pattern=["bun", "run", "lint"], decision="allow")
+prefix_rule(pattern=["bun", "run", "typecheck"], decision="allow")
+prefix_rule(pattern=["bun", "run", "tsc"], decision="allow")
+prefix_rule(pattern=["bun", "run", "build"], decision="allow")
+prefix_rule(pattern=["bun", "run", "test"], decision="allow")
+prefix_rule(pattern=["bun", "run", "deploy:dev"], decision="allow")
+
+# prompt: bun add (dependency change)
+prefix_rule(pattern=["bun", "add"], decision="prompt")
+
+# allow: read-only shell
+prefix_rule(pattern=["ls"], decision="allow")
+prefix_rule(pattern=["cat"], decision="allow")
+prefix_rule(pattern=["rg"], decision="allow")
+prefix_rule(pattern=["grep"], decision="allow")
+
+# allow: wrangler dev/info only
+prefix_rule(pattern=["npx", "wrangler", "dev"], decision="allow")
+prefix_rule(pattern=["npx", "wrangler", "whoami"], decision="allow")
+prefix_rule(pattern=["npx", "wrangler", "--version"], decision="allow")
+
+# prompt: network / destructive shell
+prefix_rule(pattern=["curl"], decision="prompt")
+prefix_rule(pattern=["rm", "-rf"], decision="prompt")
+
+# forbidden: production deploy
+prefix_rule(pattern=["wrangler", "deploy"], decision="forbidden", justification="deploy only via merge to main")
+prefix_rule(pattern=["npx", "wrangler", "deploy"], decision="forbidden", justification="deploy only via merge to main")
+prefix_rule(pattern=["bunx", "wrangler", "deploy"], decision="forbidden", justification="deploy only via merge to main")
+prefix_rule(pattern=["npm", "run", "deploy"], decision="forbidden", justification="deploy only via merge to main")
+prefix_rule(pattern=["wrangler", "pages", "deploy"], decision="forbidden", justification="deploy only via merge to main")
+prefix_rule(pattern=["npx", "wrangler", "pages", "deploy"], decision="forbidden", justification="deploy only via merge to main")
+
+# forbidden: wget
+prefix_rule(pattern=["wget"], decision="forbidden")
