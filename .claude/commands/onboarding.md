@@ -27,8 +27,12 @@
 10. Classify repository role by cross-referencing `architecture.md` (front / bff / gateway / adapter / electron / python / ops)
 11. Read the matching role-specific file under `principles/roles/` for the classified role
 12. Ask human goals
-13. Create a feature branch off up-to-date `dev` based on stated goals (e.g. feature/xxx, fix/xxx)
-14. Execute the implement skill matching the repo role:
+13. Read the relevant domain document(s) under `principles/domains/` based on the stated goals
+   - Read only the domain documents that constrain the intended change.
+   - Use `principles/core.md` as the index for available domain documents.
+   - Prefer deciding domain reads from the user goal before starting development work.
+14. Create a feature branch off up-to-date `dev` based on stated goals (e.g. feature/xxx, fix/xxx)
+15. Execute the implement skill matching the repo role:
    - front / bff / gateway / adapter → `implement-ts`
    - electron → `implement-electron`
    - python → `implement-py`
