@@ -11,9 +11,12 @@
 !/architecture.mmd
 !/install.sh
 !/package.template.json
-!/principles.md
 !/principles/
 !/principles/*.md
+!/principles/roles/
+!/principles/roles/*.md
+!/principles/domains/
+!/principles/domains/*.md
 
 # keep tracked .claude files only
 !/.claude/

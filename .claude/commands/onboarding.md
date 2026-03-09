@@ -10,19 +10,18 @@
    - `cp /home/tachiiri/agents.md ./agents.md`
    - `cp /home/tachiiri/architecture.md ./architecture.md`
    - `cp /home/tachiiri/claude.md ./claude.md`
-   - `cp /home/tachiiri/principles.md ./principles.md`
    - `mkdir -p ./principles`
    - `cp -r /home/tachiiri/principles/. ./principles/.`
 2. Read `agents.md`
 3. Read `architecture.md` (system topology)
-4. Read `principles.md` (migration entry point), then read `principles/core.md`
+4. Read `principles/core.md`
 5. Read `claude.md`
 6. Fetch latest remote refs (`git fetch origin`) before branch/status decisions
 7. Verify working tree is clean
 8. Verify local `dev` alignment with `origin/dev`; if behind, fast-forward (`git checkout dev` then `git pull --ff-only origin dev`)
 9. Read last 10 commit logs (prefer checking `origin/dev` after fetch)
 10. Classify repository role by cross-referencing `architecture.md` (front / bff / gateway / adapter / electron / python / ops)
-11. Read the matching role-specific file under `principles/` for the classified role
+11. Read the matching role-specific file under `principles/roles/` for the classified role
 12. Ask human goals
 13. Create a feature branch off up-to-date `dev` based on stated goals (e.g. feature/xxx, fix/xxx)
 14. Execute the implement skill matching the repo role:

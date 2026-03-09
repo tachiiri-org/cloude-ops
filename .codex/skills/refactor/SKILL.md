@@ -9,7 +9,7 @@ description: Drive principle-aligned refactoring through onboarding context, pla
 
 1. Run the onboarding skill to gather project context.
 2. Read `principles/core.md` from the repository root.
-3. Read the role-specific file under `principles/` that applies to the current task.
+3. Read the role-specific file under `principles/roles/` that applies to the current task.
 4. Enter plan mode.
 5. Build a refactoring plan that combines:
    - Goals from onboarding step 5 or explicit user input

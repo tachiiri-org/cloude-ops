@@ -20,42 +20,52 @@
 - Keep secrets, signing keys, and policy internals out of user-visible or repository-stored surfaces.
 - Keep normative guidance separate from staging discussions.
 
-## Companion Documents
+## Domain Documents
 
-- `identity-and-access.md`
+- `domains/identity-and-access.md`
   - tenant, actor, subject, initiator
   - authn/authz boundaries
   - claims, issuer, and key governance
-- `operations-and-delivery.md`
+- `domains/operations-and-delivery.md`
   - operation classification
   - idempotency
   - async execution semantics
   - internal API contract authority
-- `compatibility-and-change.md`
+- `domains/compatibility-and-change.md`
   - release-level breaking change control
   - version acceptance and rollout
   - deprecation and removal
   - normative versus staging separation
-- `observability-and-trust.md`
+- `domains/observability-and-trust.md`
   - header trust-boundary rules
   - structured observability
   - decision traces
   - internal-only fault explanation
-- `tenant-safety.md`
+- `domains/tenant-safety.md`
   - tenant containment across persistence and restore
   - cross-tenant exceptions
   - resource ownership
   - global resource safety
-- `browser-boundary.md`
+- `domains/browser-boundary.md`
   - browser session and cookie ownership
   - CSRF, CORS, and security headers
   - browser identity rejection rules
   - step-up and assurance semantics
-- `spec-governance.md`
+- `domains/spec-governance.md`
   - what belongs in shared semantics
   - non-goal taxonomy
   - defaults and staging rules
-- `ops-governance.md`
+- `domains/ops-governance.md`
   - release, rollback, and abort governance
   - configuration and environment controls
   - human-operated lifecycle guardrails
+
+## Role Documents
+
+- `roles/front.md`
+- `roles/bff.md`
+- `roles/gateway.md`
+- `roles/adapter.md`
+- `roles/electron.md`
+- `roles/python.md`
+- `roles/ops.md`
