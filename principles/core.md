@@ -1,10 +1,20 @@
 # core.md
 
+Shared principles are written primarily for AI and automated systems, and secondarily for humans.
+They preserve value-free semantic guidance that should stay stable as the system grows across multiple repos, boundaries, and owners.
+
 ## Architectural Principles
 
 - Prioritize loose coupling between modules.
 - Divide files by single responsibility.
 - Design for scalability from the start.
+
+## Reading Order
+
+1. Read this file first.
+2. Read the role-specific document under `roles/` that matches the repository role.
+3. Read domain documents under `domains/` as needed for the task scope.
+4. Use `../architecture.mmd` for topology context when needed.
 
 ## Cross-cutting Semantics
 
@@ -18,7 +28,27 @@
 - Make breaking semantic changes explicit, versioned, and rollout-governed.
 - Enforce trust boundaries with header allowlists, redaction, and structured observability.
 - Keep secrets, signing keys, and policy internals out of user-visible or repository-stored surfaces.
+- Keep interaction-edge rules explicit per browser, client, HTTP, and webhook boundary.
+- Keep data handling rules explicit across classification, persistence, deletion, residency, and billing-sensitive flows.
 - Keep normative guidance separate from staging discussions.
+
+## Responsibility Split
+
+- `core.md`
+  - cross-cutting semantic summary
+  - reading map for `roles/` and `domains/`
+- `domains/`
+  - high-density cross-cutting semantics without role duplication
+- `roles/`
+  - role-specific responsibilities
+  - role-specific prohibitions
+  - how the role applies the shared core principles
+
+## Document Semantics
+
+- Markdown files are the source of intent, scope, invariants, and prohibitions.
+- Shared guidance is normative for semantic rules, not for concrete runtime values.
+- Concrete values, schemas, catalogs, and lint checks belong in tool-spec or per-project repositories.
 
 ## Domain Documents
 
@@ -31,6 +61,10 @@
   - idempotency
   - async execution semantics
   - internal API contract authority
+- `domains/interaction-edges.md`
+  - internal HTTP boundary rules
+  - webhook trust and replay safety
+  - client-type and authn-method constraints
 - `domains/compatibility-and-change.md`
   - release-level breaking change control
   - version acceptance and rollout
@@ -46,6 +80,11 @@
   - cross-tenant exceptions
   - resource ownership
   - global resource safety
+  - tenant lifecycle and recovery safety
+- `domains/data-governance.md`
+  - data classification
+  - persistence and deletion propagation
+  - residency and billing-sensitive handling
 - `domains/browser-boundary.md`
   - browser session and cookie ownership
   - CSRF, CORS, and security headers
@@ -69,3 +108,10 @@
 - `roles/electron.md`
 - `roles/python.md`
 - `roles/ops.md`
+
+## Authoring Rules
+
+- Keep `core.md` free of role-specific implementation detail and use it as a navigation layer.
+- Keep files under `roles/` free of duplicated core semantics unless the role adds a stricter rule.
+- Add dense cross-cutting semantics to the appropriate file under `domains/`, then summarize them here.
+- Add new role-local guidance to the corresponding file under `roles/`.

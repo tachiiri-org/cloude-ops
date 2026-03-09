@@ -7,3 +7,15 @@
 - Hold no provider-specific logic.
 - Apply global-level rate limiting.
 - Own the ordering and failure policy across multiple adapters.
+- Preserve verified identity, tenant, operation, and idempotency context across adapters.
+- Treat operation catalogs and schemas as the authority for internal meaning.
+- Normalize boundary errors; do not expose raw adapter internals upstream.
+- Preserve explicit contract-version and compatibility behavior across internal boundaries.
+- Apply header allowlists and default-drop processing consistently.
+- Accept only declared operations and implemented routes.
+- Enforce only coarse policy checks and declared early rejection; do not replace adapter PDP decisions.
+- Do not treat support or break-glass context as justification to bypass declared operations or normal downstream enforcement.
+- Preserve event identity, operation classification, and failure meaning across retries, queues, and async boundaries.
+- Do not become the final record-level ownership or provider-specific authorization authority.
+- Do not complete idempotency.
+- Do not infer semantic action from HTTP path or method alone.

@@ -5,3 +5,6 @@
 - Route cloud API calls through Cloudflare Gateway.
 - Route local processing tasks to Python via IPC.
 - Do not expose Python directly to renderer; mediate through main process.
+- Keep browser-like session and assurance handling in the app boundary, not in renderer UI state alone.
+- Do not let renderer-originated identity assertions bypass verified session or token context.
+- Treat desktop credential mode as non-browser by default; do not import cookie/CSRF assumptions unless explicitly designed.

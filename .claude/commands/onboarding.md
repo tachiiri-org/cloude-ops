@@ -16,9 +16,13 @@
 3. Read `architecture.md` (system topology)
 4. Read `principles/core.md`
 5. Read `claude.md`
-6. Fetch latest remote refs (`git fetch origin`) before branch/status decisions
+6. Fetch latest remote refs before branch/status decisions:
+   - If the environment is sandboxed, run `git fetch origin` with escalated permissions from the start.
+   - Do not retry the same remote Git command in the sandbox after a network-resolution failure.
 7. Verify working tree is clean
-8. Verify local `dev` alignment with `origin/dev`; if behind, fast-forward (`git checkout dev` then `git pull --ff-only origin dev`)
+8. Verify local `dev` alignment with `origin/dev`; if behind, fast-forward:
+   - `git checkout dev`
+   - If the environment is sandboxed, run `git pull --ff-only origin dev` with escalated permissions from the start.
 9. Read last 10 commit logs (prefer checking `origin/dev` after fetch)
 10. Classify repository role by cross-referencing `architecture.md` (front / bff / gateway / adapter / electron / python / ops)
 11. Read the matching role-specific file under `principles/roles/` for the classified role

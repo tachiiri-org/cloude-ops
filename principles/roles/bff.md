@@ -6,3 +6,15 @@
 - Apply channel-specific visibility control and early rejection.
 - Do not rely on BFF permission decisions as authorization ground truth.
 - BFF controls what is shown and passed; gateway controls what is allowed.
+- Establish browser identity only at the BFF boundary.
+- Issue browser session and CSRF cookies only from the BFF.
+- Reject browser-originated `authorization` headers and pseudo-identity headers.
+- Forward only verified principal context, operation identity, and idempotency context.
+- Validate and forward idempotency keys for side-effecting operations; do not complete idempotency.
+- Preserve explicit contract-version behavior on internal boundaries.
+- Keep browser-specific concerns at the BFF edge and out of gateway or adapter contracts.
+- Do not inject delegation or impersonation context through ad hoc headers or body fields.
+- Do not forward browser cookies downstream.
+- Keep step-up and assurance state in verified browser context rather than downstream claims.
+- Generate or overwrite request identifiers at the first browser trust boundary rather than trusting browser input.
+- Keep browser response security-header baselines explicit and exception-driven.
