@@ -45,6 +45,7 @@ This document defines Claude's behavioral constraints in this repository.
 - Don't infer tenant context from unverified input.
 - Don't accept browser-asserted identity.
 - Don't accept `x-actor-*` style identity headers.
+- Don't use identity-related `x-*` headers as internal API contract inputs.
 - Use verified session or token claims only for identity and authorization context.
 - Use initiator fields for audit only, never as authorization input.
 - Return `401` for authentication failure and `403` for authorization failure.

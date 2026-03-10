@@ -28,6 +28,7 @@
       "Bash(git diff *)",
       "Bash(git log *)",
       "Bash(git show *)",
+      "Bash(git fetch origin)",
       "Bash(ls*)",
       "Bash(cat *)",
       "Bash(rg *)",

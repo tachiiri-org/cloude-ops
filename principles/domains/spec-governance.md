@@ -65,6 +65,7 @@
   - persistence, retention, and audit storage policy
   - lint and CI checks for cross-file invariants
 - Shared guidance states what those repositories must preserve semantically, not their concrete values.
+- When shared guidance defines a canonical internal authentication method or identity transport shape, tool-spec or per-project repositories must publish matching OpenAPI security definitions, accepted parameters, and contract fields.
 
 ## Promotion and Staging Rules
 
@@ -131,6 +132,7 @@
 - Tool-spec or per-project repositories define concrete catalogs, schemas, boundary values, and machine enforcement.
 - If a concept appears in both places, shared guidance owns the principle and the tool-spec layer owns the concrete configuration.
 - Drift prevention should be enforced in tool-spec repositories through schema, lint, or CI checks rather than by expanding shared guidance with implementation detail.
+- Published OpenAPI and runtime enforcement must correspond for authentication method, accepted identity inputs, and rejection posture at internal boundaries.
 
 ## Prohibitions
 
