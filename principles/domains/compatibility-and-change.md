@@ -50,6 +50,7 @@
 - Introduce delegation or impersonation claims only through versioned rollout.
 - Treat provider-driven changes to accepted issuer sets, audience interpretation, or claims mapping as compatibility-governed when they affect internal authorization input.
 - Review identity-provider configuration changes against claims compatibility before rollout when they can change normalized internal claims.
+- Treat replacing header-based internal identity transport with bearer-token claims as a breaking boundary change.
 
 ## Removal and Sunset Baseline
 
@@ -64,6 +65,7 @@
 - Keep rollout order explicit for coordinated boundary or event changes.
 - Ensure rollback safety before release when state or external effects are involved.
 - Declare rollback limits explicitly when full rollback is not possible.
+- When retiring accepted identity inputs, declare the rejection point explicitly rather than relying on implicit emitter migration.
 
 ## Prohibitions
 
@@ -71,3 +73,4 @@
 - Do not silently reinterpret existing fields, claims, or events.
 - Do not mix staging content into normative guidance.
 - Do not remove compatibility surfaces informally or only by implementation convention.
+- Do not keep retired identity-header compatibility alive after the release has declared bearer-token claims as the canonical boundary contract.

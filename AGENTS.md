@@ -37,6 +37,7 @@ Project guidance for automated coding agents.
 - Do not use `any` except at explicit external boundaries.
 - Treat tenant as the top-level ownership scope; do not infer tenant context from unverified input.
 - Do not accept browser-asserted identity or `x-actor-*` style identity headers.
+- Do not use identity-related `x-*` headers as internal API contract inputs.
 - Use verified session or token claims only for identity and authorization context.
 - Use initiator fields for audit only; never as authorization input.
 - Return `401` for authentication failure and `403` for authorization failure.

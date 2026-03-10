@@ -70,6 +70,9 @@
 - Prefer `authorization_code` with PKCE for end-user interactive login flows.
 - Prefer BFF-managed cookie sessions for browser clients after interactive login completion.
 - Prefer `client_credentials` for server-to-server authentication.
+- Require `bearer_token` as the single normative authentication method for the gateway-to-adapter edge.
+- Use verified bearer-token claims as the single normative transport shape for gateway-to-adapter identity context.
+- Treat `mtls`, network provenance, and similar transport properties as optional hardening only, never as the shared identity contract.
 - Do not treat browser bearer tokens as the default steady-state session mechanism when a BFF is present.
 
 ## Client Authentication Patterns
@@ -94,3 +97,4 @@
 - Do not hardcode client-specific trust exceptions into shared semantics.
 - Do not trust client-supplied request identifiers as authoritative across boundaries.
 - Do not let browser cookies or browser bearer tokens cross internal boundaries as downstream identity transport.
+- Do not publish or accept identity-related custom header transport on the gateway-to-adapter edge.

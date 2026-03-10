@@ -55,7 +55,9 @@
   - do not forward browser cookies downstream
   - do not inject identity through `x-actor-*` style headers
 - Gateway to adapter
-  - preserve verified identity context, operation identity, and tenant context
+  - authenticate with a verified bearer token only
+  - preserve verified identity context, operation identity, and tenant context through verified token claims only
+  - require one normalized internal claims set for this edge
   - adapter owns the final execution-boundary authorization decision
 
 ## Policy Evaluation and Enforcement
@@ -98,12 +100,21 @@
 
 - Require a normalized verified claims shape before identity crosses the BFF boundary.
 - Require at least:
+  - `claims_set_version`
   - `tenant_id` for tenant-scoped operations
   - `actor_id`
   - `actor_type`
   - `subject_id` when `actor_type=human`
 - Accept explicit roles and scopes from verified claims only when their meaning is stable and versioned.
 - Treat provider-specific claim names and provider-local attributes as normalization inputs, not as internal contract fields.
+- For the gateway-to-adapter edge, use verified bearer-token claims as the only normative wire contract for identity transport.
+- Map semantic identity concepts to normalized contract fields explicitly:
+  - `tenant` to `tenant_id`
+  - executor actor to `actor_id` and `actor_type`
+  - human subject to `subject_id` when `actor_type=human`
+  - authorization roles and scopes to explicit versioned claims only
+  - initiator context to `initiator_*` audit fields only
+- Treat initiator fields as audit-only context even when transported in verified claims.
 
 ## Async and Delegated Execution
 
@@ -138,6 +149,7 @@
 - Keep accepted authorization claims explicit.
 - Treat addition of new authorization-relevant claims as breaking unless explicitly versioned and rolled out.
 - Keep claims-set evolution explicit through compatibility policy.
+- Require explicit `claims_set_version` governance for gateway-to-adapter identity transport.
 - Do not mix observability-only explanation fields into authorization claims.
 
 ## Failure Semantics
@@ -150,6 +162,8 @@
 
 - Do not trust browser-asserted identity.
 - Do not accept `x-actor-*` style identity injection.
+- Do not accept any identity-related `x-*` header as part of the shared contract.
+- Do not use `api_key`, `mtls`, or custom header fields as substitutes for canonical verified identity claims on the gateway-to-adapter edge.
 - Do not accept delegation or impersonation context through unverified transport input.
 - Do not use initiator fields as authorization input.
 - Do not use delegate fields as authorization input.
