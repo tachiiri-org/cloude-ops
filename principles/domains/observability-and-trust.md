@@ -35,6 +35,7 @@
 - Record request or correlation identity.
 - Record operation identity.
 - Record status and latency.
+- Keep enough shared correlation fields across logs, traces, and audit records to reconstruct one operation flow even when backends differ.
 - Keep detailed policy and fault explanation internal only.
 - Apply redaction before storage or propagation.
 - Keep error classification internal using controlled classes rather than user-visible raw internals.
@@ -61,6 +62,7 @@
 - Require audit events for irreversible or external-effect operations.
 - Keep audit retention and storage policy explicit.
 - Do not assume ordinary logs are sufficient audit records.
+- Do not assume platform-native telemetry or ephemeral logs satisfy audit durability requirements.
 - Keep redaction and storage constraints aligned with data classification.
 
 ## Prohibitions

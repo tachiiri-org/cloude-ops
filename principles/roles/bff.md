@@ -7,9 +7,12 @@
 - Do not rely on BFF permission decisions as authorization ground truth.
 - BFF controls what is shown and passed; gateway controls what is allowed.
 - Establish browser identity only at the BFF boundary.
+- Prefer `authorization_code` with PKCE for browser interactive login.
+- Terminate browser login into a first-party BFF-managed session rather than forwarding browser bearer tokens downstream.
 - Issue browser session and CSRF cookies only from the BFF.
 - Reject browser-originated `authorization` headers and pseudo-identity headers.
 - Forward only verified principal context, operation identity, and idempotency context.
+- Require a normalized verified claims shape before forwarding identity downstream.
 - Validate and forward idempotency keys for side-effecting operations; do not complete idempotency.
 - Preserve explicit contract-version behavior on internal boundaries.
 - Keep browser-specific concerns at the BFF edge and out of gateway or adapter contracts.

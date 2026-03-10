@@ -36,6 +36,7 @@
 - Keep delivery and effect semantics separate: at-least-once delivery may be acceptable, but side effects must still happen once.
 - Default replay, backfill, and reprocessing flows to no external effect unless declared otherwise.
 - Send poison or repeatedly failing deliveries to an explicit dead-letter path rather than retrying forever.
+- Keep external-provider webhook replay protection, duplicate suppression, and audit correlation explicit before treating provider events as internal work triggers.
 
 ## Contract and Schema Authority
 
@@ -64,6 +65,7 @@
 
 - Require audit events for irreversible or external-effect operations.
 - Keep audit correlation aligned with operation identity, tenant context, actor context, and idempotency context.
+- Keep reconciliation, replay, and dispute-handling flows identifiable and re-runnable without redefining external-effect semantics.
 
 ## Prohibitions
 

@@ -16,3 +16,6 @@
 - Keep support and break-glass operations tenant-scoped, strongly audited, and revocable.
 - Complete dedupe and exactly-once-effect safeguards for async deliveries at the execution boundary.
 - Do not rely on expanded claims sets instead of data-bound ownership checks.
+- Canonicalize provider-specific event and lifecycle semantics before they cross upstream boundaries.
+- Keep reconciliation, dispute, refund, reversal, and settlement workflows explicit at the adapter boundary when a provider exposes them.
+- Keep payment or other secret-bearing provider tokens as tokenized references rather than ordinary persisted values.

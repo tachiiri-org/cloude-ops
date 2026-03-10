@@ -30,6 +30,7 @@
 - Use provider event identifiers or equivalent delivery identifiers for duplicate suppression.
 - Correlate provider event identifiers with internal request or correlation identifiers.
 - Align webhook-triggered external effects with idempotency and audit requirements.
+- Do not leak provider-specific event vocabulary upstream when a canonical internal operation or event vocabulary exists.
 
 ## Client and Authn Method Baseline
 
@@ -66,6 +67,23 @@
 - Do not let API key or mTLS caller identity blur actor type semantics.
 - Treat device context as context, not as an implicit actor or subject extension.
 - Introduce new credential methods through explicit compatibility strategy when they affect accepted claims.
+- Prefer `authorization_code` with PKCE for end-user interactive login flows.
+- Prefer BFF-managed cookie sessions for browser clients after interactive login completion.
+- Prefer `client_credentials` for server-to-server authentication.
+- Do not treat browser bearer tokens as the default steady-state session mechanism when a BFF is present.
+
+## Client Authentication Patterns
+
+- `browser`
+  - complete interactive login through the BFF boundary
+  - use `authorization_code` with PKCE for browser login flows
+  - terminate browser authentication into a first-party BFF-managed `cookie_session`
+- `desktop_app`
+  - use `authorization_code` with PKCE
+  - treat refresh-capable credentials as high-sensitivity secrets and keep them out of renderer-equivalent surfaces
+- `server_to_server`
+  - use `client_credentials` or an equivalent service authentication method normalized into `service` actor claims
+  - do not attach human `subject_id` semantics to machine-to-machine tokens by default
 
 ## Prohibitions
 
@@ -75,3 +93,4 @@
 - Do not allow webhook replay or duplicate delivery to trigger repeated side effects.
 - Do not hardcode client-specific trust exceptions into shared semantics.
 - Do not trust client-supplied request identifiers as authoritative across boundaries.
+- Do not let browser cookies or browser bearer tokens cross internal boundaries as downstream identity transport.
