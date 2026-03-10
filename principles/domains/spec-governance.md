@@ -70,11 +70,25 @@
 
 - Staged or exploratory material must not become normative by implication.
 - Promotion into shared guidance must be explicit.
+- Classify staged findings before promotion into exactly one primary target:
+  - shared semantic rule
+  - reusable concrete profile constraint
+  - repo-local specification detail
 - Promotion must declare:
   - target domain or role document
   - compatibility impact
   - rollout expectations when semantics change
 - Normative shared guidance must not depend on staging material.
+- Prefer updating an existing domain or role document before creating a new shared-guidance file.
+- Keep one logical promotion scoped to one topic boundary at a time.
+
+## Promotion Targeting Baseline
+
+- Promote to `domains/*.md` only when the rule is cross-cutting and provider-agnostic.
+- Promote to `roles/*.md` only when the rule is about responsibility boundaries for a specific role.
+- Promote to `profiles/` only when the rule is a reusable concrete runtime, identity-provider, or adapter-provider constraint.
+- Keep repository-specific values, composition choices, schemas, and environment bindings in repo-local specifications.
+- Do not preserve staged inventory or workflow documents once their stable rules are absorbed by existing guidance.
 
 ## Non-goal Taxonomy
 

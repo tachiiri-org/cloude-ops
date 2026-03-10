@@ -47,6 +47,8 @@
 - Browser to BFF
   - browser requests do not establish identity on their own
   - reject browser-originated `authorization` headers by default
+  - use the BFF as the browser authentication termination point
+  - prefer a first-party BFF-managed session after browser login completion
   - BFF validates session state and normalizes principal context before internal calls
 - BFF to gateway
   - forward only verified principal context
@@ -92,6 +94,17 @@
   - browser-asserted identity
   - identity-like headers, query parameters, or request-body fields
 
+## Minimum Verified Claims Baseline
+
+- Require a normalized verified claims shape before identity crosses the BFF boundary.
+- Require at least:
+  - `tenant_id` for tenant-scoped operations
+  - `actor_id`
+  - `actor_type`
+  - `subject_id` when `actor_type=human`
+- Accept explicit roles and scopes from verified claims only when their meaning is stable and versioned.
+- Treat provider-specific claim names and provider-local attributes as normalization inputs, not as internal contract fields.
+
 ## Async and Delegated Execution
 
 - Async executors must be `service` or `ops` actors only.
@@ -118,6 +131,7 @@
 - Introduce new roles or scopes only with explicit purpose, actor type, and affected operations.
 - Deprecate roles or scopes explicitly before removal.
 - Require sunset expectations when retiring accepted roles or scopes.
+- Allow roles and scopes from verified claims as upstream authorization input, but do not let them replace the final adapter-side authorization decision.
 
 ## Claims and Versioning Baseline
 
@@ -147,6 +161,7 @@
 
 - Keep accepted issuers in explicit allowlists.
 - Reject tokens from unlisted issuers with `401`.
+- Validate expected audience or equivalent recipient binding before accepting a token.
 - Require overlap periods during signing-key rotation.
 - Keep JWKS or equivalent verification material cached with explicit expiry behavior.
 - Make failure behavior explicit when verification material cannot be refreshed.

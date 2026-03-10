@@ -48,6 +48,8 @@
 - Require explicit `claims_set_version` governance where claims-set evolution is in scope.
 - Do not mix observability or explanation-only data into authorization claims.
 - Introduce delegation or impersonation claims only through versioned rollout.
+- Treat provider-driven changes to accepted issuer sets, audience interpretation, or claims mapping as compatibility-governed when they affect internal authorization input.
+- Review identity-provider configuration changes against claims compatibility before rollout when they can change normalized internal claims.
 
 ## Removal and Sunset Baseline
 

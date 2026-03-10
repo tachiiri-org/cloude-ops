@@ -32,6 +32,7 @@
 - Keep retention explicit by category; do not rely on implicit forever-retention.
 - Require encryption at rest for PII and billing-sensitive persisted data.
 - Do not persist secrets or raw authentication material in ordinary data stores.
+- When multiple observability backends are used, keep data-class-specific redaction, retention, and storage isolation explicit per destination.
 
 ## Residency and Sovereignty Baseline
 
@@ -47,6 +48,7 @@
 - Do not use floating-point values for monetary amounts.
 - Require billing operations with external effects to use strong idempotency and audit alignment.
 - Keep PCI and secret material out of logs and persistence; use tokenized references instead.
+- Keep dispute, refund, reversal, and settlement-supporting data aligned with billing classification and audit-storage rules.
 
 ## Audit Retention Baseline
 

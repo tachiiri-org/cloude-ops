@@ -17,3 +17,12 @@
 - Keep retention, residency, restore, and audit-storage expectations explicit when data-handling semantics evolve.
 - Keep global-resource exceptions and directory/org semantics explicit rather than letting them drift into hidden defaults.
 - Keep disaster-recovery behavior tenant-safe, auditable, and semantically aligned with normal operation.
+- Use `setup-<axis>-<name>` naming for setup commands and skills.
+- Keep setup axes limited to `role`, `runtime`, `tool`, `idp`, `provider`, and `dev`.
+- Keep `setup-role-*` focused on the minimum role baseline only.
+- Keep `setup-runtime-*`, `setup-tool-*`, `setup-idp-*`, `setup-provider-*`, and `setup-dev-*` modular and composable.
+- Do not encode multiple setup axes into one new command name when composition can express the same result.
+- Use `setup-dev-github` for repository-bootstrap and development-platform tasks.
+- Use `setup-provider-github` only for adapter-facing GitHub integration work.
+- Do not mix development-platform bootstrap with adapter-provider integration in one setup module.
+- Prefer current axis-based setup names over legacy mixed-axis names.

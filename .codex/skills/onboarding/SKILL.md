@@ -11,18 +11,15 @@ description: "Run repository onboarding workflow: sync guidance files, inspect g
 
 ## Steps
 
-1. If running in Windows Terminal (`WT_SESSION` is set), set the current tab title to the repository name:
-   - `printf '\033]0;%s\007' "$(basename "$PWD")"`
-1. Copy root guidance files from `/home/tachiiri` into the current working directory:
-   - `cp /home/tachiiri/agents.md ./agents.md`
-   - `cp /home/tachiiri/architecture.md ./architecture.md`
-   - `cp /home/tachiiri/claude.md ./claude.md`
-   - `mkdir -p ./principles`
-   - `cp -r /home/tachiiri/principles/. ./principles/.`
-2. Read `agents.md`
-3. Read `architecture.md` (system topology)
+1. Sync root guidance files from `/home/tachiiri` into the current working directory only when the current repository is not `/home/tachiiri`:
+   - Use the repository root files as the source of truth: `AGENTS.md`, `CLAUDE.md`, `architecture.mmd`, and `principles/`
+   - Never overwrite an existing repo-local guidance file without checking whether local customization must be preserved.
+   - If a target file is missing, copy it from `/home/tachiiri`.
+   - If the current working directory is `/home/tachiiri`, skip the copy step.
+2. Read `AGENTS.md`
+3. Read `architecture.mmd` (system topology)
 4. Read `principles/core.md`
-5. Read `claude.md`
+5. Read `CLAUDE.md`
 6. Fetch latest remote refs before branch/status decisions:
    - If the environment is sandboxed, run `git fetch origin` with escalated permissions from the start.
    - Do not retry the same remote Git command in the sandbox after a network-resolution failure.
@@ -31,7 +28,7 @@ description: "Run repository onboarding workflow: sync guidance files, inspect g
    - `git checkout dev`
    - If the environment is sandboxed, run `git pull --ff-only origin dev` with escalated permissions from the start.
 9. Read last 10 commit logs (prefer checking `origin/dev` after fetch)
-10. Classify repository role by cross-referencing `architecture.md` (front / bff / gateway / adapter / electron / python / ops)
+10. Classify repository role by cross-referencing `architecture.mmd` (front / bff / gateway / adapter / electron / python / ops)
 11. Read the matching role-specific file under `principles/roles/` for the classified role
 12. Ask human goals
 13. Read the relevant domain document(s) under `principles/domains/` based on the stated goals
@@ -50,6 +47,7 @@ description: "Run repository onboarding workflow: sync guidance files, inspect g
 - run each Bash command separately, not as compound commands (e.g. `&&`)
 - don't read codes
 - don't change codes
+- don't overwrite repo-local guidance files blindly
 - no authentication checks
 - no tool installation
 - don't start development work

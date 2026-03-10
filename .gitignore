@@ -11,6 +11,14 @@
 !/architecture.mmd
 !/install.sh
 !/package.template.json
+!/profiles/
+!/profiles/*.md
+!/profiles/runtime/
+!/profiles/runtime/*.md
+!/profiles/identity/
+!/profiles/identity/*.md
+!/profiles/providers/
+!/profiles/providers/*.md
 !/principles/
 !/principles/*.md
 !/principles/roles/
