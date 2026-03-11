@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# cloude-ops/install.sh
+# agent-ops/install.sh
 # ランチャーから呼ばれ、各プロジェクトへファイルを同期する
 set -e
 

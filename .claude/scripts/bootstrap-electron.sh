@@ -37,8 +37,8 @@ bun install
 echo "[bootstrap] ensuring devDependencies"
 bun add -D prettier eslint typescript vitest electron electron-builder electron-updater
 
-# Step: add claude-ops package
-echo "[bootstrap] adding github:tachiiri-org/cloude-ops"
-bun add github:tachiiri-org/cloude-ops
+# Step: add agent-ops package
+echo "[bootstrap] adding github:tachiiri-org/agent-ops"
+bun add github:tachiiri-org/agent-ops
 
 echo "[bootstrap] done"
