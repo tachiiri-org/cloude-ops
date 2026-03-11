@@ -39,7 +39,7 @@
       "Bash(npx wrangler whoami)",
       "Bash(npx wrangler --version)",
       "Bash(bun install*)",
-      "Bash(bun run deploy:dev)"
+      "Bash(bun run deploy:staging)"
     ],
     "ask": [
       
@@ -62,7 +62,8 @@
       "Bash(bunx wrangler deploy*)",
       "Bash(npm run deploy*)",
       "Bash(wrangler pages deploy*)",
-      "Bash(npx wrangler pages deploy*)"
+      "Bash(npx wrangler pages deploy*)",
+      "Bash(bunx wrangler pages deploy*)"
     ]
   }
 }

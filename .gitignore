@@ -31,11 +31,21 @@
 /.claude/*
 !/.claude/commands/
 !/.claude/scripts/
+!/.claude/templates/
 !/.claude/settings.json
 /.claude/commands/*
 !/.claude/commands/*.md
 /.claude/scripts/*
 !/.claude/scripts/*.sh
+/.claude/templates/*
+!/.claude/templates/cloudflare/
+/.claude/templates/cloudflare/*
+!/.claude/templates/cloudflare/pages/
+!/.claude/templates/cloudflare/workers/
+/.claude/templates/cloudflare/pages/*
+/.claude/templates/cloudflare/workers/*
+!/.claude/templates/cloudflare/pages/*
+!/.claude/templates/cloudflare/workers/*
 
 # keep tracked .codex files only
 !/.codex/

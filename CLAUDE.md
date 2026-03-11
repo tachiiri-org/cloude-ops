@@ -61,7 +61,9 @@ This document defines Claude's behavioral constraints in this repository.
 - Keep normative guidance separate from staging or exploratory documents.
 - Keep detailed policy and fault explanations internal.
 - Require audit events for irreversible or external-effect operations.
-- Don't deploy to prod with Wrangler
+- Don't deploy to prod with Wrangler directly
+- Expose Cloudflare staging deploys as `bun run deploy:staging` via runtime setup
+- Run Cloudflare staging deploys from CI on push to `dev`
 - Don't commit with no .gitigonore in repository
 - Setup tools if default tools not installed
 - Deploy only via merge to main.

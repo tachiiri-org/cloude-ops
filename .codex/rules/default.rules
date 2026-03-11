@@ -24,7 +24,7 @@ prefix_rule(pattern=["bun", "run", "typecheck"], decision="allow")
 prefix_rule(pattern=["bun", "run", "tsc"], decision="allow")
 prefix_rule(pattern=["bun", "run", "build"], decision="allow")
 prefix_rule(pattern=["bun", "run", "test"], decision="allow")
-prefix_rule(pattern=["bun", "run", "deploy:dev"], decision="allow")
+prefix_rule(pattern=["bun", "run", "deploy:staging"], decision="allow")
 
 # prompt: bun add (dependency change)
 prefix_rule(pattern=["bun", "add"], decision="prompt")
@@ -51,6 +51,7 @@ prefix_rule(pattern=["bunx", "wrangler", "deploy"], decision="forbidden", justif
 prefix_rule(pattern=["npm", "run", "deploy"], decision="forbidden", justification="deploy only via merge to main")
 prefix_rule(pattern=["wrangler", "pages", "deploy"], decision="forbidden", justification="deploy only via merge to main")
 prefix_rule(pattern=["npx", "wrangler", "pages", "deploy"], decision="forbidden", justification="deploy only via merge to main")
+prefix_rule(pattern=["bunx", "wrangler", "pages", "deploy"], decision="forbidden", justification="deploy only via merge to main")
 
 # forbidden: wget
 prefix_rule(pattern=["wget"], decision="forbidden")
