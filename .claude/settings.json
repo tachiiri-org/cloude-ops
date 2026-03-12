@@ -15,7 +15,6 @@
   },
   "permissions": {
     "allow": [
-      "mcp__codex__*",
       "mcp__serena__*",
       "Bash(bun run prettier*)",
       "Bash(bun run format*)",
@@ -32,6 +31,7 @@
       "Bash(git push -u origin *)",
       "Bash(git push origin --delete *)",
       "Bash(ls*)",
+      "Bash(find *)",
       "Bash(cat *)",
       "Bash(rg *)",
       "Bash(grep *)",
