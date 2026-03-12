@@ -35,6 +35,7 @@ description: "Understand the repository, load the minimum guidance for the inten
 - classify role from architecture and explicit repo-local evidence
 - classify runtime from explicit repo-local adoption, concrete runtime files, and role defaults
 - read only the domain and profile documents that directly constrain the stated goal
+- read adopted tool profiles only when the repository explicitly uses that tooling or framework
 - always read `architecture.mmd`
 - always read the instruction file for the current agent
 - fetch remote refs before evaluating branch alignment

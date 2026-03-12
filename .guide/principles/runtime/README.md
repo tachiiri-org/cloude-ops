@@ -12,7 +12,7 @@ Runtime principles define reusable delivery and execution invariants that sit be
 ## Non-goals
 
 - role responsibilities owned by `../roles/`
-- technology-specific concrete configuration values owned by `../../profiles/runtime/`
+- technology-specific concrete configuration values owned by `../../profiles/`
 - provider-specific integration constraints
 
 ## Authoring Rules

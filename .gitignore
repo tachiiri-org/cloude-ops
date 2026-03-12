@@ -20,6 +20,8 @@
 !/.guide/tools.md
 !/.guide/profiles/
 !/.guide/profiles/*.md
+!/.guide/profiles/tools/
+!/.guide/profiles/tools/*.md
 !/.guide/profiles/runtime/
 !/.guide/profiles/runtime/*.md
 !/.guide/profiles/identity/

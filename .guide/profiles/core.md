@@ -27,6 +27,9 @@ Profiles define concrete technology- or provider-specific constraints that sit b
 - `providers/`
   - external service-provider profiles usually consumed through adapters
   - examples: payment, messaging, notification, AI, storage, search
+- `tools/`
+  - reusable framework, language-tooling, and packaging constraints
+  - examples: TypeScript discipline, Hono OpenAPI surface, Electron packaging stack
 
 ## Boundary with Principles
 
@@ -59,6 +62,7 @@ Profiles define concrete technology- or provider-specific constraints that sit b
 - Use `runtime/` for concrete execution-platform constraints and platform-native service adoption rules.
 - Use `identity/` for concrete identity-provider verification, claims-handling, and session constraints.
 - Use `providers/` for concrete adapter-facing provider API, webhook, retry, and secret-handling constraints.
+- Use `tools/` for reusable language, framework, schema-generation, and packaging-tool constraints.
 - Keep reusable concrete constraints in profiles even when the underlying provider or runtime is optional.
 - Do not keep reusable concrete constraints in staged drafts once a stable profile boundary exists.
 
