@@ -45,7 +45,7 @@ jobs:
               Path(".claude/settings.json"),
               Path(".mcp.json"),
               Path("package.template.json"),
-              Path("tooling/recommended-versions.json"),
+              Path(".guide/recommended-versions.json"),
           ]
 
           for path in paths:
@@ -102,7 +102,7 @@ jobs:
           from pathlib import Path
 
           package = json.loads(Path("package.template.json").read_text())
-          versions = json.loads(Path("tooling/recommended-versions.json").read_text())
+          versions = json.loads(Path(".guide/recommended-versions.json").read_text())
 
           expected = versions["typescript"]
           actual = package["devDependencies"]

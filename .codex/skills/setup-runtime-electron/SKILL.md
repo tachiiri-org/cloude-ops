@@ -5,6 +5,8 @@ description: Reconcile Electron runtime requirements and delivery automation for
 
 # setup-runtime-electron command
 
+Shared guidance reads in this workflow refer to files under `/home/tachiiri/.guide/`.
+
 ## Tool Modules
 
 - Required:

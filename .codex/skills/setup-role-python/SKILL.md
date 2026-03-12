@@ -5,6 +5,8 @@ description: Reconcile a Python local engine repository to the expected role bas
 
 # setup-role-python command
 
+Shared guidance reads in this workflow refer to files under `/home/tachiiri/.guide/`.
+
 ## Workflow
 
 1. Read `CLAUDE.md`

@@ -9,7 +9,7 @@ description: Ensure ESLint configuration and lint scripts are configured for rep
 
 1. Verify the repository is intended to use ESLint
 2. Inspect ESLint setup as `present`, `missing`, or `drifted`
-3. Read `tooling/recommended-versions.json` for the stored TypeScript baseline when reconciling package versions
+3. Read `/home/tachiiri/.guide/recommended-versions.json` for the stored TypeScript baseline when reconciling package versions
 4. Ensure `eslint` configuration exists
 5. Ensure repository scripts expose lint execution consistently
 6. Keep lint scope aligned with the repository language surface

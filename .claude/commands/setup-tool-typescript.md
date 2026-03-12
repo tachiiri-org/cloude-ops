@@ -4,7 +4,7 @@
 
 1. Verify the repository is intended to use TypeScript
 2. Inspect TypeScript setup as `present`, `missing`, or `drifted`
-3. Read `tooling/recommended-versions.json` for the stored TypeScript baseline when reconciling package versions
+3. Read `/home/tachiiri/.guide/recommended-versions.json` for the stored TypeScript baseline when reconciling package versions
 4. Ensure `typescript` is configured
 5. Ensure `tsconfig` and a baseline `tsc --noEmit` typecheck path exist
 6. Ensure repository scripts expose typecheck consistently

@@ -5,6 +5,8 @@ description: Reconcile Cloudflare Pages runtime requirements and delivery automa
 
 # setup-runtime-cloudflare-pages command
 
+Shared guidance reads in this workflow refer to files under `/home/tachiiri/.guide/`.
+
 ## Tool Modules
 
 - Required:
@@ -22,7 +24,7 @@ description: Reconcile Cloudflare Pages runtime requirements and delivery automa
 2. Read `profiles/runtime/cloudflare-pages.md`
 3. Verify the repository is intended to run on Cloudflare Pages
 4. Inspect Pages runtime state as `present`, `missing`, or `drifted`
-5. Read `tooling/recommended-versions.json` for the stored `wrangler` baseline when reconciling runtime dependencies
+5. Read `/home/tachiiri/.guide/recommended-versions.json` for the stored `wrangler` baseline when reconciling runtime dependencies
 6. Run `.claude/scripts/bootstrap-pages.sh [TARGET_REPO_PATH]` only when required runtime files or scripts are missing or drifted
 7. Apply the required tool modules listed above and collect their reported status
 8. Ensure `package.json` exposes `bun run deploy:preview` and `bun run deploy:staging` for Pages preview and staging deploys

@@ -5,6 +5,8 @@ description: Reconcile a gateway repository to the expected role baseline.
 
 # setup-role-gateway command
 
+Shared guidance reads in this workflow refer to files under `/home/tachiiri/.guide/`.
+
 ## Workflow
 
 1. Read `CLAUDE.md`

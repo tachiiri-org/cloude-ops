@@ -5,6 +5,8 @@ description: Manually verify a Cloudflare runtime repository in staging outside 
 
 # deploy-cloudflare command
 
+Shared guidance reads in this workflow refer to files under `/home/tachiiri/.guide/`.
+
 ## Steps
 
 1. Read `principles/domains/ops-governance.md`

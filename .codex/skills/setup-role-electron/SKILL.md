@@ -5,6 +5,8 @@ description: Reconcile an Electron application repository to the expected role b
 
 # setup-role-electron command
 
+Shared guidance reads in this workflow refer to files under `/home/tachiiri/.guide/`.
+
 ## Workflow
 
 1. Read `CLAUDE.md`

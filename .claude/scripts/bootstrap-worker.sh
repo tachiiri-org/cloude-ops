@@ -13,7 +13,7 @@ RELEASE_WORKFLOW_TEMPLATE="$CLAUDE_OPS_ROOT/.claude/templates/cloudflare/release
 DEPLOY_TEMPLATE="$CLAUDE_OPS_ROOT/.claude/templates/cloudflare/workers/deploy-staging.sh"
 PREVIEW_DEPLOY_TEMPLATE="$CLAUDE_OPS_ROOT/.claude/templates/cloudflare/workers/deploy-preview.sh"
 COMMENT_TEMPLATE="$CLAUDE_OPS_ROOT/.claude/templates/cloudflare/common/upsert-pr-comment.py"
-VERSIONS_FILE="$CLAUDE_OPS_ROOT/tooling/recommended-versions.json"
+VERSIONS_FILE="$CLAUDE_OPS_ROOT/.guide/recommended-versions.json"
 
 cd "$TARGET"
 

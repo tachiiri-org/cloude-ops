@@ -4,7 +4,7 @@
 
 1. Verify the repository has UI surfaces that justify Playwright
 2. Inspect Playwright setup as `present`, `missing`, or `drifted`
-3. Read `tooling/recommended-versions.json` for the stored TypeScript baseline when reconciling package versions
+3. Read `/home/tachiiri/.guide/recommended-versions.json` for the stored TypeScript baseline when reconciling package versions
 4. Ensure `@playwright/test` configuration exists
 5. Ensure repository scripts expose browser or UI-check execution consistently
 6. Keep Playwright setup separate from unit-test tooling

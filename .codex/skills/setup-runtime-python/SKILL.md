@@ -5,6 +5,8 @@ description: Reconcile Python local-engine runtime requirements and delivery aut
 
 # setup-runtime-python command
 
+Shared guidance reads in this workflow refer to files under `/home/tachiiri/.guide/`.
+
 ## Tool Modules
 
 - Required:

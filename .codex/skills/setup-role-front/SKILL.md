@@ -5,6 +5,8 @@ description: Reconcile a frontend repository to the expected role baseline.
 
 # setup-role-front command
 
+Shared guidance reads in this workflow refer to files under `/home/tachiiri/.guide/`.
+
 ## Workflow
 
 1. Read `CLAUDE.md`

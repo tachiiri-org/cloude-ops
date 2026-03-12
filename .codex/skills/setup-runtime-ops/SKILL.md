@@ -5,6 +5,8 @@ description: Reconcile ops runtime requirements and delivery automation for repo
 
 # setup-runtime-ops command
 
+Shared guidance reads in this workflow refer to files under `/home/tachiiri/.guide/`.
+
 ## Workflow
 
 1. Read `principles/runtime/ops.md`

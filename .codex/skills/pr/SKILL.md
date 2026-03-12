@@ -5,6 +5,8 @@ description: Prepare branch, converge a feature PR to dev through auto-merge, an
 
 # pr command
 
+Shared guidance reads in this workflow refer to files under `/home/tachiiri/.guide/`.
+
 ## Goal
 
 - use one PR flow for `feature` -> `dev` across repositories

@@ -9,7 +9,7 @@ description: Ensure Vitest configuration and test scripts are configured for rep
 
 1. Verify the repository is intended to use Vitest
 2. Inspect Vitest setup as `present`, `missing`, or `drifted`
-3. Read `tooling/recommended-versions.json` for the stored TypeScript baseline when reconciling package versions
+3. Read `/home/tachiiri/.guide/recommended-versions.json` for the stored TypeScript baseline when reconciling package versions
 4. Ensure `vitest` configuration exists
 5. Ensure repository scripts expose unit-test execution consistently
 6. Keep test setup minimal and aligned with repository language and runtime modules

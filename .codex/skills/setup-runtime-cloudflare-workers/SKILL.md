@@ -5,6 +5,8 @@ description: Reconcile Cloudflare Workers runtime requirements and delivery auto
 
 # setup-runtime-cloudflare-workers command
 
+Shared guidance reads in this workflow refer to files under `/home/tachiiri/.guide/`.
+
 ## Purpose
 
 - Preferred runtime-module name for Workers setup under the `setup-<axis>-<name>` taxonomy.
@@ -26,7 +28,7 @@ description: Reconcile Cloudflare Workers runtime requirements and delivery auto
 2. Read `profiles/runtime/cloudflare-workers.md`
 3. Verify the repository is intended to run on Cloudflare Workers
 4. Inspect Workers runtime state as `present`, `missing`, or `drifted`
-5. Read `tooling/recommended-versions.json` for the stored `wrangler` baseline when reconciling runtime dependencies
+5. Read `/home/tachiiri/.guide/recommended-versions.json` for the stored `wrangler` baseline when reconciling runtime dependencies
 6. Run `.claude/scripts/bootstrap-worker.sh [TARGET_REPO_PATH]` only when required runtime files or scripts are missing or drifted
 7. Apply the required tool modules listed above and collect their reported status
 8. Ensure `package.json` exposes `bun run deploy:preview` and `bun run deploy:staging` for Worker preview and staging deploys

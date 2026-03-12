@@ -5,6 +5,8 @@ description: Bootstrap GitHub development-platform state for a new repository, i
 
 # setup-dev-github command
 
+Shared guidance reads in this workflow refer to files under `/home/tachiiri/.guide/`.
+
 ## Workflow
 
 1. Read `principles/core.md`

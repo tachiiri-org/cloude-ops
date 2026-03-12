@@ -5,6 +5,8 @@ description: Reconcile a BFF repository to the expected role baseline.
 
 # setup-role-bff command
 
+Shared guidance reads in this workflow refer to files under `/home/tachiiri/.guide/`.
+
 ## Purpose
 
 - Preferred role-bundle name for BFF repository setup under the `setup-<axis>-<name>` taxonomy.

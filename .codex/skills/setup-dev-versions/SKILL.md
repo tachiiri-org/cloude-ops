@@ -5,10 +5,12 @@ description: Refresh the stored recommended dependency versions that role and ru
 
 # setup-dev-versions command
 
+Shared guidance reads in this workflow refer to files under `/home/tachiiri/.guide/`.
+
 ## Purpose
 
 - Maintain the agent-ops recommended version baseline.
-- Keep `tooling/recommended-versions.json` aligned with the currently approved package versions.
+- Keep `/home/tachiiri/.guide/recommended-versions.json` aligned with the currently approved package versions.
 - Update materialized templates after the approved baseline changes.
 
 ## Workflow
@@ -16,11 +18,11 @@ description: Refresh the stored recommended dependency versions that role and ru
 1. Read `principles/domains/ops-governance.md`
 2. Read `principles/domains/compatibility-and-change.md`
 3. Verify the current repository is the ops repository
-4. Read `tooling/recommended-versions.json`
+4. Read `/home/tachiiri/.guide/recommended-versions.json`
 5. Check the latest approved versions from primary upstream sources for the owned toolchain:
    - TypeScript toolchain packages
    - Cloudflare `wrangler`
-6. Update `tooling/recommended-versions.json` only after confirming the new versions are the intended baseline
+6. Update `/home/tachiiri/.guide/recommended-versions.json` only after confirming the new versions are the intended baseline
 7. Update any materialized templates that must stay in sync with the stored baseline:
    - `package.template.json`
    - runtime bootstrap scripts that pin `wrangler`
