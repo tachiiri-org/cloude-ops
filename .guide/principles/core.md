@@ -13,8 +13,9 @@ They preserve value-free semantic guidance that should stay stable as the system
 
 1. Read this file first.
 2. Read the role-specific document under `roles/` that matches the repository role.
-3. Read domain documents under `domains/` as needed for the task scope.
-4. Use `../architecture.mmd` for topology context when needed.
+3. Read the runtime-specific document under `runtime/` when the repository's execution or delivery platform is known.
+4. Read domain documents under `domains/` as needed for the task scope.
+5. Use `../architecture.mmd` for topology context when needed.
 
 ## Cross-cutting Semantics
 
@@ -36,13 +37,16 @@ They preserve value-free semantic guidance that should stay stable as the system
 
 - `core.md`
   - cross-cutting semantic summary
-  - reading map for `roles/` and `domains/`
+  - reading map for `roles/`, `runtime/`, and `domains/`
 - `domains/`
   - high-density cross-cutting semantics without role duplication
 - `roles/`
   - role-specific responsibilities
   - role-specific prohibitions
   - how the role applies the shared core principles
+- `runtime/`
+  - runtime-owned delivery and merge-gate invariants
+  - execution-platform principles that stay above profile-level concrete detail
 
 ## Document Semantics
 
@@ -108,6 +112,14 @@ They preserve value-free semantic guidance that should stay stable as the system
 - `roles/electron.md`
 - `roles/python.md`
 - `roles/ops.md`
+
+## Runtime Documents
+
+- `runtime/cloudflare-pages.md`
+- `runtime/cloudflare-workers.md`
+- `runtime/electron.md`
+- `runtime/python.md`
+- `runtime/ops.md`
 
 ## Authoring Rules
 

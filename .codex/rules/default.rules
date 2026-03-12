@@ -8,6 +8,8 @@ prefix_rule(pattern=["git", "fetch", "origin"], decision="allow")
 # allow: git write (safe)
 prefix_rule(pattern=["git", "commit"], decision="allow")
 prefix_rule(pattern=["git", "add"], decision="allow")
+prefix_rule(pattern=["git", "push", "-u", "origin"], decision="allow")
+prefix_rule(pattern=["git", "push", "origin", "--delete"], decision="allow")
 
 # prompt: git destructive
 prefix_rule(pattern=["git", "push"], decision="prompt")
@@ -55,3 +57,6 @@ prefix_rule(pattern=["bunx", "wrangler", "pages", "deploy"], decision="forbidden
 
 # forbidden: wget
 prefix_rule(pattern=["wget"], decision="forbidden")
+prefix_rule(pattern=["gh", "--version"], decision="allow")
+prefix_rule(pattern=["gh", "auth", "status"], decision="allow")
+prefix_rule(pattern=["gh", "pr"], decision="allow")

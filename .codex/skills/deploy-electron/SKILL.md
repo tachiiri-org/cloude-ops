@@ -5,6 +5,8 @@ description: Package and publish an Electron app to GitHub Releases with branch-
 
 # deploy-electron command
 
+Shared guidance reads in this workflow refer to files under `/home/tachiiri/.guide/`.
+
 ## Steps
 
 1. Read `principles/domains/ops-governance.md`

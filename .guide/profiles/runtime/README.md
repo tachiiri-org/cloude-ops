@@ -15,6 +15,8 @@ Runtime profiles define concrete constraints for execution platforms assigned to
 - Cloudflare Pages
 - Cloudflare Workers
 - Electron runtime
+- Python local-engine runtime
+- Ops shared-automation runtime
 
 ## Non-goals
 

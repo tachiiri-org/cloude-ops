@@ -1,26 +1,58 @@
 ---
 name: setup-runtime-cloudflare-pages
-description: Bootstrap Cloudflare Pages runtime requirements and baseline tooling for repositories that run on Pages.
+description: Reconcile Cloudflare Pages runtime requirements and delivery automation for repositories that run on Pages.
 ---
 
 # setup-runtime-cloudflare-pages command
 
+Shared guidance reads in this workflow refer to files under `/home/tachiiri/.guide/`.
+
+## Goal
+
+- Reconcile the repository to the Cloudflare Pages runtime baseline defined by shared guidance.
+- Use `/home/tachiiri/.guide/tools.md` as the authority for required runtime tooling and recommended versions.
+- Reach a state where the required Pages files, scripts, workflows, and tool versions are present without relying on bootstrap scripts.
+
+## Tool Modules
+
+- Required:
+  - `setup-tool-bun`
+  - `setup-tool-typescript`
+  - `setup-tool-eslint`
+  - `setup-tool-prettier`
+  - `setup-tool-vitest`
+- Optional:
+  - `setup-tool-playwright`
+
 ## Workflow
 
-1. Read `profiles/runtime/cloudflare-pages.md`
-2. Verify the repository is intended to run on Cloudflare Pages
-3. Run `.claude/scripts/bootstrap-pages.sh [TARGET_REPO_PATH]`
-4. Ensure baseline tooling and Pages runtime dependencies are present
-5. Ensure `package.json` exposes `bun run deploy:staging` for Pages staging deploys
-6. Ensure `scripts/deploy-staging.sh` exists and owns the Pages-specific staging deploy command
-7. Ensure `.github/workflows/deploy-staging.yml` exists and deploys on `push` to `dev`
-8. Add only the minimal Pages runtime scaffold required by the consuming role bundle
-9. Keep Pages features and bindings explicit rather than implied by Pages adoption
-10. Run the repository's standard validation commands
+1. Read `principles/runtime/cloudflare-pages.md`
+2. Read `profiles/runtime/cloudflare-pages.md`
+3. Verify the repository is intended to run on Cloudflare Pages
+4. Inspect Pages runtime state as `present`, `missing`, or `drifted`
+5. Read `/home/tachiiri/.guide/tools.md` for the stored `Wrangler` baseline when reconciling runtime dependencies
+6. Reconcile required runtime files directly from the tracked templates when files or scripts are missing or drifted
+7. Apply the required tool modules listed above and collect their reported status
+8. Ensure `package.json` includes the `wrangler` version selected in `/home/tachiiri/.guide/tools.md`
+9. Ensure `package.json` exposes `bun run deploy:preview` and `bun run deploy:staging` for Pages preview and staging deploys
+10. Ensure `scripts/deploy-preview.sh` and `scripts/deploy-staging.sh` exist and own the Pages-specific deploy commands
+11. Ensure `scripts/github/upsert-pr-comment.py` exists for CI URL reporting
+12. Ensure `.github/workflows/preview-pr.yml` exists and emits the `preview-pr` check on `pull_request` to `dev`
+13. Ensure `.github/workflows/deploy-staging.yml` exists and deploys on `push` to `dev`
+14. Ensure `.github/workflows/release-pr.yml` exists and maintains the release PR on `push` to `dev`
+15. Ensure the repository exposes `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` secrets required by the preview workflow
+16. Reconcile GitHub repository policy for this runtime when safe:
+   - ensure the repository is PR-based
+   - ensure repo auto-merge is enabled
+   - ensure `dev` branch protection requires the `preview-pr` check
+17. Report `auto_merge_ready` only when the runtime can emit the `preview-pr` check, the Cloudflare secrets are present, and GitHub policy is aligned
+18. Report the final runtime setup status so operators can summarize reconciliation across runtime and role steps
+19. Keep Pages features and bindings explicit rather than implied by Pages adoption
+20. Run the repository's standard validation commands
 
-## Composes With
+## Applies To
 
-- `setup-role-front`
+- repositories adopting the Cloudflare Pages runtime
 
 ## Constraints
 
@@ -28,3 +60,5 @@ description: Bootstrap Cloudflare Pages runtime requirements and baseline toolin
 - Do not imply non-essential Pages features by runtime setup alone
 - Do not move staging deploy execution into the `pr` workflow
 - Do not use npm
+- Do not rely on bootstrap scripts; reconcile from `tools.md` and tracked templates directly
+- Treat this command as an internal setup module that may be called repeatedly

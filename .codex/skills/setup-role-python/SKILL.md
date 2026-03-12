@@ -1,45 +1,40 @@
 ---
 name: setup-role-python
-description: Bootstrap a Python local engine repository with the minimum role-specific scaffold and checks, composed with Python tooling modules.
+description: Reconcile a Python local engine repository to the expected role baseline.
 ---
 
 # setup-role-python command
 
-## Tool Modules
-
-- Required:
-  - `setup-tool-uv`
-  - `setup-tool-ruff`
-  - `setup-tool-pyright`
-  - `setup-tool-pytest`
+Shared guidance reads in this workflow refer to files under `/home/tachiiri/.guide/`.
 
 ## Workflow
 
-1. Run the repository bootstrap flow for the target path
-2. Read `CLAUDE.md`
-3. Read `principles/core.md`
-4. Read `profiles/core.md`
-5. Read `principles/roles/python.md`
-6. Verify working tree is clean
-7. Ensure `main` and `dev` branch setup exists and switch to a feature branch
-8. Verify GitHub auth status
-9. Verify `uv` is installed and `.venv` exists
-10. Verify Codex and Serena availability
-11. Activate the project in Serena
-12. Apply the Python engine baseline scaffold only:
+1. Read `CLAUDE.md`
+2. Read `principles/core.md`
+3. Read `profiles/core.md`
+4. Read `principles/roles/python.md`
+5. Verify the target directory exists locally
+6. Verify working tree is clean before reconciliation
+7. Verify `uv` is installed when the repository already expects Python tooling
+8. Verify Codex and Serena availability
+9. Activate the project in Serena
+10. Inspect the role baseline as `present`, `missing`, or `drifted`
+11. Ensure `main` and `dev` branch bootstrap exists; compose with `setup-dev-github` only when the repository bootstrap is missing
+12. Reconcile only the Python engine baseline that is still missing or safely drifted:
    - `launcher.py`
    - `src/{name}/__init__.py`
    - `src/{name}/__main__.py`
    - no application features beyond scaffold
-13. Apply the tool modules listed above
-14. Add release metadata placeholders required for the engine launcher flow
-15. Add minimal dependency and script placeholders required for the engine scaffold
+13. Add release metadata placeholders required for the engine launcher flow when missing
+14. Add minimal dependency and script placeholders required for the engine scaffold when missing
+15. Report any policy drift that cannot be fixed safely without repo-specific confirmation
 16. Run the repository's standard validation commands
-17. Commit the scaffold
-18. Create a pull request targeting `dev`
+17. Summarize which role baseline areas were already aligned, which were fixed, and which still need human follow-up
 
 ## Constraints
 
 - Do not embed non-Python runtime concerns into this role command
+- Do not embed tool, identity, or provider setup into this role command
 - Do not start development work
 - Do not use pip directly; use `uv`
+- Treat this command as the operator-facing reconcile entrypoint for Python repository setup

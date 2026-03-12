@@ -4,6 +4,7 @@
 
 - understand how to behave
 - gather the minimum principle and profile context required for the intended work
+- stop after project understanding; do not start setup or implementation work
 
 ## Steps
 
@@ -26,27 +27,36 @@
    - If the environment is sandboxed, run `git pull --ff-only origin dev` with escalated permissions from the start.
 10. Read last 10 commit logs (prefer checking `origin/dev` after fetch)
 11. Classify repository role by cross-referencing `architecture.mmd` (front / bff / gateway / adapter / electron / python / ops)
-12. Read the matching role-specific file under `principles/roles/` for the classified role
-13. Ask human goals
-14. Read the relevant domain document(s) under `principles/domains/` based on the stated goals
+12. Classify repository runtime from explicit repo-local adoption, concrete runtime files, and role defaults:
+   - front -> `cloudflare-pages`
+   - bff / gateway / adapter -> `cloudflare-workers`
+   - electron -> `electron`
+   - python -> `python`
+   - ops -> `ops`
+13. Read the matching role-specific file under `principles/roles/` for the classified role
+14. Read the matching runtime-specific file under `principles/runtime/` for the classified runtime
+15. Ask human goals
+16. Read the relevant domain document(s) under `principles/domains/` based on the stated goals
    - Read only the domain documents that constrain the intended change.
    - Use `principles/core.md` as the index for available domain documents.
    - Prefer deciding domain reads from the user goal before starting development work.
-15. Select and read only the applicable profile document(s) after the role and goal are known
+17. Select and read only the applicable profile document(s) after the role, runtime, and goal are known
    - Use `profiles/core.md` as the index for profile axes.
    - Use explicit repo-local adoption, task scope, and concrete runtime/config files before architecture-level defaults.
-   - Read `profiles/runtime/cloudflare-pages.md` for frontend repositories that run on Pages.
-   - Read `profiles/runtime/cloudflare-workers.md` for BFF, gateway, or adapter repositories that run on Workers.
-   - Read `profiles/runtime/electron.md` for Electron repositories.
+   - Read the matching file under `profiles/runtime/` for the classified runtime.
    - Read `profiles/identity/auth0.md` only when the repository directly terminates, exchanges, refreshes, initiates, or validates Auth0-issued credentials.
    - Read matching files under `profiles/providers/` only when the repository directly integrates with those providers, typically at the adapter boundary.
    - Do not infer identity or provider profiles from architecture alone.
-16. Create a feature branch off up-to-date `dev` based on stated goals (e.g. feature/xxx, fix/xxx)
-17. Execute the implement skill matching the repo role:
-   - front / bff / gateway / adapter → `implement-ts`
-   - electron → `implement-electron`
-   - python → `implement-py`
-   - ops → no implement skill (ops repo manages skills, not product code)
+18. Report the classified role and runtime explicitly to the human
+19. If the stated goal is setup-related, stop after onboarding and recommend handling setup as a separate follow-up using the independently classified `setup-runtime-*` and `setup-role-*` commands
+20. If the stated goal is implementation-related, stop after onboarding and hand off to the appropriate implementation workflow in a separate step
+21. Recommend the next command(s) explicitly based on the classified role, runtime, and stated goal:
+   - setup -> `setup-runtime-<runtime>` first, then `setup-role-<role>`
+   - implementation -> `implement-ts` for front / bff / gateway / adapter, `implement-electron` for electron, `implement-py` for python, and no implement skill for ops
+   - feature delivery to `dev` -> `pr` for all repositories
+   - Cloudflare runtime delivery note -> for `cloudflare-pages` and `cloudflare-workers`, treat `pr` as the normal delivery entrypoint because CI owns preview publication and post-merge staging deploys; use `deploy-cloudflare` only for explicit manual staging verification outside the ordinary PR-driven flow
+   - release governance -> `release` when the goal is to ensure or update the `dev` -> `main` release PR
+   - artifact publishing -> `deploy-electron` for Electron release publishing, `deploy-py` for Python wheel publishing, and no generic deploy command for ops
 
 ## Constraints
 
@@ -57,4 +67,6 @@
 - no authentication checks
 - no tool installation
 - don't start development work
+- don't execute setup commands from onboarding
+- don't execute deploy or release commands from onboarding
 - don't use npm

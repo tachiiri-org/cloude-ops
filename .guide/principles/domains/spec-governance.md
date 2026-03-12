@@ -87,7 +87,7 @@
 
 - Promote to `domains/*.md` only when the rule is cross-cutting and provider-agnostic.
 - Promote to `roles/*.md` only when the rule is about responsibility boundaries for a specific role.
-- Promote to `profiles/` only when the rule is a reusable concrete runtime, identity-provider, or adapter-provider constraint.
+- Promote to `profiles/` only when the rule is a reusable concrete runtime, identity-provider, provider, or tool constraint.
 - Keep repository-specific values, composition choices, schemas, and environment bindings in repo-local specifications.
 - Do not preserve staged inventory or workflow documents once their stable rules are absorbed by existing guidance.
 

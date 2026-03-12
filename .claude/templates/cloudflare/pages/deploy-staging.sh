@@ -3,6 +3,7 @@
 set -euo pipefail
 
 output_dir="${PAGES_BUILD_OUTPUT_DIR:-}"
+branch_name="${CLOUDFLARE_PAGES_BRANCH:-staging}"
 
 if [[ -z "$output_dir" && -f wrangler.toml ]]; then
   output_dir="$(python3 - <<'PY'
@@ -43,4 +44,4 @@ if [[ -z "$output_dir" ]]; then
   exit 1
 fi
 
-exec wrangler pages deploy "$output_dir" --branch staging
+exec wrangler pages deploy "$output_dir" --branch "$branch_name"

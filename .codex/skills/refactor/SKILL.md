@@ -5,12 +5,14 @@ description: Drive principle-aligned refactoring through onboarding context, pla
 
 # refactor command
 
+Shared guidance reads in this workflow refer to files under `/home/tachiiri/.guide/`.
+
 ## Steps
 
 1. Run the onboarding skill to gather project context.
 2. Restate the refactor goal and the intended scope.
-3. Read `principles/core.md` from the repository root.
-4. Read `profiles/core.md` from the repository root.
+3. Read `principles/core.md` from the shared guidance root.
+4. Read `profiles/core.md` from the shared guidance root.
 5. Read the role-specific file under `principles/roles/` that applies to the current task.
 6. Read only the domain document(s) under `principles/domains/` that constrain the stated scope.
 7. Read only the profile document(s) selected by onboarding or required by the currently adopted runtime, identity, and provider boundaries.

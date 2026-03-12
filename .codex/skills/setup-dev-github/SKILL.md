@@ -5,6 +5,8 @@ description: Bootstrap GitHub development-platform state for a new repository, i
 
 # setup-dev-github command
 
+Shared guidance reads in this workflow refer to files under `/home/tachiiri/.guide/`.
+
 ## Workflow
 
 1. Read `principles/core.md`
@@ -19,9 +21,11 @@ description: Bootstrap GitHub development-platform state for a new repository, i
 10. Ensure `dev` exists off `main`
 11. Push initial branches as needed
 12. Confirm the repository is ready for role-, runtime-, idp-, and provider-setup modules
+13. Do not modify ongoing branch protection, required checks, or auto-merge policy here; role setup owns that reconciliation after bootstrap
 
 ## Constraints
 
 - Do not mix application scaffold with GitHub repository bootstrap
 - Do not create provider-integration configuration here
 - Do not push directly to `main` after initial repository bootstrap
+- Do not use this command as the steady-state GitHub policy reconciler

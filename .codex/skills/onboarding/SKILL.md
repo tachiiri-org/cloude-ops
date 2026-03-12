@@ -1,65 +1,60 @@
 ---
 name: onboarding
-description: "Run repository onboarding workflow: sync guidance files, inspect git state, classify role, load applicable principles and profiles, and start a feature branch."
+description: "Understand the repository, load the minimum guidance for the intended work, and prepare a safe git baseline for follow-up commands."
 ---
 
 # onboarding command
 
+## Terms
+
+- Required Documents: `principles/`, `profiles/`, `architecture.mmd`, `CLAUDE.md`, and `AGENTS.md` available from the shared guidance root at `/home/tachiiri/.guide`
+- Required Reads: `architecture.mmd` and the instruction file for the current agent (`CLAUDE.md` for Claude, `AGENTS.md` for Codex)
+
 ## Goals
 
-- understand how to behave
-- gather the minimum principle and profile context required for the intended work
-
-## Steps
-
-1. Sync root guidance files from `/home/tachiiri` into the current working directory only when the current repository is not `/home/tachiiri`:
-   - Use the repository root files as the source of truth: `AGENTS.md`, `CLAUDE.md`, `architecture.mmd`, `principles/`, and `profiles/`
-   - Never overwrite an existing repo-local guidance file without checking whether local customization must be preserved.
-   - If a target file is missing, copy it from `/home/tachiiri`.
-   - If the current working directory is `/home/tachiiri`, skip the copy step.
-2. Read `AGENTS.md`
-3. Read `architecture.mmd` (system topology)
-4. Read `principles/core.md`
-5. Read `profiles/core.md`
-6. Read `CLAUDE.md`
-7. Fetch latest remote refs before branch/status decisions:
-   - If the environment is sandboxed, run `git fetch origin` with escalated permissions from the start.
-   - Do not retry the same remote Git command in the sandbox after a network-resolution failure.
-8. Verify working tree is clean
-9. Verify local `dev` alignment with `origin/dev`; if behind, fast-forward:
-   - `git checkout dev`
-   - If the environment is sandboxed, run `git pull --ff-only origin dev` with escalated permissions from the start.
-10. Read last 10 commit logs (prefer checking `origin/dev` after fetch)
-11. Classify repository role by cross-referencing `architecture.mmd` (front / bff / gateway / adapter / electron / python / ops)
-12. Read the matching role-specific file under `principles/roles/` for the classified role
-13. Ask human goals
-14. Read the relevant domain document(s) under `principles/domains/` based on the stated goals
-   - Read only the domain documents that constrain the intended change.
-   - Use `principles/core.md` as the index for available domain documents.
-   - Prefer deciding domain reads from the user goal before starting development work.
-15. Select and read only the applicable profile document(s) after the role and goal are known
-   - Use `profiles/core.md` as the index for profile axes.
-   - Use explicit repo-local adoption, task scope, and concrete runtime/config files before architecture-level defaults.
-   - Read `profiles/runtime/cloudflare-pages.md` for frontend repositories that run on Pages.
-   - Read `profiles/runtime/cloudflare-workers.md` for BFF, gateway, or adapter repositories that run on Workers.
-   - Read `profiles/runtime/electron.md` for Electron repositories.
-   - Read `profiles/identity/auth0.md` only when the repository directly terminates, exchanges, refreshes, initiates, or validates Auth0-issued credentials.
-   - Read matching files under `profiles/providers/` only when the repository directly integrates with those providers, typically at the adapter boundary.
-   - Do not infer identity or provider profiles from architecture alone.
-16. Create a feature branch off up-to-date `dev` based on stated goals (e.g. feature/xxx, fix/xxx)
-17. Execute the implement skill matching the repo role:
-   - front / bff / gateway / adapter → `implement-ts`
-   - electron → `implement-electron`
-   - python → `implement-py`
-   - ops → no implement skill (ops repo manages skills, not product code)
+- understand how to behave in this repository
+- ensure Required Documents are available from the shared guidance root at `/home/tachiiri/.guide`
+- read Required Reads before reading code or making workflow decisions
+- classify the repository role and runtime
+- understand the expected git workflow, including `dev` as the baseline branch and feature work on branches derived from it
+- load only the minimum guidance required for the stated goal
+- inspect the git state and prepare a safe baseline for follow-up commands when possible
 
 ## Constraints
 
-- run each Bash command separately, not as compound commands (e.g. `&&`)
 - don't read code before the guidance and workflow context is loaded
-- don't change code
 - don't overwrite repo-local guidance files blindly
-- no authentication checks
-- no tool installation
-- don't start development work
-- don't use npm
+- don't change application code
+- don't install tools or use npm
+- stop after onboarding; do not start setup, implementation, deploy, PR, or release work
+- run each Bash command separately, not as compound commands (e.g. `&&`)
+
+## Hints
+
+- use the shared guidance root at `/home/tachiiri/.guide` as the default source of Required Documents
+- classify role from architecture and explicit repo-local evidence
+- classify runtime from explicit repo-local adoption, concrete runtime files, and role defaults
+- read only the domain and profile documents that directly constrain the stated goal
+- read adopted tool profiles only when the repository explicitly uses that tooling or framework
+- always read `architecture.mmd`
+- always read the instruction file for the current agent
+- fetch remote refs before evaluating branch alignment
+- in sandboxed environments, run remote Git operations with escalated permissions from the start
+- ensure `dev` exists; create it if missing
+- if the tree is clean and `dev` is only behind its remote, fast-forward it
+- if the tree is dirty or the branch is diverged, do not auto-resolve; report the state instead
+- if already on an active feature branch, preserve it and report the decision point: continue there or prepare a PR first
+
+## Output
+
+Return:
+
+- Required Documents status
+- Required Reads completed
+- classified role and runtime
+- user goal
+- current branch, working tree state, and remote sync state
+- whether `dev` is ready, created, initialized, or not normalized
+- which guidance was loaded
+- key constraints for the intended work
+- the next recommended command(s)
