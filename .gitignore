@@ -17,8 +17,21 @@
 !/.guide/AGENTS.md
 !/.guide/CLAUDE.md
 !/.guide/architecture.mmd
-!/.guide/domains/
-!/.guide/domains/*.md
+!/.guide/foundations.md
+!/.guide/boundaries/
+!/.guide/boundaries/*.md
+!/.guide/compatibility/
+!/.guide/compatibility/*.md
+!/.guide/data/
+!/.guide/data/*.md
+!/.guide/governance/
+!/.guide/governance/*.md
+!/.guide/identity/
+!/.guide/identity/*.md
+!/.guide/observability/
+!/.guide/observability/*.md
+!/.guide/operations/
+!/.guide/operations/*.md
 !/.guide/roles/
 !/.guide/roles/*.md
 !/.guide/hosts/
@@ -31,8 +44,8 @@
 !/.guide/tools/*.md
 !/.guide/providers/
 !/.guide/providers/*.md
-!/.guide/libraries/
-!/.guide/libraries/*.md
+!/.guide/tenancy/
+!/.guide/tenancy/*.md
 
 # keep tracked .claude files only
 !/.claude/

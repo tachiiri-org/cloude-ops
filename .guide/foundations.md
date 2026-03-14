@@ -34,9 +34,8 @@ They preserve value-free semantic guidance that should stay stable as the system
 ## Authoring Rules
 
 - Keep files under `roles/` free of duplicated shared semantics unless the role adds a stricter rule.
-- Add dense cross-cutting semantics to the appropriate file under `domains/`.
+- Add dense cross-cutting semantics to the appropriate top-level concern directory such as `data/`, `identity/`, or `boundaries/`.
 - Add new role-local guidance to the corresponding file under `roles/`.
 - Add one file per language under `languages/` when language-specific guidance is required.
 - Add one file per tool or tool stack under `tools/`; keep repo-local script names and paths out of tool profiles.
-- Add one file per adopted library or implementation stack under `libraries/` when reusable guidance is needed.
 - Add one file per adopted external provider under `providers/`; keep environment-specific values out of provider profiles.

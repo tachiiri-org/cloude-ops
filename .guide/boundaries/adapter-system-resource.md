@@ -1,0 +1,1 @@
+# adapter-system-resource.md

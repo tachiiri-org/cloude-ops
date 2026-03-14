@@ -4,8 +4,8 @@
 
 - Provide shared guidance and automation surfaces for Claude and Codex.
 - Show concerns through directories.
-- Show sections for each concern through files.
-- Show the available concerns and sections through the file tree.
+- Show topics for each concern through files.
+- Show the available concerns and topics through the file tree.
 
 ## Constraints
 

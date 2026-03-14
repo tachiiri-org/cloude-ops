@@ -45,12 +45,14 @@
 
 ## Repository Layout Rules
 
-- `domains/foundations.md`
+- `foundations.md`
   - cross-cutting summary and reading map only
-- `domains/*.md`
-  - cross-cutting semantic authority grouped by domain
+- `data/*.md`, `identity/*.md`, `boundaries/*.md`, `operations/*.md`, and other top-level concern directories
+  - cross-cutting semantic authority grouped by concern and topic
 - `roles/*.md`
-  - operationalized role-facing constraints derived from shared domains
+  - operationalized role-facing constraints derived from shared concerns
+- `runtimes/*.md`, `providers/*.md`, `hosts/*.md`, and `tools/*.md`
+  - reusable concrete constraints grouped by adoption surface
 - `spec-migration-draft.md`
   - migration planning aid, not normative shared guidance
 
@@ -76,18 +78,18 @@
   - reusable concrete profile constraint
   - repo-local specification detail
 - Promotion must declare:
-  - target domain or role document
+  - target concern or role document
   - compatibility impact
   - rollout expectations when semantics change
 - Normative shared guidance must not depend on staging material.
-- Prefer updating an existing domain or role document before creating a new shared-guidance file.
+- Prefer updating an existing concern or role document before creating a new shared-guidance file.
 - Keep one logical promotion scoped to one topic boundary at a time.
 
 ## Promotion Targeting Baseline
 
-- Promote to `domains/*.md` only when the rule is cross-cutting and provider-agnostic.
+- Promote to the appropriate top-level concern directory only when the rule is cross-cutting and provider-agnostic.
 - Promote to `roles/*.md` only when the rule is about responsibility boundaries for a specific role.
-- Promote to `profiles/` only when the rule is a reusable concrete runtime, identity-provider, provider, or tool constraint.
+- Promote to `runtimes/`, `providers/`, `hosts/`, or `tools/` only when the rule is a reusable concrete adoption constraint.
 - Keep repository-specific values, composition choices, schemas, and environment bindings in repo-local specifications.
 - Do not preserve staged inventory or workflow documents once their stable rules are absorbed by existing guidance.
 
