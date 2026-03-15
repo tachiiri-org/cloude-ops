@@ -1,0 +1,88 @@
+.template-gallery__eyebrow,
+.eyebrow,
+.selector-explorer__eyebrow,
+.selector-detail__eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 11px;
+  color: var(--text-accent);
+}
+
+h1 {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+.selector-detail__title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.template-gallery__summary,
+.summary {
+  margin: 8px 0 0;
+  max-width: 56rem;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.layout-picker__label,
+.template-preview-card__title,
+.template-gallery__selection-label,
+.selector-explorer__label {
+  font-weight: 600;
+}
+
+.template-gallery__title,
+.template-gallery__meta,
+.selector-explorer__meta,
+.selector-detail__summary,
+.layout-picker__description,
+.template-gallery__selection span,
+.template-preview-card__eyebrow,
+.selector-explorer__description,
+.template-preview-card__body p,
+dt,
+dd {
+  font-size: 12px;
+}
+
+.layout-picker__description,
+.template-gallery__selection span,
+.template-preview-card__eyebrow,
+.selector-explorer__description {
+  color: var(--text-muted);
+}
+
+.template-preview-card__eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.template-preview-card__title {
+  margin: 0;
+  font-size: 15px;
+}
+
+.template-preview-card__body p {
+  margin: 0;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+dt {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-accent);
+}
+
+dd {
+  margin: 0.5rem 0 0;
+  font-weight: 500;
+}

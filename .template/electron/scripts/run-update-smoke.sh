@@ -2,12 +2,12 @@
 set -euo pipefail
 
 if command -v xvfb-run >/dev/null 2>&1; then
-  xvfb-run -a bunx playwright test tests/ui/electron-update.spec.ts
+  ELECTRON_DISABLE_SANDBOX=1 xvfb-run -a bunx playwright test tests/ui/electron-update.spec.ts
   exit 0
 fi
 
 if [[ -n "${DISPLAY:-}" ]]; then
-  bunx playwright test tests/ui/electron-update.spec.ts
+  ELECTRON_DISABLE_SANDBOX=1 bunx playwright test tests/ui/electron-update.spec.ts
   exit 0
 fi
 

@@ -19,6 +19,10 @@ test('launches the built Electron app and renders the baseline UI', async () => 
   const electronApp = await electron.launch({
     args: ['--no-sandbox', 'out/main/index.js'],
     cwd: projectRoot,
+    env: {
+      ...process.env,
+      ELECTRON_DISABLE_SANDBOX: '1',
+    },
   });
 
   const firstWindow = await electronApp.firstWindow();

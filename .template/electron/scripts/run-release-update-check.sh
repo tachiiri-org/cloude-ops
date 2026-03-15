@@ -3,8 +3,7 @@ set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 ARTIFACT_DIR="${ROOT_DIR}/artifacts/release-update"
-EXPECTED_LATEST_VERSION="${EXPECTED_LATEST_VERSION:-__CURRENT_VERSION__}"
-PAGES_BASE_URL="${PAGES_BASE_URL:-https://__REPO_OWNER__.github.io/__REPO_NAME__/updates}"
+EXPECTED_LATEST_VERSION="${EXPECTED_LATEST_VERSION:-0.1.1}"
 DISPLAY_VALUE="${DISPLAY:-:0}"
 
 mkdir -p "${ARTIFACT_DIR}/dev" "${ARTIFACT_DIR}/stable"
@@ -34,7 +33,6 @@ env \
   EXPECTED_CHANNEL=dev \
   EXPECTED_ENVIRONMENT=development \
   EXPECTED_LATEST_VERSION="${EXPECTED_LATEST_VERSION}" \
-  OVERRIDE_APP_UPDATE_URL="${PAGES_BASE_URL}/dev" \
   bunx playwright test tests/ui/electron-release-update.spec.ts
 
 env \
@@ -44,5 +42,4 @@ env \
   EXPECTED_CHANNEL=stable \
   EXPECTED_ENVIRONMENT=production \
   EXPECTED_LATEST_VERSION="${EXPECTED_LATEST_VERSION}" \
-  OVERRIDE_APP_UPDATE_URL="${PAGES_BASE_URL}/stable" \
   bunx playwright test tests/ui/electron-release-update.spec.ts

@@ -7,7 +7,6 @@ const packageJson = JSON.parse(readFileSync(resolve('package.json'), 'utf8')) as
 };
 const appChannel = process.env.APP_CHANNEL ?? 'dev';
 const appBuildTime = process.env.APP_BUILD_TIME ?? new Date().toISOString();
-const appUpdateUrl = process.env.APP_UPDATE_URL ?? '';
 const appVersion = process.env.APP_VERSION ?? packageJson.version;
 
 export default defineConfig({
@@ -15,7 +14,6 @@ export default defineConfig({
     define: {
       __APP_CHANNEL__: JSON.stringify(appChannel),
       __APP_BUILD_TIME__: JSON.stringify(appBuildTime),
-      __APP_UPDATE_URL__: JSON.stringify(appUpdateUrl),
       __APP_VERSION__: JSON.stringify(appVersion),
     },
     plugins: [externalizeDepsPlugin()],
@@ -29,7 +27,6 @@ export default defineConfig({
     define: {
       __APP_CHANNEL__: JSON.stringify(appChannel),
       __APP_BUILD_TIME__: JSON.stringify(appBuildTime),
-      __APP_UPDATE_URL__: JSON.stringify(appUpdateUrl),
       __APP_VERSION__: JSON.stringify(appVersion),
     },
     plugins: [externalizeDepsPlugin()],
@@ -43,7 +40,6 @@ export default defineConfig({
     define: {
       __APP_CHANNEL__: JSON.stringify(appChannel),
       __APP_BUILD_TIME__: JSON.stringify(appBuildTime),
-      __APP_UPDATE_URL__: JSON.stringify(appUpdateUrl),
       __APP_VERSION__: JSON.stringify(appVersion),
     },
     resolve: {

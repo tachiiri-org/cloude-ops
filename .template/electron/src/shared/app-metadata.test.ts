@@ -2,7 +2,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { getAppChannel, getAppMetadata } from './app-metadata';
 
-const currentVersion = '__CURRENT_VERSION__';
+const currentVersion = '0.1.1';
 
 afterEach(() => {
   vi.unstubAllEnvs();
@@ -20,7 +20,10 @@ describe('getAppMetadata', () => {
       channel: 'dev',
       environment: 'development',
       name: '__APP_NAME__',
-      updateBaseUrl: null,
+      repositoryName: '__REPO_NAME__',
+      repositoryOwner: '__REPO_OWNER__',
+      updateOverrideUrl: null,
+      updateProvider: 'github',
       version: currentVersion,
       runtime: 'electron',
     });
@@ -37,7 +40,10 @@ describe('getAppMetadata', () => {
       channel: 'stable',
       environment: 'production',
       name: '__APP_NAME__',
-      updateBaseUrl: 'https://example.test/update-stable',
+      repositoryName: '__REPO_NAME__',
+      repositoryOwner: '__REPO_OWNER__',
+      updateOverrideUrl: 'https://example.test/update-stable',
+      updateProvider: 'github',
       version: '0.2.0',
       runtime: 'electron',
     });

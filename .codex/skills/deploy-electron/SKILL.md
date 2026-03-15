@@ -5,6 +5,14 @@ description: Package and publish an Electron app to GitHub Releases with branch-
 
 # deploy-electron command
 
+## Goals
+
+- Publish Electron artifacts through the repository's runtime-owned release surfaces without bypassing the branch model.
+- Keep prerelease and release publication explicit rather than mixing developer and production artifacts in one implicit channel.
+- Ensure packaged artifacts and updater metadata stay aligned for the target channel before publication completes.
+- Prefer publication surfaces that preserve artifact traceability while keeping updater feeds readable by distributed clients.
+- Treat deployment success as incomplete until the published channel surface is consistent enough for updater clients to consume.
+
 Shared guidance reads in this workflow refer to files under `/home/tachiiri/.guide/`.
 
 ## Steps

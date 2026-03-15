@@ -40,12 +40,15 @@ Shared guidance reads in this workflow refer to files under `/home/tachiiri/.gui
 - read only the minimum additional guidance needed for the repository role and stated goal
 - verify the Target Directory exists before any Git or GitHub operation
 - inspect the repository file tree with `git ls-files` when the repository already has Git metadata and with visible non-ignored files when it does not
+- if the Target Directory sits under another Git repository, verify the actual repo root before interpreting `git status`, `git remote`, or branch output
 - if `.git` is missing, initialize the repository locally before any GitHub remote setup
+- if the Target Directory is intended to be its own repository, initialize Git inside that directory rather than reusing a parent repository by accident
 - if the repository has no commits yet, create the initial bootstrap commit from the existing local contents before pushing branches
+- if the directory is effectively empty apart from local agent metadata, ignore that metadata first and then create the minimal bootstrap commit
 - use the Target Directory basename as the Repository Name unless the user explicitly requests a different remote name
 - verify GitHub auth status before attempting repository creation
 - create the GitHub repository when `origin` is absent and no matching remote repository is already configured
-- if `origin` exists, verify whether it already matches the intended Repository Name before changing it
+- if `origin` exists, verify whether it already matches the intended Repository Name before changing it, and confirm the current remote is not inherited from a parent repository
 - ensure the local default branch is `main`
 - create `dev` from `main` after `main` is established
 - push `main` first when the remote repository is empty, then push `dev`

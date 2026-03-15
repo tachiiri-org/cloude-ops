@@ -1,24 +1,27 @@
 declare const __APP_CHANNEL__: string | undefined;
 declare const __APP_BUILD_TIME__: string | undefined;
-declare const __APP_UPDATE_URL__: string | undefined;
 declare const __APP_VERSION__: string | undefined;
 
 export type AppChannel = 'dev' | 'stable';
 export type AppEnvironment = 'development' | 'production';
+export type UpdateProvider = 'github';
 
 export type AppMetadata = {
   readonly buildTime: string;
   readonly channel: AppChannel;
   readonly environment: AppEnvironment;
   readonly name: string;
+  readonly repositoryName: string;
+  readonly repositoryOwner: string;
   readonly version: string;
   readonly runtime: 'electron';
-  readonly updateBaseUrl: string | null;
+  readonly updateOverrideUrl: string | null;
+  readonly updateProvider: UpdateProvider;
 };
 
 const DEFAULT_APP_CHANNEL: AppChannel = 'dev';
 const DEFAULT_BUILD_TIME = 'unconfigured';
-const DEFAULT_APP_VERSION = '__CURRENT_VERSION__';
+const DEFAULT_APP_VERSION = '0.1.1';
 
 const readEnvAppChannel = (): string | undefined => {
   const processValue = (globalThis as { process?: { env?: { APP_CHANNEL?: string } } }).process;
@@ -75,16 +78,12 @@ export const getBuildTime = (): string => {
   return DEFAULT_BUILD_TIME;
 };
 
-export const getUpdateBaseUrl = (): string | null => {
+export const getUpdateOverrideUrl = (): string | null => {
   const processValue = (globalThis as { process?: { env?: { APP_UPDATE_URL?: string } } }).process;
   const updateUrl = processValue?.env?.APP_UPDATE_URL;
 
   if (updateUrl && updateUrl.length > 0) {
     return updateUrl;
-  }
-
-  if (typeof __APP_UPDATE_URL__ === 'string' && __APP_UPDATE_URL__.length > 0) {
-    return __APP_UPDATE_URL__;
   }
 
   return null;
@@ -109,7 +108,10 @@ export const getAppMetadata = (): AppMetadata => ({
   channel: getAppChannel(),
   environment: getAppEnvironment(),
   name: '__APP_NAME__',
-  updateBaseUrl: getUpdateBaseUrl(),
+  repositoryName: '__REPO_NAME__',
+  repositoryOwner: '__REPO_OWNER__',
+  updateOverrideUrl: getUpdateOverrideUrl(),
+  updateProvider: 'github',
   version: getAppVersion(),
   runtime: 'electron',
 });

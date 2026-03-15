@@ -7,8 +7,8 @@ import type { RuntimeSnapshot, UpdateStatus } from '@shared/runtime-snapshot';
 
 const createInitialSnapshot = (): RuntimeSnapshot => {
   const metadata = getAppMetadata();
-  const feedUrl = metadata.updateBaseUrl;
-  const canCheckForUpdates = Boolean(feedUrl);
+  const feedUrl = metadata.updateOverrideUrl;
+  const canCheckForUpdates = app.isPackaged || Boolean(feedUrl);
 
   return {
     app: metadata,
@@ -20,7 +20,7 @@ const createInitialSnapshot = (): RuntimeSnapshot => {
       latestVersion: null,
       message: canCheckForUpdates
         ? 'Waiting for automatic update check.'
-        : 'Update feed is not configured for this build.',
+        : 'Update checks stay disabled for unpackaged local runs.',
       status: canCheckForUpdates ? 'checking' : 'disabled',
     },
   };
@@ -55,19 +55,24 @@ const setSnapshot = (
 const getNowIsoString = (): string => new Date().toISOString();
 
 const configureAutoUpdater = (): boolean => {
-  const feedUrl = runtimeSnapshot.update.feedUrl;
-
-  if (!feedUrl) {
+  if (!app.isPackaged && !runtimeSnapshot.update.feedUrl) {
     return false;
   }
 
   autoUpdater.autoDownload = app.isPackaged;
   autoUpdater.autoInstallOnAppQuit = app.isPackaged;
   autoUpdater.forceDevUpdateConfig = !app.isPackaged;
-  autoUpdater.setFeedURL({
-    provider: 'generic',
-    url: feedUrl,
-  });
+  autoUpdater.channel = runtimeSnapshot.app.channel;
+
+  const feedUrl = runtimeSnapshot.update.feedUrl;
+
+  // Use a generic feed override only for local verification runs.
+  if (feedUrl) {
+    autoUpdater.setFeedURL({
+      provider: 'generic',
+      url: feedUrl,
+    });
+  }
 
   autoUpdater.on('checking-for-update', () => {
     setSnapshot('checking', 'Checking for updates.', {
@@ -118,7 +123,7 @@ export const registerRuntimeSnapshotHandlers = (): void => {
 
 export const checkForUpdates = async (): Promise<void> => {
   if (!configureAutoUpdater()) {
-    setSnapshot('disabled', 'Update feed is not configured for this build.');
+    setSnapshot('disabled', 'Update checks stay disabled for unpackaged local runs.');
     return;
   }
 

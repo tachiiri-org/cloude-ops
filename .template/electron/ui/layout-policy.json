@@ -1,0 +1,6 @@
+{
+  "defaultTemplateId": "sidebar-layout",
+  "availableTemplateIds": ["sidebar-layout"],
+  "rationale": "Use sidebar-layout as the adopted default because this template now centers on a persistent workbench shell rather than a generic pattern catalog.",
+  "workspaceKind": "diagnostics"
+}

@@ -90,6 +90,7 @@ for (const scenario of [
         ...process.env,
         APP_CHANNEL: scenario.channel,
         APP_UPDATE_URL: `http://127.0.0.1:${updatePort}`,
+        ELECTRON_DISABLE_SANDBOX: '1',
         ELECTRON_FORCE_DEV_UPDATE_CONFIG: '1',
       },
     });

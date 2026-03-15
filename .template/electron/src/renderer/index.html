@@ -10,60 +10,7 @@
     <title>__APP_NAME__</title>
   </head>
   <body>
-    <div class="app-shell">
-      <div class="hero">
-        <p class="eyebrow">Electron Baseline</p>
-        <h1>__APP_NAME__</h1>
-        <p class="summary">
-          Renderer code stays untrusted. OS access and credential-bearing flows remain in main or
-          tightly scoped preload APIs.
-        </p>
-      </div>
-      <dl class="metadata">
-        <div>
-          <dt>Name</dt>
-          <dd id="app-name"></dd>
-        </div>
-        <div>
-          <dt>Channel</dt>
-          <dd id="app-channel"></dd>
-        </div>
-        <div>
-          <dt>Environment</dt>
-          <dd id="app-environment"></dd>
-        </div>
-        <div>
-          <dt>Version</dt>
-          <dd id="app-version"></dd>
-        </div>
-        <div>
-          <dt>Runtime</dt>
-          <dd id="app-runtime"></dd>
-        </div>
-        <div>
-          <dt>Built At</dt>
-          <dd id="app-build-time"></dd>
-        </div>
-        <div>
-          <dt>Update Status</dt>
-          <dd id="update-status"></dd>
-        </div>
-        <div>
-          <dt>Latest Version</dt>
-          <dd id="update-latest-version"></dd>
-        </div>
-        <div>
-          <dt>Latest Published</dt>
-          <dd id="update-latest-published"></dd>
-        </div>
-        <div>
-          <dt>Last Checked</dt>
-          <dd id="update-last-checked"></dd>
-        </div>
-      </dl>
-      <p class="update-message" id="update-message"></p>
-      <p class="bootstrap-error" id="bootstrap-error" hidden></p>
-    </div>
+    <main id="app-root"></main>
     <script type="module" src="./src/index.ts"></script>
   </body>
 </html>

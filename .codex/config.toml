@@ -19,3 +19,6 @@ trust_level = "trusted"
 
 [projects."/home/tachiiri/project/internal-gateway"]
 trust_level = "trusted"
+
+[projects."/home/tachiiri/project/code-atlas"]
+trust_level = "trusted"

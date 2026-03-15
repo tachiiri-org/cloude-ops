@@ -6,7 +6,6 @@ const packagedExecutablePath = process.env.PACKAGED_EXECUTABLE_PATH ?? packagedA
 const expectedChannel = process.env.EXPECTED_CHANNEL;
 const expectedEnvironment = process.env.EXPECTED_ENVIRONMENT;
 const expectedLatestVersion = process.env.EXPECTED_LATEST_VERSION;
-const overrideAppUpdateUrl = process.env.OVERRIDE_APP_UPDATE_URL;
 
 if (
   !packagedAppPath ||
@@ -28,8 +27,8 @@ test('detects a newer published update from the packaged app', async () => {
     env: {
       ...process.env,
       APPIMAGE: packagedAppPath,
+      ELECTRON_DISABLE_SANDBOX: '1',
       ...(packagedExecutablePath === packagedAppPath ? { APPIMAGE_EXTRACT_AND_RUN: '1' } : {}),
-      ...(overrideAppUpdateUrl ? { APP_UPDATE_URL: overrideAppUpdateUrl } : {}),
     },
   });
 

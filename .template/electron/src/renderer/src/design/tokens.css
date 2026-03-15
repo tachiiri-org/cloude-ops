@@ -1,0 +1,15 @@
+:root {
+  color-scheme: dark;
+  font-family: 'Segoe UI', 'IBM Plex Sans', sans-serif;
+  background: #1e1e1e;
+  color: #cccccc;
+  --surface-border: #313131;
+  --surface-panel: #252526;
+  --surface-panel-muted: #2d2d30;
+  --surface-panel-strong: #37373d;
+  --text-accent: #ffffff;
+  --text-muted: #9d9d9d;
+  --error-border: #454545;
+  --error-panel: #252526;
+  --error-text: #cccccc;
+}

@@ -16,7 +16,13 @@
 - Mediate Python through the main process.
 - Define whether the desktop app supports auto-update.
 - Do not leave update posture implicit.
+- Prefer explicit prerelease and release update channels rather than one mixed desktop feed.
+- Prefer merge-triggered publication to branch-specific artifact channels:
+  - merge to `dev` -> prerelease developer channel
+  - merge to `main` -> stable release channel
+- Keep runtime channel identity explicit in desktop-owned metadata rather than deriving it from Git state at runtime.
 - Run a desktop-app smoke check when user-visible UI behavior changes.
 - Define whether scripted visual checks are required for the repository.
 - Define whether scripted UI checks are required for the repository.
 - Do not leave UI verification posture implicit.
+- Keep a minimal baseline UI contract explicit enough for smoke verification.

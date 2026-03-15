@@ -1,0 +1,15 @@
+.bootstrap-error {
+  margin: 0;
+  max-width: 28rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--error-border);
+  border-radius: 1rem;
+  background: var(--error-panel);
+  color: var(--error-text);
+}
+
+.update-message {
+  margin: 0;
+  max-width: 42rem;
+  color: var(--text-muted);
+}

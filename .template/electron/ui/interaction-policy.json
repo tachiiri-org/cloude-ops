@@ -1,0 +1,6 @@
+{
+  "layoutSelection": "gallery",
+  "panelBehavior": "fixed",
+  "persistence": "local-export",
+  "selectionFlow": "preview-first"
+}

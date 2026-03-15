@@ -21,6 +21,7 @@ const createMainWindow = (): BrowserWindow => {
   });
 
   window.on('ready-to-show', () => {
+    window.maximize();
     window.show();
   });
 
