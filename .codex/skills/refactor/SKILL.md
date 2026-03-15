@@ -11,13 +11,13 @@ Shared guidance reads in this workflow refer to files under `/home/tachiiri/.gui
 
 1. Run the onboarding skill to gather project context.
 2. Restate the refactor goal and the intended scope.
-3. Read `domains/foundations.md` from the shared guidance root.
+3. Read `principles.md` from the shared guidance root.
 4. Read the role-specific file under `roles/` that applies to the current task.
 5. Read only the domain document(s) under `domains/` that constrain the stated scope.
 7. Read only the profile document(s) selected by onboarding or required by the currently adopted runtime, identity, and provider boundaries.
 8. Enter plan mode.
 9. Review the current state against:
-   - `domains/foundations.md`
+   - `principles.md`
    - the matching role document
    - the selected domain documents
    - the selected profile documents
@@ -33,7 +33,7 @@ Shared guidance reads in this workflow refer to files under `/home/tachiiri/.gui
 
 ## Goals
 
-- Review the current state against `domains/foundations.md`, the matching role file, and relevant domain and profile documents
+- Review the current state against `principles.md`, the matching role file, and relevant domain and profile documents
 - Identify principle violations, semantic drift, and structural risks before editing
 - Apply minimal structural improvements aligned with shared guidance
 - Preserve existing behavior unless explicitly instructed otherwise

@@ -3,7 +3,7 @@
 ## Workflow
 
 1. Read `CLAUDE.md`
-2. Read `domains/foundations.md`
+2. Read `principles.md`
 3. Read `roles/desktop-app.md`
 5. Verify the target directory exists locally
 6. Verify working tree is clean before reconciliation

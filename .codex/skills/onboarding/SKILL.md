@@ -15,6 +15,7 @@ description: "Understand the repository, load the minimum guidance for the inten
 - understand how to behave in this repository
 - ensure Required Documents are available from the shared guidance root at `/home/tachiiri/.guide`
 - read Required Reads before reading code or making workflow decisions
+- infer the repository structure primarily from `git ls-files` and other visible, non-ignored files
 - classify the repository role and runtime
 - understand the expected git workflow, including `dev` as the baseline branch and feature work on branches derived from it
 - load only the minimum guidance required for the stated goal
