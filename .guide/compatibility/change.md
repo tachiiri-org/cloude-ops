@@ -17,29 +17,21 @@
 
 ## Compatibility Vocabulary
 
-- `release`
-  - the semantic change unit for one or more coordinated contract changes
-- `release_id`
-  - the identifier used to correlate rollout, compatibility, and rollback decisions
-- `compatible`
-  - a change that preserves existing semantic interpretation
-- `breaking`
-  - a change that changes required inputs, interpretation, or accepted versions
-- `dual-accept window`
-  - a bounded period where multiple compatible versions may be accepted
-- `claims_set_version`
-  - the semantic version of the accepted identity claims set
+- Define `release` as the semantic change unit for one or more coordinated contract changes.
+- Define `release_id` as the identifier used to correlate rollout, compatibility, and rollback decisions.
+- Define `compatible` as a change that preserves existing semantic interpretation.
+- Define `breaking` as a change that changes required inputs, interpretation, or accepted versions.
+- Define `dual-accept window` as a bounded period where multiple compatible versions may be accepted.
+- Define `claims_set_version` as the semantic version of the accepted identity claims set.
 
 ## Compatibility Rules
 
-- Compatible changes
-  - may use explicit dual-accept windows
-  - must keep old and new interpretation aligned during the window
-- Breaking changes
-  - require explicit release declaration
-  - require explicit rollout strategy
-  - must not rely on silent interpretation changes
-  - must not assume dual-accept by default
+- Let compatible changes use explicit dual-accept windows.
+- Keep old and new interpretation aligned during a dual-accept window.
+- Require explicit release declaration for breaking changes.
+- Require explicit rollout strategy for breaking changes.
+- Do not rely on silent interpretation changes for breaking changes.
+- Do not assume dual-accept by default for breaking changes.
 
 ## Claims Compatibility Baseline
 

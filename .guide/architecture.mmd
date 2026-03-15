@@ -8,7 +8,7 @@ architecture-beta
   group home[home] in trusted
   group windows[windows] in home
   group wsl[wsl] in windows
-  group ubunts[ubunts] in home
+  group ubuntu[ubuntu] in home
   group client[client]
 
   service laptop(internet)[laptop] in trusted
@@ -17,7 +17,7 @@ architecture-beta
   service ops(disk)[ops] in wsl
   service code(disk)[code] in wsl
   service electron(disk)[electron] in windows
-  service gpu_engine(disk)[python] in ubunts
+  service gpu_engine(disk)[python] in ubuntu
 
   service pages_prod(cloud)[front] in prod
   service bff_prod(cloud)[BFF] in prod

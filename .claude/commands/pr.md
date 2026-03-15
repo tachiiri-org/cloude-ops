@@ -59,3 +59,10 @@
 - don't force-delete a local branch unless the PR has merged and `dev..feature` and `feature..dev` are both empty
 - do bounded waiting and bounded self-repair; if the same failure repeats without progress, stop and report it
 - only self-repair repository-local failures that are safe and within the current task scope
+
+## Hints
+
+- keep state-changing git operations sequential rather than parallel
+- don't run branch-switching, merging, rebasing, or branch deletion in parallel with other git commands
+- don't run staging commands in parallel with staged-state verification
+- use parallelism only for independent read-only checks such as document reads, status inspection, and GitHub state queries
