@@ -21,51 +21,42 @@
 
 ## Shared Semantic Boundary
 
-- Shared guidance owns:
-  - vocabulary
-  - responsibility boundaries
-  - invariants
-  - prohibitions
-  - compatibility principles
-  - value-free defaults
-- Tool-spec or per-project repositories own:
-  - concrete values
-  - concrete catalogs
-  - boundary configuration
-  - schemas and lint rules
-  - deployment-specific behavior
+- Let shared guidance own vocabulary.
+- Let shared guidance own responsibility boundaries.
+- Let shared guidance own invariants.
+- Let shared guidance own prohibitions.
+- Let shared guidance own compatibility principles.
+- Let shared guidance own value-free defaults.
+- Let tool-spec or per-project repositories own concrete values.
+- Let tool-spec or per-project repositories own concrete catalogs.
+- Let tool-spec or per-project repositories own boundary configuration.
+- Let tool-spec or per-project repositories own schemas and lint rules.
+- Let tool-spec or per-project repositories own deployment-specific behavior.
 
 ## Normative and Informative Content
 
-- In Markdown documents:
-  - scope, principles, invariants, rules, and prohibitions are normative unless clearly marked otherwise
-  - rationale, notes, examples, failure modes, and checklists are informative unless explicitly elevated
+- Treat scope, principles, invariants, rules, and prohibitions as normative unless clearly marked otherwise in Markdown documents.
+- Treat rationale, notes, examples, failure modes, and checklists as informative unless explicitly elevated in Markdown documents.
 - Keep examples illustrative by default rather than contract-defining.
 - Keep machine-enforced detail outside shared guidance unless the semantic principle itself requires it.
 
 ## Repository Layout Rules
 
-- `principles.md`
-  - cross-cutting summary and reading map only
-- `data/*.md`, `identity/*.md`, `boundaries/*.md`, `operations/*.md`, and other top-level concern directories
-  - cross-cutting semantic authority grouped by concern and topic
-- `roles/*.md`
-  - operationalized role-facing constraints derived from shared concerns
-- `runtimes/*.md`, `providers/*.md`, `hosts/*.md`, and `tools/*.md`
-  - reusable concrete constraints grouped by adoption surface
-- `spec-migration-draft.md`
-  - migration planning aid, not normative shared guidance
+- Keep `principles.md` limited to the cross-cutting summary and reading map.
+- Use `data/*.md`, `identity/*.md`, `boundaries/*.md`, `operations/*.md`, and other top-level concern directories for cross-cutting semantic authority grouped by concern and topic.
+- Use `roles/*.md` for operationalized role-facing constraints derived from shared concerns.
+- Use `runtimes/*.md`, `providers/*.md`, `hosts/*.md`, and `tools/*.md` for reusable concrete constraints grouped by adoption surface.
+- Treat `spec-migration-draft.md` as a migration planning aid rather than normative shared guidance.
 
 ## Tool-spec Repository Expectations
 
-- Tool-spec or per-project repositories should carry concrete artifacts such as:
-  - topology
-  - operation catalogs
-  - event catalogs
-  - boundary definitions
-  - schemas
-  - persistence, retention, and audit storage policy
-  - lint and CI checks for cross-file invariants
+- Let tool-spec or per-project repositories carry topology as a concrete artifact.
+- Let tool-spec or per-project repositories carry operation catalogs as a concrete artifact.
+- Let tool-spec or per-project repositories carry event catalogs as a concrete artifact.
+- Let tool-spec or per-project repositories carry boundary definitions as a concrete artifact.
+- Let tool-spec or per-project repositories carry schemas as a concrete artifact.
+- Let tool-spec or per-project repositories carry persistence, retention, and audit storage policy as a concrete artifact.
+- Let tool-spec or per-project repositories carry lint and CI checks for cross-file invariants as a concrete artifact.
 - Shared guidance states what those repositories must preserve semantically, not their concrete values.
 - When shared guidance defines a canonical internal authentication method or identity transport shape, tool-spec or per-project repositories must publish matching OpenAPI security definitions, accepted parameters, and contract fields.
 
@@ -73,14 +64,13 @@
 
 - Staged or exploratory material must not become normative by implication.
 - Promotion into shared guidance must be explicit.
-- Classify staged findings before promotion into exactly one primary target:
-  - shared semantic rule
-  - reusable concrete profile constraint
-  - repo-local specification detail
-- Promotion must declare:
-  - target concern or role document
-  - compatibility impact
-  - rollout expectations when semantics change
+- Classify staged findings before promotion into exactly one primary target.
+- Use `shared semantic rule` as one allowed promotion target.
+- Use `reusable concrete profile constraint` as one allowed promotion target.
+- Use `repo-local specification detail` as one allowed promotion target.
+- Declare the target concern or role document during promotion.
+- Declare the compatibility impact during promotion.
+- Declare rollout expectations when semantics change during promotion.
 - Normative shared guidance must not depend on staging material.
 - Prefer updating an existing concern or role document before creating a new shared-guidance file.
 - Keep one logical promotion scoped to one topic boundary at a time.
@@ -95,12 +85,9 @@
 
 ## Non-goal Taxonomy
 
-- Permanent non-goals
-  - areas intentionally excluded from shared semantics
-- Deferred-but-scoped
-  - planned areas that must stay non-normative until promoted
-- Out-of-scope implementation details
-  - vendor choices, numeric thresholds, protocol details, and packaging mechanics
+- Treat `Permanent non-goals` as areas intentionally excluded from shared semantics.
+- Treat `Deferred-but-scoped` as planned areas that must stay non-normative until promoted.
+- Treat `Out-of-scope implementation details` as vendor choices, numeric thresholds, protocol details, and packaging mechanics.
 
 ## Defaults Baseline
 
@@ -123,9 +110,8 @@
 
 - Keep organization hierarchy, group, and team semantics tenant-scoped.
 - Do not add organization structure such as `org_path` or `group_ids` directly to shared authorization input claims.
-- If org structure affects authorization, resolve it either:
-  - into explicit roles or scopes before the internal boundary, or
-  - through adapter-side directory lookup with explicit failure semantics
+- Resolve org structure into explicit roles or scopes before the internal boundary when it affects authorization.
+- Resolve org structure through adapter-side directory lookup with explicit failure semantics when it affects authorization.
 - Keep directory lookup failure behavior explicit and fail closed by default.
 
 ## Tool-spec Boundary

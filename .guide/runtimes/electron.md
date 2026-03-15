@@ -1,7 +1,5 @@
 # electron.md
 
-Electron runtime constraints for repositories that run as desktop applications on Electron.
-
 ## Use Cases
 
 - local filesystem, native shell, notifications, or tray integration are required

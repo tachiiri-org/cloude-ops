@@ -23,7 +23,7 @@ Shared guidance reads in this workflow refer to files under `/home/tachiiri/.gui
 
 ## Workflow
 
-1. Read `hosts/ubunts.md`
+1. Read `hosts/ubuntu.md`
 2. Read `languages/python.md`
 3. Verify the repository is intended to run as a Python local engine
 4. Inspect Python runtime state as `present`, `missing`, or `drifted`

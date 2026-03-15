@@ -10,25 +10,18 @@
 
 ## Identity Vocabulary
 
-- `tenant`
-  - top-level ownership boundary for tenant-scoped data and operations
-- `tenant_id`
-  - required for every tenant-scoped operation
-  - interpret actor and subject identifiers only together with `tenant_id`
-- `actor`
-  - the executor used for authorization decisions
-  - actor types are `human`, `service`, or `ops`
-- `actor_id`
-  - always present for authenticated internal calls
-- `subject`
-  - end-user human identity
-  - allowed only for human actors
-- `subject_id`
-  - required when `actor_type=human`
-  - forbidden for `service` and `ops` actors
-- `initiator`
-  - the triggering actor recorded for causality and audit only
-  - never an authorization input
+- Define `tenant` as the top-level ownership boundary for tenant-scoped data and operations.
+- Require `tenant_id` for every tenant-scoped operation.
+- Interpret actor and subject identifiers only together with `tenant_id`.
+- Define `actor` as the executor used for authorization decisions.
+- Limit actor types to `human`, `service`, or `ops`.
+- Require `actor_id` for authenticated internal calls.
+- Define `subject` as end-user human identity.
+- Allow `subject` only for human actors.
+- Require `subject_id` when `actor_type=human`.
+- Forbid `subject_id` for `service` and `ops` actors.
+- Define `initiator` as the triggering actor recorded for causality and audit only.
+- Do not use `initiator` as an authorization input.
 
 ## Principles
 
@@ -44,21 +37,18 @@
 
 ## Boundary Rules
 
-- Browser to BFF
-  - browser requests do not establish identity on their own
-  - reject browser-originated `authorization` headers by default
-  - use the BFF as the browser authentication termination point
-  - prefer a first-party BFF-managed session after browser login completion
-  - BFF validates session state and normalizes principal context before internal calls
-- BFF to gateway
-  - forward only verified principal context
-  - do not forward browser cookies downstream
-  - do not inject identity through `x-actor-*` style headers
-- Gateway to adapter
-  - authenticate with a verified bearer token only
-  - preserve verified identity context, operation identity, and tenant context through verified token claims only
-  - require one normalized internal claims set for this edge
-  - adapter owns the final execution-boundary authorization decision
+- Do not treat browser requests as identity-establishing on their own at the browser-to-BFF boundary.
+- Reject browser-originated `authorization` headers by default at the browser-to-BFF boundary.
+- Use the BFF as the browser authentication termination point.
+- Prefer a first-party BFF-managed session after browser login completion.
+- Validate session state and normalize principal context before internal calls at the BFF boundary.
+- Forward only verified principal context from BFF to gateway.
+- Do not forward browser cookies downstream from BFF to gateway.
+- Do not inject identity through `x-actor-*` style headers from BFF to gateway.
+- Authenticate with a verified bearer token only from gateway to adapter.
+- Preserve verified identity context, operation identity, and tenant context through verified token claims only from gateway to adapter.
+- Require one normalized internal claims set for the gateway-to-adapter edge.
+- Keep the adapter as the final execution-boundary authorization decision point.
 
 ## Policy Evaluation and Enforcement
 
@@ -70,50 +60,45 @@
 ## Policy Type Baseline
 
 - Use explicit policy types when policy decisions are surfaced internally.
-- Keep at least these policy categories distinct:
-  - `authz`
-  - `rate`
-  - `quota`
-  - `budget`
-  - `business`
+- Keep `authz` distinct as a policy category.
+- Keep `rate` distinct as a policy category.
+- Keep `quota` distinct as a policy category.
+- Keep `budget` distinct as a policy category.
+- Keep `business` distinct as a policy category.
 - Do not reclassify one policy type into another at upstream boundaries.
 - Preserve policy type, decision, and operation identity in internal observability when available.
 
 ## Authorization Inputs
 
-- Allowed as authorization input
-  - `tenant_id`
-  - `actor_id`
-  - `actor_type`
-  - `subject_id` when present
-  - `subject_type` when present
-  - explicit roles and scopes from verified claims
-- Forbidden as authorization input
-  - `initiator_*`
-  - `delegate_*`
-  - delegated context fields used only for audit or constraints
-  - email, display name, and other mutable profile attributes
-  - browser-asserted identity
-  - identity-like headers, query parameters, or request-body fields
+- Allow `tenant_id` as an authorization input.
+- Allow `actor_id` as an authorization input.
+- Allow `actor_type` as an authorization input.
+- Allow `subject_id` as an authorization input when present.
+- Allow `subject_type` as an authorization input when present.
+- Allow explicit roles and scopes from verified claims as authorization input.
+- Do not allow `initiator_*` as an authorization input.
+- Do not allow `delegate_*` as an authorization input.
+- Do not allow delegated context fields used only for audit or constraints as authorization input.
+- Do not allow email, display name, and other mutable profile attributes as authorization input.
+- Do not allow browser-asserted identity as authorization input.
+- Do not allow identity-like headers, query parameters, or request-body fields as authorization input.
 
 ## Minimum Verified Claims Baseline
 
 - Require a normalized verified claims shape before identity crosses the BFF boundary.
-- Require at least:
-  - `claims_set_version`
-  - `tenant_id` for tenant-scoped operations
-  - `actor_id`
-  - `actor_type`
-  - `subject_id` when `actor_type=human`
+- Require `claims_set_version` in the verified claims shape.
+- Require `tenant_id` for tenant-scoped operations in the verified claims shape.
+- Require `actor_id` in the verified claims shape.
+- Require `actor_type` in the verified claims shape.
+- Require `subject_id` when `actor_type=human` in the verified claims shape.
 - Accept explicit roles and scopes from verified claims only when their meaning is stable and versioned.
 - Treat provider-specific claim names and provider-local attributes as normalization inputs, not as internal contract fields.
 - For the gateway-to-adapter edge, use verified bearer-token claims as the only normative wire contract for identity transport.
-- Map semantic identity concepts to normalized contract fields explicitly:
-  - `tenant` to `tenant_id`
-  - executor actor to `actor_id` and `actor_type`
-  - human subject to `subject_id` when `actor_type=human`
-  - authorization roles and scopes to explicit versioned claims only
-  - initiator context to `initiator_*` audit fields only
+- Map `tenant` to `tenant_id` explicitly.
+- Map the executor actor to `actor_id` and `actor_type` explicitly.
+- Map the human subject to `subject_id` when `actor_type=human` explicitly.
+- Map authorization roles and scopes to explicit versioned claims only.
+- Map initiator context to `initiator_*` audit fields only.
 - Treat initiator fields as audit-only context even when transported in verified claims.
 
 ## Async and Delegated Execution

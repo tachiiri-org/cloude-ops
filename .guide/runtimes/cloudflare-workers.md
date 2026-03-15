@@ -1,7 +1,5 @@
 # cloudflare-workers.md
 
-Cloudflare Workers runtime for repositories that execute request-driven edge workloads on Workers.
-
 ## Use Cases
 
 - a BFF, gateway, or adapter must execute as a request-scoped edge service

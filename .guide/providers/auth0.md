@@ -1,7 +1,5 @@
 # auth0.md
 
-Auth0 provider constraints for repositories that use Auth0 as an external identity provider.
-
 ## Use Cases
 
 - Auth0 is used for browser login

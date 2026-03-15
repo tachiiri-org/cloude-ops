@@ -1,7 +1,5 @@
 # cloudflare-pages.md
 
-Cloudflare Pages runtime for repositories that deliver browser-facing frontend assets or edge-rendered frontend surfaces on Pages.
-
 ## Use Cases
 
 - static frontend assets must be hosted on Cloudflare Pages

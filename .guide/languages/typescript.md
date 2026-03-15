@@ -1,7 +1,5 @@
 # typescript.md
 
-TypeScript language constraints for repositories that use TypeScript as an implementation language.
-
 ## Version Baseline
 
 - TypeScript `^5.9.3`

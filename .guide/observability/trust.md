@@ -19,12 +19,11 @@
 
 ## Header Pipeline Baseline
 
-- Apply a consistent pipeline order:
-  - normalize
-  - hop-by-hop drop
-  - explicit drop
-  - explicit allow
-  - default drop
+- Apply a consistent header pipeline order.
+- Normalize headers before hop-by-hop drop.
+- Apply hop-by-hop drop before explicit drop.
+- Apply explicit drop before explicit allow.
+- Apply explicit allow before default drop.
 - Lowercase header names before policy evaluation.
 - Reject invalid header syntax with `400`.
 - Reject ambiguous duplicates by default.

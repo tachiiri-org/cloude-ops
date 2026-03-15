@@ -1,7 +1,5 @@
 # windows.md
 
-Windows host constraints for the development machine that runs interactive tooling and operator workflows.
-
 ## Use Cases
 
 - Claude runs on the host

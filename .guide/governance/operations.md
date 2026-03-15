@@ -70,12 +70,11 @@
 ## Support and Break-glass Baseline
 
 - Define support and break-glass work as operations rather than hidden channels.
-- Keep support operation classes explicit, for example:
-  - investigation
-  - mitigation
-  - repair
-  - recovery
-  - break_glass
+- Keep `investigation` explicit as a support operation class.
+- Keep `mitigation` explicit as a support operation class.
+- Keep `repair` explicit as a support operation class.
+- Keep `recovery` explicit as a support operation class.
+- Keep `break_glass` explicit as a support operation class.
 - Keep adapter as the final authorization decision point even for support and break-glass operations.
 - Require strong audit, explicit reason, and incident or ticket binding for break-glass work.
 - Keep break-glass time-bounded and revocable.

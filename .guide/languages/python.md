@@ -1,7 +1,5 @@
 # python.md
 
-Python language constraints for repositories that use Python as an implementation language.
-
 ## Version Baseline
 
 - Python `3.14.3`
