@@ -11,6 +11,7 @@ Shared guidance reads in this workflow refer to files under `/home/tachiiri/.gui
 
 - use one PR flow for `feature` -> `dev` across repositories
 - converge the PR to merge when GitHub policy and repository state allow it
+- delete merged feature branches after `dev` contains the change
 - repair safe repository-local failures before giving up
 
 ## Steps
@@ -45,7 +46,8 @@ Shared guidance reads in this workflow refer to files under `/home/tachiiri/.gui
 21. After the PR has merged, delete the remote feature branch if it still exists
 22. After the PR has merged, switch away from the merged local feature branch to `dev` when needed
 23. After switching away, delete the merged local feature branch
-24. Finish only when one of the following is true:
+24. If the merge strategy rewrote commit identity, verify `dev..feature` and `feature..dev` are empty before force-deleting the local feature branch
+25. Finish only when one of the following is true:
    - the PR has merged
    - the PR is blocked by a non-repairable external condition that has been reported with evidence
 
@@ -61,6 +63,6 @@ Shared guidance reads in this workflow refer to files under `/home/tachiiri/.gui
 - don't present the staging URL as already deployed before merge has completed
 - don't delete a branch before the PR has actually merged
 - don't delete a local branch while it is still checked out; switch to `dev` first
-- don't delete a branch that still has unmerged commits relative to `dev`
+- don't force-delete a local branch unless the PR has merged and `dev..feature` and `feature..dev` are both empty
 - do bounded waiting and bounded self-repair; if the same failure repeats without progress, stop and report it
 - only self-repair repository-local failures that are safe and within the current task scope
