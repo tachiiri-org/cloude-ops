@@ -31,6 +31,4 @@
 
 - Do not restate concern-specific rules here when a more specific guidance file already owns them.
 - Do not place repository-specific values, schemas, catalogs, or lint details in shared principles.
-- Shared normative guidance should use `Goals`, `Qualities`, and `Constraints` unless a different section type is semantically clearer.
-- Optional adoption profiles such as languages, runtimes, hosts, providers, and tools may use `Use Cases` instead of `Goals` when the document is primarily about when to adopt the profile and what constraints adoption introduces.
-- Keep section names consistent within the same guidance layer unless a clear semantic difference requires otherwise.
+- Keep section names consistent within the same guidance layer when a role-specific guidance file does not define a stricter rule.

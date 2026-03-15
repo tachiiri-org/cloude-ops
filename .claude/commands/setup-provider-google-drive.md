@@ -4,7 +4,7 @@
 
 1. Read `profiles/providers/google-drive.md`
 2. Read `principles/roles/adapter.md`
-3. Read `principles/domains/data-governance.md`
+3. Read only the relevant shared data guidance under `data/`, especially `classification.md`, `persistence.md`, `deletion.md`, and `residency.md`
 4. Read `principles/domains/operations-and-delivery.md`
 5. Verify the repository directly integrates with Google Drive at the adapter boundary
 6. Stop with an explanation if the repository does not directly integrate with Google Drive

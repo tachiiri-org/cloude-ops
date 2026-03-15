@@ -66,3 +66,4 @@
 - don't run branch-switching, merging, rebasing, or branch deletion in parallel with other git commands
 - don't run staging commands in parallel with staged-state verification
 - use parallelism only for independent read-only checks such as document reads, status inspection, and GitHub state queries
+- if repository or GitHub settings do not allow enabling auto-merge, treat that as a configuration fact and converge with a normal merge after required checks pass
