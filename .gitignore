@@ -97,3 +97,9 @@
 !/.codex/skills/.system/spreadsheets/
 !/.codex/skills/.system/slides/**
 !/.codex/skills/.system/spreadsheets/**
+
+# keep tracked .template files only
+!/.template/
+/.template/*
+!/.template/electron/
+!/.template/electron/**

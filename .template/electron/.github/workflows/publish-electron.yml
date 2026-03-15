@@ -1,0 +1,183 @@
+name: publish-electron
+
+on:
+  push:
+    branches:
+      - dev
+      - main
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+permissions:
+  contents: write
+
+jobs:
+  publish-electron:
+    name: publish-electron
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.10
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Resolve release channel metadata
+        id: release
+        run: |
+          REPO_NAME="${GITHUB_REPOSITORY#*/}"
+          PAGES_BASE_URL="https://${GITHUB_REPOSITORY_OWNER}.github.io/${REPO_NAME}/updates"
+
+          if [ "${GITHUB_REF_NAME}" = "main" ]; then
+            echo "channel=stable" >> "$GITHUB_OUTPUT"
+            echo "tag=update-stable" >> "$GITHUB_OUTPUT"
+            echo "update_url=${PAGES_BASE_URL}/stable" >> "$GITHUB_OUTPUT"
+            echo "prerelease=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "channel=dev" >> "$GITHUB_OUTPUT"
+            echo "tag=update-dev" >> "$GITHUB_OUTPUT"
+            echo "update_url=${PAGES_BASE_URL}/dev" >> "$GITHUB_OUTPUT"
+            echo "prerelease=true" >> "$GITHUB_OUTPUT"
+          fi
+
+          VERSION="$(node --input-type=module -e "import { readFileSync } from 'node:fs'; const pkg = JSON.parse(readFileSync('package.json', 'utf8')); process.stdout.write(pkg.version);")"
+          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+
+      - name: Validate channel build
+        env:
+          APP_CHANNEL: ${{ steps.release.outputs.channel }}
+          APP_UPDATE_URL: ''
+        run: bun run validate
+
+      - name: Package updater artifacts
+        env:
+          APP_CHANNEL: ${{ steps.release.outputs.channel }}
+          APP_VERSION: ${{ steps.release.outputs.version }}
+          APP_UPDATE_URL: ${{ steps.release.outputs.update_url }}
+          APP_BUILD_TIME: ${{ github.event.head_commit.timestamp }}
+        run: bun run build && bun run dist:linux
+
+      - name: Verify updater metadata
+        env:
+          APP_CHANNEL: ${{ steps.release.outputs.channel }}
+          APP_VERSION: ${{ steps.release.outputs.version }}
+          APP_UPDATE_URL: ${{ steps.release.outputs.update_url }}
+        run: |
+          node --input-type=module <<'EOF'
+          import { readFile } from 'node:fs/promises';
+          import { resolve } from 'node:path';
+
+          const latestYaml = await readFile(resolve('dist/latest-linux.yml'), 'utf8');
+          const urlMatch = latestYaml.match(/url:\s+(.+)/);
+          const versionMatch = latestYaml.match(/version:\s+(.+)/);
+
+          if (!versionMatch || versionMatch[1]?.trim() !== process.env.APP_VERSION) {
+            throw new Error(`latest-linux.yml version mismatch: ${versionMatch?.[1]}`);
+          }
+
+          if (!urlMatch) {
+            throw new Error('latest-linux.yml does not include an artifact URL');
+          }
+
+          if (!urlMatch[1]?.includes(process.env.APP_CHANNEL ?? '')) {
+            throw new Error(`Artifact name does not include channel marker: ${urlMatch[1]}`);
+          }
+          EOF
+
+      - name: Publish updater site
+        env:
+          CHANNEL: ${{ steps.release.outputs.channel }}
+          VERSION: ${{ steps.release.outputs.version }}
+        run: |
+          set -euo pipefail
+
+          PAGES_DIR="$(mktemp -d)"
+
+          git fetch origin gh-pages || true
+
+          if git show-ref --verify --quiet refs/remotes/origin/gh-pages; then
+            git worktree add -B gh-pages "${PAGES_DIR}" origin/gh-pages
+          else
+            git worktree add --detach "${PAGES_DIR}"
+            (
+              cd "${PAGES_DIR}"
+              git checkout --orphan gh-pages
+              git rm -rf . >/dev/null 2>&1 || true
+            )
+          fi
+
+          mkdir -p "${PAGES_DIR}/updates/${CHANNEL}"
+          cp dist/*.AppImage "${PAGES_DIR}/updates/${CHANNEL}/"
+          cp dist/latest-linux.yml "${PAGES_DIR}/updates/${CHANNEL}/"
+
+          if compgen -G "dist/*.blockmap" >/dev/null; then
+            cp dist/*.blockmap "${PAGES_DIR}/updates/${CHANNEL}/"
+          fi
+
+          cat > "${PAGES_DIR}/index.html" <<EOF
+          <!doctype html>
+          <html lang="en">
+            <head>
+              <meta charset="utf-8" />
+              <title>__APP_NAME__ updates</title>
+            </head>
+            <body>
+              <h1>__APP_NAME__ updates</h1>
+              <ul>
+                <li><a href="./updates/dev/latest-linux.yml">dev</a></li>
+                <li><a href="./updates/stable/latest-linux.yml">stable</a></li>
+              </ul>
+            </body>
+          </html>
+          EOF
+          touch "${PAGES_DIR}/.nojekyll"
+
+          (
+            cd "${PAGES_DIR}"
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add .
+            if git diff --cached --quiet; then
+              exit 0
+            fi
+            git commit -m "Publish ${CHANNEL} updater assets for ${VERSION}"
+
+            attempt=1
+            while ! git push origin HEAD:gh-pages; do
+              if [ "${attempt}" -ge 3 ]; then
+                exit 1
+              fi
+
+              attempt=$((attempt + 1))
+              git fetch origin gh-pages
+              git rebase origin/gh-pages
+            done
+          )
+
+          git worktree remove "${PAGES_DIR}" --force
+
+      - name: Publish channel release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.release.outputs.tag }}
+          PRERELEASE: ${{ steps.release.outputs.prerelease }}
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+
+          if ! gh release view "${TAG}" >/dev/null 2>&1; then
+            if [ "${PRERELEASE}" = "true" ]; then
+              gh release create "${TAG}" --title "${TAG}" --notes "" --prerelease --latest=false
+            else
+              gh release create "${TAG}" --title "${TAG}" --notes "" --latest=false
+            fi
+          fi
+
+          files=(dist/*.AppImage dist/latest-linux.yml dist/*.blockmap)
+          gh release upload "${TAG}" "${files[@]}" --clobber
