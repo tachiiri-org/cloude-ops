@@ -45,7 +45,7 @@
 
 ## Repository Layout Rules
 
-- `foundations.md`
+- `principles.md`
   - cross-cutting summary and reading map only
 - `data/*.md`, `identity/*.md`, `boundaries/*.md`, `operations/*.md`, and other top-level concern directories
   - cross-cutting semantic authority grouped by concern and topic

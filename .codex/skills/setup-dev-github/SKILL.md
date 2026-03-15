@@ -9,7 +9,7 @@ Shared guidance reads in this workflow refer to files under `/home/tachiiri/.gui
 
 ## Workflow
 
-1. Read `domains/foundations.md`
+1. Read `principles.md`
 2. Read `principles/roles/ops.md`
 3. Read `principles/domains/ops-governance.md`
 4. Verify the target directory exists locally
