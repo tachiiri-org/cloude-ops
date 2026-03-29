@@ -34,12 +34,27 @@ test('detects a newer published update from the packaged app', async () => {
 
   try {
     const firstWindow = await electronApp.firstWindow();
+    try {
+      await expect(firstWindow.locator('#app-channel')).toHaveText(expectedChannel);
+      await expect(firstWindow.locator('#app-environment')).toHaveText(expectedEnvironment);
+      await expect(firstWindow.locator('#update-status')).toHaveText('update-available');
+      await expect(firstWindow.locator('#update-latest-version')).toHaveText(
+        expectedLatestVersion,
+      );
+      await expect(firstWindow.locator('#update-last-checked')).not.toHaveText('Pending');
+    } catch (error) {
+      const diagnostics = [
+        `status=${await firstWindow.locator('#update-status').textContent()}`,
+        `message=${await firstWindow.locator('#update-message').textContent()}`,
+        `latest=${await firstWindow.locator('#update-latest-version').textContent()}`,
+        `published=${await firstWindow.locator('#update-latest-published').textContent()}`,
+        `checked=${await firstWindow.locator('#update-last-checked').textContent()}`,
+      ].join('\n');
 
-    await expect(firstWindow.locator('#app-channel')).toHaveText(expectedChannel);
-    await expect(firstWindow.locator('#app-environment')).toHaveText(expectedEnvironment);
-    await expect(firstWindow.locator('#update-status')).toHaveText('update-available');
-    await expect(firstWindow.locator('#update-latest-version')).toHaveText(expectedLatestVersion);
-    await expect(firstWindow.locator('#update-last-checked')).not.toHaveText('Pending');
+      throw new Error(
+        `${error instanceof Error ? error.message : String(error)}\nRelease update diagnostics:\n${diagnostics}`,
+      );
+    }
   } finally {
     await electronApp.close();
   }

@@ -17,12 +17,16 @@
   - `stable` for release artifacts published after merge to `main`
 - Merge-triggered publication is owned by branch CI.
 - Linux packaging is configured with Electron Builder and AppImage as the baseline packaged artifact.
-- GitHub Releases is the authoritative artifact and updater source of truth for both channels.
+- GitHub Releases is the authoritative artifact source of truth for both channels.
+- Packaged clients read channel metadata from generic GitHub Releases download URLs:
+  - `.../releases/download/update-dev/dev-linux.yml`
+  - `.../releases/download/update-stable/stable-linux.yml`
 - The repository must remain public when the baseline updater posture depends on unauthenticated GitHub Releases reads.
-- Electron auto-update uses `electron-updater` with explicit channel metadata rather than Git branch inspection at runtime.
+- Electron auto-update uses `electron-updater` with explicit channel metadata and a generic release-download feed rather than Git branch inspection at runtime.
 - The baseline UI renders application name, version, runtime, channel, environment, build time, update status, latest published time, and bootstrap error state for smoke verification.
 - The template carries reusable catalog assets plus an optional selector surface, and setup may keep both or reconcile only the resolved policy.
 - Repository-local layout, design, and interaction choices begin from `ui/*.json` seed documents rather than selector-local saved state.
 - A Playwright-based Electron smoke check launches the built app, verifies rendered content, and writes a screenshot artifact.
 - A dedicated update smoke check verifies that the app can read a configured update source, surface update availability, and expose the published timestamp in the UI.
 - A packaged release-update check verifies that an older packaged build detects the newer published artifact from the matching GitHub Release channel.
+- Setup is expected to seed an initial previous version and publish the first newer version during runtime reconciliation so N -> N+1 verification does not require manual backfill later.

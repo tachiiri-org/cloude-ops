@@ -3,7 +3,7 @@
 ## Goal
 
 - Reconcile the repository to the Python runtime baseline defined by shared guidance.
-- Use the matching Python tool profiles under `/home/tachiiri/.guide/tools/` as the authority for required Python tooling.
+- Use the matching Python tool profiles under `/home/tachiiri/project/.guide/tools/` as the authority for required Python tooling.
 - Reach a state where the required runtime files, validation workflow, and Python tool surface are present without relying on bootstrap scripts.
 
 ## Tool Modules
@@ -23,7 +23,7 @@
 5. Reconcile required runtime files directly from the tracked templates when files or workflows are missing or safely drifted
 6. Apply the required tool modules listed above and collect their reported status
 7. Ensure `.github/workflows/validate-pr.yml` exists and emits the `validate-python` check on pull requests to `dev`
-8. Ensure the validation workflow runs the Python validation surface selected in the matching files under `/home/tachiiri/.guide/tools/`
+8. Ensure the validation workflow runs the Python validation surface selected in the matching files under `/home/tachiiri/project/.guide/tools/`
 9. Reconcile GitHub repository policy for this runtime when safe:
    - ensure the repository is PR-based
    - ensure repo auto-merge is enabled

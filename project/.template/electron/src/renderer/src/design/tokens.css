@@ -1,6 +1,16 @@
 :root {
   color-scheme: dark;
-  font-family: 'Segoe UI', 'IBM Plex Sans', sans-serif;
+  font-family:
+    'Segoe UI',
+    'IBM Plex Sans',
+    'Noto Sans CJK JP',
+    'Noto Sans JP',
+    'Hiragino Sans',
+    'Yu Gothic UI',
+    'Yu Gothic',
+    Meiryo,
+    system-ui,
+    sans-serif;
   background: #1e1e1e;
   color: #cccccc;
   --surface-border: #313131;

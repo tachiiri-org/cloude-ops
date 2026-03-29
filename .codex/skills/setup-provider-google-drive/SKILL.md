@@ -5,7 +5,7 @@ description: Add Google Drive provider setup guidance and boundary-specific scaf
 
 # setup-provider-google-drive command
 
-Shared guidance reads in this workflow refer to files under `/home/tachiiri/.guide/`.
+Shared guidance reads in this workflow refer to files under `/home/tachiiri/project/.guide/`.
 
 ## Workflow
 

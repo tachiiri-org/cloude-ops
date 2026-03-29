@@ -4,11 +4,11 @@
 
 SOT is at `/home/tachiiri`.
 
-- `.guide/`: shared guidance docs
+- `project/.guide/`: shared guidance docs
 - `AGENTS.md`: project-wide agent defaults and constraints
 - `CLAUDE.md`: behavioral constraints for this repository
 - `architecture.mmd`: system topology
-- `tools/`: tool profiles and per-tool version baselines
+- `project/.guide/tools/`: tool profiles and per-tool version baselines
 
 ## Goal
 

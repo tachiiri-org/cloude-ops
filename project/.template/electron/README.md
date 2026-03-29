@@ -7,6 +7,7 @@
 - Keep the renderer structure opinionated enough to preserve the design basic form without turning the template into one product.
 - Keep the selector tool separate from the reusable UI catalog assets.
 - Let setup reconcile repository-local UI policy from `ui/*.json` seed documents.
+- Let setup publish the first real N -> N+1 release path instead of leaving initial release backfill as manual follow-up work.
 
 ## Surfaces
 

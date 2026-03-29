@@ -5,75 +5,24 @@ description: Reconcile Electron runtime requirements and delivery automation for
 
 # setup-runtime-electron command
 
-Shared guidance reads in this workflow refer to files under `/home/tachiiri/.guide/`.
+Shared guidance reads in this workflow refer to files under `/home/tachiiri/project/.guide/`.
 
-Template baseline reads in this workflow refer to files under `/home/tachiiri/.template/electron/`.
+Template baseline reads in this workflow refer to files under `/home/tachiiri/project/.template/electron/`.
 
 ## Goals
 
-- Reconcile the repository to the Electron runtime baseline defined by shared guidance and the template under `/home/tachiiri/.template/electron/`.
-- Use the matching TypeScript and packaging tool profiles under `/home/tachiiri/.guide/tools/` as the authority for required tooling.
-- Reach a state where the required runtime files, validation workflow, and Electron tool surface are present by reconciling against the shared template rather than relying on bootstrap scripts.
-- Reach a state where the repository can launch the built Electron app, verify the rendered baseline automatically, and retain a screenshot artifact for debugging.
-- Reach a state where launch, smoke, and visual verification are owned by setup rather than deferred to later implementation work.
-- Reach a state where update-channel posture is explicit from setup time rather than deferred to later release work.
-- Standardize two update channels for Electron repositories:
+- Reconcile the repository to the Electron runtime baseline defined by shared guidance and the template under `/home/tachiiri/project/.template/electron/`.
+- Use the matching TypeScript and packaging tool profiles under `/home/tachiiri/project/.guide/tools/` as the authority for required tooling.
+- Reach a state where the required runtime files, validation workflow, launch checks, smoke checks, and screenshot capture are present by reconciling against the shared template rather than relying on bootstrap scripts.
+- Standardize two explicit update channels for Electron repositories:
   - `dev` for prerelease builds published after merge to `dev`
   - `stable` for release builds published after merge to `main`
-- Reach a state where the application identifies itself by configured update channel rather than by reading Git branch state at runtime.
-- Reach a state where merge to `dev` and merge to `main` are the only publication entrypoints for runtime artifacts and updater metadata.
-- Reach a state where the baseline renderer surface exposes stable smoke-test selectors and current runtime channel identity.
-- Reach a state where Electron repositories verify not only launch readiness but also update readiness for the configured channel surfaces.
-- Reach a state where the repository validates the presence and integrity of channel-specific updater metadata and GitHub Release publication outputs as part of setup-owned verification.
-- Reach a state where packaged artifacts and updater metadata remain together in GitHub Releases as one public source of truth for distributed clients.
-- Reach a state where the baseline UI exposes enough readonly runtime metadata for setup-owned diagnostics:
-  - application name
-  - version
-  - runtime
-  - channel
-  - environment
-  - build time
-  - updater status
-  - updater timestamp
-- Reach a state where the template-owned UI catalog can be selected through a dedicated selector tool rather than by editing renderer files directly.
-- Reach a state where setup reads repository-local UI policy data and reconciles the selected baseline rather than treating the catalog defaults as the final repository choice.
-- Reach a state where the repository carries explicit UI policy inputs for:
-  - layout
-  - design
-  - interaction
-- Reach a state where setup can retain the full template catalog while still applying repository-local UI policy as the selected initial shell.
-- Reach a state where setup is not considered complete until update verification has succeeded for both:
-  - the `dev` developer channel
-  - the `stable` production channel
-- Reach a state where setup-owned update verification proves an actual version advance, not just feed readability:
-  - for example `0.1.0 -> 0.1.1`
-  - or another explicit N -> N+1 upgrade step chosen by the repository
-- Reach a state where setup-owned update verification starts from an older packaged build and proves that both the developer and production channels detect the newer published build through their real GitHub Release channel surfaces.
-- Keep the validation workflow, required check name, and `dev` merge gate explicit.
-- Keep the template under `/home/tachiiri/.template/electron/` as the authoritative baseline for repository-file shape unless the repository documents a justified divergence.
-- Keep packaging, release-channel, signing, update-feed posture, and branch-triggered publication explicit rather than implied by Electron adoption.
-- Keep the baseline GitHub Releases updater posture explicit:
-  - the repository is public
-  - packaged clients read updater metadata from GitHub Releases without per-user credentials
-- Keep artifact publication tied to merge completion:
-  - merge to `dev` publishes the `dev` channel surface
-  - merge to `main` publishes the `stable` channel surface
-- Keep runtime channel identity in `main` and expose it to `renderer` only through a narrow preload API.
-- Keep the baseline UI contract explicit enough for setup-owned smoke verification:
-  - application identity
-  - runtime identity
-  - current update channel
-  - bootstrap failure state
-- Keep the UI selector tool separate from the reusable UI pattern catalog:
-  - catalog assets define reusable layouts, components, interactions, and contracts
-  - selector assets help choose and export repository-local UI policy
-- Keep repository-local UI policy data explicit enough for setup-owned reconciliation:
-  - selected default layout
-  - available layouts
-  - workspace kind
-  - rationale
-  - design policy
-  - interaction policy
+- Reach a state where runtime channel identity is trusted, explicit in `main`, and exposed to `renderer` only through a narrow preload-owned surface.
+- Reach a state where packaged artifacts and readable channel metadata are published through public GitHub Releases surfaces and tied only to merge completion on `dev` and `main`.
+- Reach a state where setup publishes the initial `dev` and `stable` releases, reconciles repository auto-merge and `dev` branch protection, and proves a real packaged N -> N+1 update path instead of stopping at workflow configuration.
+- Reach a state where the baseline UI exposes stable smoke selectors and readonly runtime diagnostics for application identity, version, runtime, channel, environment, build time, updater status, updater timestamp, and bootstrap failure state.
+- Reach a state where the template-owned UI catalog, optional selector surface, and repository-local layout/design/interaction policy inputs are reconciled explicitly rather than encoded as ad hoc renderer edits.
+- Keep the template under `/home/tachiiri/project/.template/electron/` as the authoritative baseline for repository-file shape unless the repository documents a justified divergence, and surface unresolved repository-local decisions explicitly.
 
 ## Tool Modules
 
@@ -93,7 +42,7 @@ Template baseline reads in this workflow refer to files under `/home/tachiiri/.t
 
 - Do not embed application-specific behavior into this runtime command
 - Do not use npm
-- Do not rely on bootstrap scripts; reconcile from the relevant files under `tools/`, `/home/tachiiri/.guide/`, and `/home/tachiiri/.template/electron/` directly
+- Do not rely on bootstrap scripts; reconcile from the relevant files under `tools/`, `/home/tachiiri/project/.guide/`, and `/home/tachiiri/project/.template/electron/` directly
 - Do not treat build success alone as sufficient runtime verification when the repository has a renderer surface.
 - Do not leave launch, smoke, or visual verification as implicit manual follow-up work for implementation commands.
 - Do not read Git branch names at runtime to decide update behavior.
@@ -103,6 +52,8 @@ Template baseline reads in this workflow refer to files under `/home/tachiiri/.t
 - Do not enable auto-update without explicit artifact source, signing posture, and updater metadata.
 - Do not assume private GitHub Release asset URLs are readable updater feeds for distributed clients.
 - Do not leave packaging, signing, update-feed posture, or publication entrypoints implicit.
+- Do not treat first-release publication or repository merge policy as later follow-up when setup owns the runtime delivery baseline.
+- Do not postpone explicit version-seed decisions until after publication if doing so would force manual backfill of older packaged assets.
 - Do not publish runtime artifacts from pull-request validation jobs.
 - Do not treat merge to `dev` or `main` as sufficient publication proof until the merge-triggered publish workflow is configured explicitly.
 - Do not allow channel-crossing updates unless the repository explicitly defines and documents that exception.
@@ -113,26 +64,47 @@ Template baseline reads in this workflow refer to files under `/home/tachiiri/.t
 
 ## Hints
 
+### Baseline
+
 - read `runtimes/electron.md` before runtime decisions
 - verify that the repository actually adopts Electron before reconciling this profile
 - inspect the current runtime state as `present`, `missing`, or `drifted` and reconcile only the minimum needed surface
-- prefer copying or reconciling from `/home/tachiiri/.template/electron/` over rebuilding the same baseline file-by-file from scratch
+- prefer copying or reconciling from `/home/tachiiri/project/.template/electron/` over rebuilding the same baseline file-by-file from scratch
+- apply the required tool modules and collect their status rather than re-deriving tool setup ad hoc
+- prefer the minimal `main` / `preload` / `renderer` / `shared` scaffold when the repository has no prior Electron surface
+- keep `renderer` untrusted and expose only a narrow preload API even in the initial baseline
+
+### Versioning And Publication
+
 - treat placeholder replacement inside the template itself as part of setup-owned reconciliation:
   - app identity
   - repository identity
   - current version
   - previous version used for N -> N+1 verification
-- treat `/home/tachiiri/.template/electron/ui/*.json` as the template-owned seed documents for repository-local UI policy unless the repository already carries stricter equivalents
-- reconcile the UI catalog and the selected UI policy separately:
-  - copy the catalog baseline from the template
-  - apply repository-local policy values as the chosen initial shell
-- preserve selector-tool separation when reconciling:
-  - the reusable catalog should remain usable without the selector
-  - the selector may be omitted from repositories that only need the resolved policy output
-- apply the required tool modules and collect their status rather than re-deriving tool setup ad hoc
-- prefer the minimal `main` / `preload` / `renderer` / `shared` scaffold when the repository has no prior Electron surface
-- keep `renderer` untrusted and expose only a narrow preload API even in the initial baseline
+- prefer a clean initial version seed during setup:
+  - if the repository has never published, choose an explicit previous version and current version up front
+  - prefer publishing the first real N -> N+1 path directly over backfilling historical assets later
+- map branch merge outcomes to channel publication explicitly:
+  - `push` on `dev` publishes prerelease artifacts and updater metadata for channel `dev`
+  - `push` on `main` publishes release artifacts and updater metadata for channel `stable`
+- prefer PR validation to prove readiness and merge-triggered workflows to perform publication
+- when the repository has not published either channel yet, have setup drive the initial `dev` and `stable` releases to completion rather than stopping at workflow configuration
+
+### Repository Policy
+
 - ensure `.github/workflows/validate-pr.yml` uses `pull_request` to `dev` and the job name `validate-electron` so GitHub protection can target a stable check name
+- apply repository policy in setup order:
+  - publish the initial `dev` channel first if protection would otherwise block the bootstrap push
+  - then enable auto-merge and branch protection
+  - then use PR-based merges for `main` and later publication steps
+- when applying branch protection with `gh api`, prefer an inline stdin payload over cross-context temporary files
+- reconcile GitHub repository policy only when safe:
+  - ensure the repository is PR-based
+  - ensure repo auto-merge is enabled
+  - ensure `dev` branch protection requires the `validate-electron` check
+
+### Verification
+
 - prefer a built-app smoke test that launches Electron, checks rendered text, and writes a screenshot artifact over a build-only check
 - prefer setup-owned smoke and visual verification even for a hello-world baseline so later implementation work inherits a reliable launch check
 - prefer a baseline UI that renders stable smoke targets for:
@@ -145,23 +117,30 @@ Template baseline reads in this workflow refer to files under `/home/tachiiri/.t
 - verify `electron-vite`, `vitest`, and `vite` major-version compatibility before finalizing package versions
 - verify production preload and renderer asset paths against actual build output so launch-time white-screen failures are caught
 - if launch verification depends on sandbox or display constraints, encode the repository script and workflow so setup establishes a repeatable execution path
-- prefer public GitHub Releases as the baseline artifact source of truth for both traceability and updater reads unless the repository explicitly documents another backend
-- if the repository must remain private, treat that as a justified divergence from the baseline and document the replacement updater surface explicitly
-- map branch merge outcomes to channel publication explicitly:
-  - `push` on `dev` publishes prerelease artifacts and updater metadata for channel `dev`
-  - `push` on `main` publishes release artifacts and updater metadata for channel `stable`
-- keep branch-based publication in CI and keep the running app configured by channel rather than by branch
-- inject the authoritative application channel at build time or through trusted runtime configuration owned by `main`
-- expose channel identity to the renderer only as readonly metadata suitable for smoke validation and user diagnostics
-- prefer PR validation to prove readiness and merge-triggered workflows to perform publication
 - treat feed-readability checks alone as insufficient for setup completion when auto-update is part of the runtime baseline
 - prefer setup-owned upgrade verification that starts from an older packaged build and confirms a newer published build is detected for both `dev` and `stable`
 - when Linux AppImage packaging is used, be ready to extract the older packaged build or otherwise adapt the launcher so live updater verification exercises the real packaged runtime instead of a development shell
-- when applying branch protection with `gh api`, prefer an inline stdin payload over cross-context temporary files
-- reconcile GitHub repository policy only when safe:
-  - ensure the repository is PR-based
-  - ensure repo auto-merge is enabled
-  - ensure `dev` branch protection requires the `validate-electron` check
+
+### Feed And Runtime Identity
+
+- prefer public GitHub Releases as the baseline artifact source of truth for both traceability and updater reads unless the repository explicitly documents another backend
+- if the repository must remain private, treat that as a justified divergence from the baseline and document the replacement updater surface explicitly
+- keep branch-based publication in CI and keep the running app configured by channel rather than by branch
+- inject the authoritative application channel at build time or through trusted runtime configuration owned by `main`
+- expose channel identity to the renderer only as readonly metadata suitable for smoke validation and user diagnostics
+
+### UI Policy
+
+- treat `/home/tachiiri/project/.template/electron/ui/*.json` as the template-owned seed documents for repository-local UI policy unless the repository already carries stricter equivalents
+- reconcile the UI catalog and the selected UI policy separately:
+  - copy the catalog baseline from the template
+  - apply repository-local policy values as the chosen initial shell
+- preserve selector-tool separation when reconciling:
+  - the reusable catalog should remain usable without the selector
+  - the selector may be omitted from repositories that only need the resolved policy output
+
+### Unresolved Decisions
+
 - surface unresolved repository-local decisions explicitly rather than hiding them in implicit defaults:
   - IPC surface inventory
   - secure storage mechanism
@@ -188,6 +167,8 @@ Template baseline reads in this workflow refer to files under `/home/tachiiri/.t
 - whether `validate-pr.yml` emits the `validate-electron` check on pull requests to `dev`
 - whether launch, smoke, and screenshot verification are wired into the repository validation surface
 - whether the repository defines `dev` and `stable` update channels with merge-triggered publication on `dev` and `main`
+- whether setup published the initial `dev` and `stable` releases or why that did not complete
+- which explicit N -> N+1 path setup used for real packaged update verification
 - whether the baseline UI exposes stable metadata for runtime and channel verification
 - whether repository-local UI policy data was reconciled from the template seed documents and where it now lives
 - whether the repository retains the selector tool, the catalog only, or both

@@ -7,7 +7,7 @@ description: Ensure Playwright configuration and UI-check scripts are configured
 
 ## Goals
 
-- Use `/home/tachiiri/.guide/tools/playwright.md` as the authority for Playwright adoption and version selection.
+- Use `/home/tachiiri/project/.guide/tools/playwright.md` as the authority for Playwright adoption and version selection.
 - Reach a state where UI-bearing repositories include the expected Playwright package version and UI-check entrypoints.
 - Reach a state where Electron repositories can use Playwright to launch the built app, verify rendered baseline content, and retain visual artifacts for debugging.
 - Reach a state where the Playwright surface is part of setup-owned validation rather than an ad hoc implementation-time add-on.
@@ -24,7 +24,7 @@ description: Ensure Playwright configuration and UI-check scripts are configured
 
 - verify the repository has a UI surface that justifies Playwright before reconciling this module
 - inspect the current Playwright setup as `present`, `missing`, or `drifted`
-- use `/home/tachiiri/.guide/tools/playwright.md` as the version source
+- use `/home/tachiiri/project/.guide/tools/playwright.md` as the version source
 - ensure `@playwright/test` configuration exists and repository scripts expose a stable UI-check entrypoint
 - for Electron repositories, prefer Playwright's Electron launcher over browser-only page tests
 - make the setup-owned Playwright check validate rendered text and fail on visible bootstrap errors instead of relying on screenshots alone

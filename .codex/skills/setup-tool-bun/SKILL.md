@@ -7,14 +7,14 @@ description: Ensure Bun package management and baseline Bun scripts are configur
 
 ## Goal
 
-- Use `/home/tachiiri/.guide/tools/bun.md` as the authority for Bun adoption.
+- Use `/home/tachiiri/project/.guide/tools/bun.md` as the authority for Bun adoption.
 - Reach a state where Bun is the repository package-manager entrypoint and the expected Bun version policy is represented in the repository.
 
 ## Workflow
 
 1. Verify the repository is intended to use Bun
 2. Inspect Bun-related state as `present`, `missing`, or `drifted`
-3. Read `/home/tachiiri/.guide/tools/bun.md` for the Bun baseline
+3. Read `/home/tachiiri/project/.guide/tools/bun.md` for the Bun baseline
 4. Ensure `package.json` exists
 5. Ensure Bun is the package manager entrypoint for install and script execution
 6. Ensure repository scripts assume `bun run` rather than npm

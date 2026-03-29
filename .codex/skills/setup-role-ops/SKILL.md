@@ -5,7 +5,7 @@ description: Reconcile an ops repository to the expected shared-guidance baselin
 
 # setup-role-ops command
 
-Shared guidance reads in this workflow refer to files under `/home/tachiiri/.guide/`.
+Shared guidance reads in this workflow refer to files under `/home/tachiiri/project/.guide/`.
 
 ## Workflow
 
@@ -19,7 +19,7 @@ Shared guidance reads in this workflow refer to files under `/home/tachiiri/.gui
 9. Inspect the role baseline as `present`, `missing`, or `drifted`
 10. Ensure `main` and `dev` branch bootstrap exists; compose with `setup-dev-github` only when the repository bootstrap is missing
 11. Reconcile only the minimum ops baseline that is still missing or safely drifted:
-   - shared guidance roots such as `/home/tachiiri/.guide/AGENTS.md`, `/home/tachiiri/.guide/CLAUDE.md`, `/home/tachiiri/.guide/architecture.mmd`, `/home/tachiiri/.guide/principles.md`, and the concern directories under `/home/tachiiri/.guide/`
+   - shared guidance roots such as `/home/tachiiri/project/.guide/AGENTS.md`, `/home/tachiiri/project/.guide/CLAUDE.md`, `/home/tachiiri/project/.guide/architecture.mmd`, `/home/tachiiri/project/.guide/principles.md`, and the concern directories under `/home/tachiiri/project/.guide/`
    - mirrored Claude commands and Codex skills for the shared workflows the repository owns
    - `.claude/settings.json` and command definitions required for the shared automation surface
 12. Report any unsafe drift that should not be overwritten automatically

@@ -3,7 +3,7 @@
 ## Goal
 
 - Reconcile the repository to the Cloudflare Pages runtime baseline defined by shared guidance.
-- Use the matching files under `/home/tachiiri/.guide/tools/` as the authority for required runtime tooling and `/home/tachiiri/.guide/tools/wrangler.md` for the Wrangler version baseline.
+- Use the matching files under `/home/tachiiri/project/.guide/tools/` as the authority for required runtime tooling and `/home/tachiiri/project/.guide/tools/wrangler.md` for the Wrangler version baseline.
 - Reach a state where the required Pages files, scripts, workflows, and tool versions are present without relying on bootstrap scripts.
 
 ## Tool Modules
@@ -22,10 +22,10 @@
 1. Read `runtimes/cloudflare-pages.md`
 3. Verify the repository is intended to run on Cloudflare Pages
 4. Inspect Pages runtime state as `present`, `missing`, or `drifted`
-5. Read `/home/tachiiri/.guide/tools/wrangler.md` for the stored `Wrangler` baseline when reconciling runtime dependencies
+5. Read `/home/tachiiri/project/.guide/tools/wrangler.md` for the stored `Wrangler` baseline when reconciling runtime dependencies
 6. Reconcile required runtime files directly from the tracked templates when files or scripts are missing or drifted
 7. Apply the required tool modules listed above and collect their reported status
-8. Ensure `package.json` includes the `wrangler` version selected in `/home/tachiiri/.guide/tools/wrangler.md`
+8. Ensure `package.json` includes the `wrangler` version selected in `/home/tachiiri/project/.guide/tools/wrangler.md`
 9. Ensure `package.json` exposes `bun run deploy:preview` and `bun run deploy:staging` for Pages preview and staging deploys
 10. Ensure `scripts/deploy-preview.sh` and `scripts/deploy-staging.sh` exist and own the Pages-specific deploy commands
 11. Ensure `scripts/github/upsert-pr-comment.py` exists for CI URL reporting

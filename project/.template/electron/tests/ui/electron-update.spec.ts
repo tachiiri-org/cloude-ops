@@ -14,6 +14,10 @@ const updatePort = 43123;
 const currentVersion = JSON.parse(
   readFileSync(resolve(projectRoot, 'package.json'), 'utf8'),
 ).version;
+const extraLaunchArgs = (process.env.PLAYWRIGHT_ELECTRON_EXTRA_ARGS ?? '')
+  .split(' ')
+  .map((value) => value.trim())
+  .filter((value) => value.length > 0);
 
 const getNextPatchVersion = (version: string): string => {
   const [major, minor, patch] = version.split('.').map(Number);
@@ -23,17 +27,17 @@ const getNextPatchVersion = (version: string): string => {
 
 const nextVersion = getNextPatchVersion(currentVersion);
 
-const createUpdateFeed = async (): Promise<void> => {
+const createUpdateFeed = async (channel: 'dev' | 'stable'): Promise<void> => {
   await mkdir(artifactDir, { recursive: true });
 
-  const artifactName = `__APP_NAME__-${nextVersion}-dev.AppImage`;
+  const artifactName = `__APP_NAME__-${nextVersion}-${channel}.AppImage`;
   const artifactPath = join(artifactDir, artifactName);
   const artifactContents = Buffer.from('__APP_NAME__-update-artifact', 'utf8');
   const sha512 = createHash('sha512').update(artifactContents).digest('base64');
 
   await writeFile(artifactPath, artifactContents);
   await writeFile(
-    join(artifactDir, 'latest-linux.yml'),
+    join(artifactDir, `${channel}-linux.yml`),
     [
       `version: ${nextVersion}`,
       'files:',
@@ -54,14 +58,15 @@ for (const scenario of [
   { channel: 'stable', environment: 'production' },
 ] as const) {
   test(`checks the configured ${scenario.channel} update feed and surfaces update diagnostics`, async () => {
-    await createUpdateFeed();
+    await createUpdateFeed(scenario.channel);
 
     const server = createServer(async (request, response) => {
       const requestUrl = new URL(
-        request.url ?? '/latest-linux.yml',
+        request.url ?? `/${scenario.channel}-linux.yml`,
         `http://127.0.0.1:${updatePort}`,
       );
-      const requestPath = requestUrl.pathname === '/' ? '/latest-linux.yml' : requestUrl.pathname;
+      const requestPath =
+        requestUrl.pathname === '/' ? `/${scenario.channel}-linux.yml` : requestUrl.pathname;
       const filePath = join(artifactDir, requestPath.replace(/^\//, ''));
 
       try {
@@ -84,7 +89,7 @@ for (const scenario of [
     });
 
     const electronApp = await electron.launch({
-      args: ['--no-sandbox', 'out/main/index.js'],
+      args: ['--no-sandbox', ...extraLaunchArgs, 'out/main/index.js'],
       cwd: projectRoot,
       env: {
         ...process.env,
@@ -92,6 +97,7 @@ for (const scenario of [
         APP_UPDATE_URL: `http://127.0.0.1:${updatePort}`,
         ELECTRON_DISABLE_SANDBOX: '1',
         ELECTRON_FORCE_DEV_UPDATE_CONFIG: '1',
+        LIBGL_ALWAYS_SOFTWARE: process.env.LIBGL_ALWAYS_SOFTWARE ?? '1',
       },
     });
 

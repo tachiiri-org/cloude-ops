@@ -5,7 +5,7 @@ description: Add Auth0 identity setup guidance and boundary-specific scaffolding
 
 # setup-idp-auth0 command
 
-Shared guidance reads in this workflow refer to files under `/home/tachiiri/.guide/`.
+Shared guidance reads in this workflow refer to files under `/home/tachiiri/project/.guide/`.
 
 ## Applies To
 

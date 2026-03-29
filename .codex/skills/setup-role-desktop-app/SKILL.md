@@ -5,7 +5,7 @@ description: Reconcile a desktop application repository to the expected role bas
 
 # setup-role-desktop-app command
 
-Shared guidance reads in this workflow refer to files under `/home/tachiiri/.guide/`.
+Shared guidance reads in this workflow refer to files under `/home/tachiiri/project/.guide/`.
 
 ## Workflow
 

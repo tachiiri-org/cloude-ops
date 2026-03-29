@@ -7,13 +7,13 @@ description: Ensure Pyright configuration and typecheck scripts are configured f
 
 ## Goal
 
-- Use `/home/tachiiri/.guide/tools/pyright.md` as the authority for Python typecheck tool selection.
+- Use `/home/tachiiri/project/.guide/tools/pyright.md` as the authority for Python typecheck tool selection.
 - Reach a state where Pyright is configured as the repository's Python typecheck surface.
 
 ## Workflow
 
 1. Verify the repository is intended to use Pyright
-2. Read `/home/tachiiri/.guide/tools/pyright.md` for the Python typecheck baseline
+2. Read `/home/tachiiri/project/.guide/tools/pyright.md` for the Python typecheck baseline
 3. Ensure Pyright configuration exists
 4. Ensure repository scripts expose typecheck execution consistently
 5. Keep typecheck scope aligned with tracked Python modules

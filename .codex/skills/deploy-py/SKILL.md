@@ -5,7 +5,7 @@ description: Build a Python wheel, upload release artifacts to R2, and publish l
 
 # deploy-py command
 
-Shared guidance reads in this workflow refer to files under `/home/tachiiri/.guide/`.
+Shared guidance reads in this workflow refer to files under `/home/tachiiri/project/.guide/`.
 
 ## Steps
 

@@ -40,8 +40,9 @@
 - expected issuer or issuer family
 - expected audience or API identifier
 - application type in Auth0
-- login callback URLs
-- logout or post-logout URLs if applicable
+- login callback URLs (deployed environments only; no localhost)
+- logout or post-logout URLs if applicable (deployed environments only; no localhost)
+- whether a separate local-development Auth0 application exists or needs to be created
 - claims mapping inputs needed for `tenant_id`, `actor_id`, `actor_type`, and `subject_id`
 - session mode or token mode at the repository boundary
 - support or ops access flow if applicable
@@ -49,7 +50,7 @@
 ## Manual Auth0 Console Steps
 
 - Create or identify the Auth0 application or API resource for the repository boundary
-- Configure callback, logout, and allowed origin URLs in one pass
+- Configure callback, logout, and allowed origin URLs in one pass using only the deployed environment URLs; never include `localhost` or `127.0.0.1` — local development must use a separate Auth0 application
 - Configure application type and grant types
 - Configure RBAC, permissions, roles, or custom claims sources if required
 - Confirm issuer and audience values to be copied into repository placeholders
@@ -111,3 +112,4 @@
 - Do not add provider-specific values into shared guidance
 - Do not invent repository-local auth flows that conflict with `providers/auth0.md`
 - Do not use npm
+- Do not add `localhost` or `127.0.0.1` to Allowed Callback URLs, Allowed Logout URLs, or Allowed Web Origins on any Auth0 application intended for deployed environments; local development requires a dedicated Auth0 application with its own Client ID

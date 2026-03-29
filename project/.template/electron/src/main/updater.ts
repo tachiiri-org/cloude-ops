@@ -5,9 +5,12 @@ import { getAppMetadata } from '@shared/app-metadata';
 import { GET_RUNTIME_SNAPSHOT_CHANNEL, RUNTIME_SNAPSHOT_EVENT } from '@shared/runtime-ipc';
 import type { RuntimeSnapshot, UpdateStatus } from '@shared/runtime-snapshot';
 
+const getReleaseFeedUrl = (appMetadata: RuntimeSnapshot['app']): string =>
+  `https://github.com/${appMetadata.repositoryOwner}/${appMetadata.repositoryName}/releases/download/update-${appMetadata.channel}`;
+
 const createInitialSnapshot = (): RuntimeSnapshot => {
   const metadata = getAppMetadata();
-  const feedUrl = metadata.updateOverrideUrl;
+  const feedUrl = metadata.updateOverrideUrl ?? (app.isPackaged ? getReleaseFeedUrl(metadata) : null);
   const canCheckForUpdates = app.isPackaged || Boolean(feedUrl);
 
   return {
@@ -55,24 +58,22 @@ const setSnapshot = (
 const getNowIsoString = (): string => new Date().toISOString();
 
 const configureAutoUpdater = (): boolean => {
-  if (!app.isPackaged && !runtimeSnapshot.update.feedUrl) {
+  const feedUrl =
+    runtimeSnapshot.update.feedUrl ?? (app.isPackaged ? getReleaseFeedUrl(runtimeSnapshot.app) : null);
+
+  if (!feedUrl) {
     return false;
   }
 
   autoUpdater.autoDownload = app.isPackaged;
   autoUpdater.autoInstallOnAppQuit = app.isPackaged;
+  autoUpdater.allowPrerelease = runtimeSnapshot.app.channel === 'dev';
   autoUpdater.forceDevUpdateConfig = !app.isPackaged;
   autoUpdater.channel = runtimeSnapshot.app.channel;
-
-  const feedUrl = runtimeSnapshot.update.feedUrl;
-
-  // Use a generic feed override only for local verification runs.
-  if (feedUrl) {
-    autoUpdater.setFeedURL({
-      provider: 'generic',
-      url: feedUrl,
-    });
-  }
+  autoUpdater.setFeedURL({
+    provider: 'generic',
+    url: feedUrl,
+  });
 
   autoUpdater.on('checking-for-update', () => {
     setSnapshot('checking', 'Checking for updates.', {

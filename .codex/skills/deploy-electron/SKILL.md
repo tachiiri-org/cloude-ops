@@ -13,7 +13,7 @@ description: Package and publish an Electron app to GitHub Releases with branch-
 - Prefer publication surfaces that preserve artifact traceability while keeping updater feeds readable by distributed clients.
 - Treat deployment success as incomplete until the published channel surface is consistent enough for updater clients to consume.
 
-Shared guidance reads in this workflow refer to files under `/home/tachiiri/.guide/`.
+Shared guidance reads in this workflow refer to files under `/home/tachiiri/project/.guide/`.
 
 ## Steps
 

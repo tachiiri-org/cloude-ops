@@ -5,7 +5,7 @@ description: Ensure there is an open release PR from dev to main after verifying
 
 # release command
 
-Shared guidance reads in this workflow refer to files under `/home/tachiiri/.guide/`.
+Shared guidance reads in this workflow refer to files under `/home/tachiiri/project/.guide/`.
 
 ## Goals
 

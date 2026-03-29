@@ -58,18 +58,18 @@ jobs:
           from pathlib import Path
 
           expected = {
-              Path(".guide/languages/typescript.md"): "- TypeScript `^5.9.3`",
-              Path(".guide/tools/bun.md"): "- Bun `1.3.10`",
-              Path(".guide/tools/prettier.md"): "- Prettier `^3.8.1`",
-              Path(".guide/tools/eslint.md"): "- ESLint `^10.0.3`",
-              Path(".guide/tools/vitest.md"): "- Vitest `^4.0.18`",
-              Path(".guide/tools/playwright.md"): "- Playwright `^1.58.2`",
-              Path(".guide/languages/python.md"): "- Python `3.14.3`",
-              Path(".guide/tools/uv.md"): "- uv `0.10.9`",
-              Path(".guide/tools/ruff.md"): "- Ruff `0.15.5`",
-              Path(".guide/tools/pyright.md"): "- Pyright `1.1.408`",
-              Path(".guide/tools/pytest.md"): "- pytest `9.0.2`",
-              Path(".guide/tools/wrangler.md"): "- Wrangler `^4.72.0`",
+              Path("project/.guide/languages/typescript.md"): "- TypeScript `^5.9.3`",
+              Path("project/.guide/tools/bun.md"): "- Bun `1.3.10`",
+              Path("project/.guide/tools/prettier.md"): "- Prettier `^3.8.1`",
+              Path("project/.guide/tools/eslint.md"): "- ESLint `^10.0.3`",
+              Path("project/.guide/tools/vitest.md"): "- Vitest `^4.0.18`",
+              Path("project/.guide/tools/playwright.md"): "- Playwright `^1.58.2`",
+              Path("project/.guide/languages/python.md"): "- Python `3.14.3`",
+              Path("project/.guide/tools/uv.md"): "- uv `0.10.9`",
+              Path("project/.guide/tools/ruff.md"): "- Ruff `0.15.5`",
+              Path("project/.guide/tools/pyright.md"): "- Pyright `1.1.408`",
+              Path("project/.guide/tools/pytest.md"): "- pytest `9.0.2`",
+              Path("project/.guide/tools/wrangler.md"): "- Wrangler `^4.72.0`",
           }
 
           for path, expected_line in expected.items():
@@ -129,11 +129,11 @@ jobs:
 
           package = json.loads(Path("package.template.json").read_text())
           expected = {
-              "@playwright/test": (Path(".guide/tools/playwright.md"), "- Playwright `"),
-              "eslint": (Path(".guide/tools/eslint.md"), "- ESLint `"),
-              "prettier": (Path(".guide/tools/prettier.md"), "- Prettier `"),
-              "typescript": (Path(".guide/languages/typescript.md"), "- TypeScript `"),
-              "vitest": (Path(".guide/tools/vitest.md"), "- Vitest `"),
+              "@playwright/test": (Path("project/.guide/tools/playwright.md"), "- Playwright `"),
+              "eslint": (Path("project/.guide/tools/eslint.md"), "- ESLint `"),
+              "prettier": (Path("project/.guide/tools/prettier.md"), "- Prettier `"),
+              "typescript": (Path("project/.guide/languages/typescript.md"), "- TypeScript `"),
+              "vitest": (Path("project/.guide/tools/vitest.md"), "- Vitest `"),
           }
 
           versions = {}

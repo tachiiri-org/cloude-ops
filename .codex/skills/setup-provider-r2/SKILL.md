@@ -5,7 +5,7 @@ description: Add R2 provider setup guidance and boundary-specific scaffolding fo
 
 # setup-provider-r2 command
 
-Shared guidance reads in this workflow refer to files under `/home/tachiiri/.guide/`.
+Shared guidance reads in this workflow refer to files under `/home/tachiiri/project/.guide/`.
 
 ## Workflow
 

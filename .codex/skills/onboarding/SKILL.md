@@ -7,13 +7,13 @@ description: "Understand the repository, load the minimum guidance for the inten
 
 ## Terms
 
-- Required Documents: `principles.md`, `architecture.mmd`, `CLAUDE.md`, and `AGENTS.md` available from the shared guidance root at `/home/tachiiri/.guide`
+- Required Documents: `principles.md`, `architecture.mmd`, `CLAUDE.md`, and `AGENTS.md` available from the shared guidance root at `/home/tachiiri/project/.guide`
 - Required Reads: `architecture.mmd` and the instruction file for the current agent (`CLAUDE.md` for Claude, `AGENTS.md` for Codex)
 
 ## Goals
 
 - understand how to behave in this repository
-- ensure Required Documents are available from the shared guidance root at `/home/tachiiri/.guide`
+- ensure Required Documents are available from the shared guidance root at `/home/tachiiri/project/.guide`
 - read Required Reads before reading code or making workflow decisions
 - infer the repository structure primarily from `git ls-files` and other visible, non-ignored files
 - classify the repository role and runtime
@@ -34,7 +34,7 @@ description: "Understand the repository, load the minimum guidance for the inten
 
 ## Hints
 
-- use the shared guidance root at `/home/tachiiri/.guide` as the default source of Required Documents
+- use the shared guidance root at `/home/tachiiri/project/.guide` as the default source of Required Documents
 - classify role from architecture and explicit repo-local evidence
 - classify runtime from explicit repo-local adoption, concrete runtime files, and role defaults
 - read only the domain and profile documents that directly constrain the stated goal

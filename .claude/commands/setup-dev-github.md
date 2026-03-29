@@ -1,6 +1,6 @@
 # setup-dev-github command
 
-Shared guidance reads in this workflow refer to files under `/home/tachiiri/.guide/`.
+Shared guidance reads in this workflow refer to files under `/home/tachiiri/project/.guide/`.
 
 ## Terms
 
@@ -17,6 +17,7 @@ Shared guidance reads in this workflow refer to files under `/home/tachiiri/.gui
 - ensure `dev` exists locally and remotely from `main`
 - normalize local and remote branch state so follow-up setup commands can assume the standard baseline
 - keep this workflow limited to repository bootstrap rather than policy or application setup
+- create GitHub Environments `production` and `development` for the repository after branches are established
 
 ## Constraints
 
@@ -26,6 +27,7 @@ Shared guidance reads in this workflow refer to files under `/home/tachiiri/.gui
 - do not use this command as the steady-state GitHub policy reconciler
 - do not push directly to `main` after the initial bootstrap commit and branch publication
 - do not overwrite an existing remote, branch history, or dirty working tree without reporting the decision point
+- do not populate environment variables or secrets in the created environments here; only create the environment shells
 - run each shell command separately, not as compound commands (e.g. `&&`)
 
 ## Hints
@@ -46,6 +48,9 @@ Shared guidance reads in this workflow refer to files under `/home/tachiiri/.gui
 - push `main` first when the remote repository is empty, then push `dev`
 - if remote branches already exist, reconcile to them without rewriting history
 - if the working tree is dirty, the local branch is diverged, or the remote target is ambiguous, report the state instead of auto-resolving it
+- after both branches are pushed, create the `production` and `development` environments:
+  `gh api --method PUT repos/{owner}/{repo}/environments/production`
+  `gh api --method PUT repos/{owner}/{repo}/environments/development`
 
 ## Output
 
@@ -55,5 +60,6 @@ Shared guidance reads in this workflow refer to files under `/home/tachiiri/.gui
 - `origin` remote status after reconciliation
 - current branch, working tree state, and local/remote sync state
 - whether `main` and `dev` are ready locally and remotely
+- whether `production` and `development` environments were created on GitHub
 - which guidance was loaded
 - any decision points or follow-up constraints for later setup commands

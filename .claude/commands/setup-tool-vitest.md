@@ -2,15 +2,15 @@
 
 ## Goal
 
-- Use `/home/tachiiri/.guide/tools/vitest.md` as the authority for Vitest adoption and version selection.
+- Use `/home/tachiiri/project/.guide/tools/vitest.md` as the authority for Vitest adoption and version selection.
 - Reach a state where the repository includes the expected Vitest package version and unit-test entrypoints.
 
 ## Workflow
 
 1. Verify the repository is intended to use Vitest
 2. Inspect Vitest setup as `present`, `missing`, or `drifted`
-3. Read `/home/tachiiri/.guide/tools/vitest.md` for the Vitest baseline when reconciling package versions
-4. Ensure the repository includes the Vitest version selected in `/home/tachiiri/.guide/tools/vitest.md`
+3. Read `/home/tachiiri/project/.guide/tools/vitest.md` for the Vitest baseline when reconciling package versions
+4. Ensure the repository includes the Vitest version selected in `/home/tachiiri/project/.guide/tools/vitest.md`
 5. Ensure `vitest` configuration exists
 6. Ensure repository scripts expose unit-test execution consistently
 7. Keep test setup minimal and aligned with repository language and runtime modules

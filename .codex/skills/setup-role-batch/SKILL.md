@@ -5,7 +5,7 @@ description: Reconcile a batch-processing repository to the expected role baseli
 
 # setup-role-batch command
 
-Shared guidance reads in this workflow refer to files under `/home/tachiiri/.guide/`.
+Shared guidance reads in this workflow refer to files under `/home/tachiiri/project/.guide/`.
 
 ## Workflow
 

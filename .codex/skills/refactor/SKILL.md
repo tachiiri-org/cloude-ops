@@ -5,7 +5,7 @@ description: Drive principle-aligned refactoring through onboarding context, pla
 
 # refactor command
 
-Shared guidance reads in this workflow refer to files under `/home/tachiiri/.guide/`.
+Shared guidance reads in this workflow refer to files under `/home/tachiiri/project/.guide/`.
 
 ## Steps
 
