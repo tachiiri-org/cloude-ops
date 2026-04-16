@@ -20,7 +20,7 @@
 - Treat idempotency as semantic action identity, not as a transport retry trick.
 - Generate idempotency keys at the originator and preserve them end-to-end.
 - Adapter is the only component that completes idempotency.
-- BFF and gateway may validate and forward idempotency context but must not finalize it.
+- Entry and gateway may validate and forward idempotency context but must not finalize it.
 - Keep uniqueness scoped by at least operation identity, tenant context, actor context, contract version, normalized input, and key.
 - Treat duplicate completion as stored-result replay rather than re-execution.
 - Do not allow keyless retries for side-effecting operations.

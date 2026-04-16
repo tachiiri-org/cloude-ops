@@ -1,8 +1,8 @@
-# desktop-app-bff.md
+# desktop-app-entry.md
 
 ## Goals
 
-- Keep the desktop app to BFF edge explicit as a non-browser client boundary.
+- Keep the desktop app to entry edge explicit as a non-browser client boundary.
 - Preserve shared semantics across desktop and browser clients without importing browser-only assumptions.
 - Keep operation initiation and edge trust explicit for desktop-originated user actions.
 - Ensure desktop app requests are treated as an explicit non-browser client class.
@@ -12,7 +12,7 @@
 
 ## Qualities
 
-- Favor channel-specific adaptation in the BFF over changes to shared gateway semantics.
+- Favor channel-specific adaptation in the entry over changes to shared gateway semantics.
 - Keep non-browser client support additive so desktop and future CLI surfaces do not force browser-centric assumptions into shared contracts.
 - Minimize cross-channel coupling so one channel can evolve without destabilizing others.
 

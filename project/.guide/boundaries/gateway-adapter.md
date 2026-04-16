@@ -36,5 +36,5 @@
 - Treat `mtls`, network provenance, and similar transport properties as optional hardening only, never as the shared identity contract.
 - Do not publish or accept identity-related custom header transport on this edge.
 - Normalize boundary errors rather than exposing raw adapter internals upstream.
-- Keep adapter internals and provider-specific transport details out of BFF-facing responses.
+- Keep adapter internals and provider-specific transport details out of entry-facing responses.
 - Do not let non-browser transport shortcuts weaken identity or contract semantics.

@@ -1,24 +1,24 @@
-# bff-gateway.md
+# entry-gateway.md
 
 ## Goals
 
-- Keep the BFF to gateway edge as an internal operation boundary rather than an ad hoc HTTP surface.
-- Forward only verified user intent and normalized principal context from the BFF.
+- Keep the entry to gateway edge as an internal operation boundary rather than an ad hoc HTTP surface.
+- Forward only verified user intent and normalized principal context from the entry.
 - Keep browser-specific transport concerns out of gateway contracts.
-- Ensure every BFF to gateway call maps to a declared internal operation.
+- Ensure every entry to gateway call maps to a declared internal operation.
 - Ensure the boundary accepts only declared content types, contract versions, and normalized request shapes.
 - Ensure browser cookies and browser-specific trust signals do not appear on gateway-facing requests.
 - Ensure gateway-visible errors are normalized boundary outcomes rather than raw downstream transport details.
 
 ## Qualities
 
-- Favor gateway contracts that stay stable as channel-specific BFFs are added, removed, or split by browser, CLI, or other client class.
+- Favor gateway contracts that stay stable as channel-specific entry points are added, removed, or split by browser, CLI, or other client class.
 - Minimize coupling between channel presentation concerns and internal operation contracts.
 - Keep the single gateway reusable across multiple products and SaaS surfaces without channel-driven semantic drift.
 
 ## Constraints
 
-- BFF to gateway uses operation-based HTTP calls.
+- Entry to gateway uses operation-based HTTP calls.
 - Treat HTTP as a transport layer and keep business meaning in operations, catalogs, and schemas.
 - Keep internal calls on declared operations only.
 - Use `POST` for internal operation execution.

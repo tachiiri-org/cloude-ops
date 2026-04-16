@@ -20,13 +20,13 @@ architecture-beta
   service gpu_engine(disk)[python] in ubuntu
 
   service pages_prod(cloud)[front] in prod
-  service bff_prod(cloud)[BFF] in prod
+  service entry_prod(cloud)[entry] in prod
   service gateway_prod(cloud)[Gateway] in private_prod
   service adapter_prod(cloud)[Adapter] in private_prod
   service cf_engine_prod(cloud)[CF Services] in private_prod
 
   service pages_dbg(cloud)[front] in dbg
-  service bff_dbg(cloud)[BFF] in dbg
+  service entry_dbg(cloud)[entry] in dbg
   service gateway_dbg(cloud)[Gateway] in private_dbg
   service adapter_dbg(cloud)[Adapter] in private_dbg
   service cf_engine_dbg(cloud)[CF Services] in private_dbg
@@ -41,16 +41,16 @@ architecture-beta
   electron:B -- T:gpu_engine
 
   client_laptop:B -- T:pages_prod
-  AI:B -- T:bff_prod
-  pages_prod:B -- T:bff_prod
-  bff_prod:B -- T:gateway_prod
+  AI:B -- T:entry_prod
+  pages_prod:B -- T:entry_prod
+  entry_prod:B -- T:gateway_prod
   gateway_prod:B -- T:adapter_prod
   adapter_prod:R -- L:cf_engine_prod
   adapter_prod:B -- T:service_provider
 
   laptop:R -- L:pages_dbg
-  pages_dbg:B -- T:bff_dbg
-  bff_dbg:B -- T:gateway_dbg
+  pages_dbg:B -- T:entry_dbg
+  entry_dbg:B -- T:gateway_dbg
   gateway_dbg:B -- T:adapter_dbg
   adapter_dbg:R -- L:cf_engine_dbg
   adapter_dbg:B -- T:service_provider

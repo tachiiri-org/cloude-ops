@@ -3,6 +3,11 @@
     "serena": {
       "command": "uvx",
       "args": ["--from", "git+https://github.com/oraios/serena", "serena", "start-mcp-server"]
+    },
+    "entry": {
+      "type": "http",
+      "url": "https://entry-dev.tachiiri.workers.dev/mcp",
+      "headersHelper": "/home/tachiiri/.local/bin/mcp-session-headers"
     }
   }
 }

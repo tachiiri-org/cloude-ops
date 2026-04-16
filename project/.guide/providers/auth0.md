@@ -20,7 +20,7 @@
 - Do not trust user profile fields as authorization input unless they are explicitly mapped from verified claims.
 - Treat Auth0 role claims as upstream authorization input only.
 - Treat Auth0 permission claims as upstream authorization input only.
-- Use Auth0 interactive browser login only through the BFF boundary.
+- Use Auth0 interactive browser login only through the entry boundary.
 - Do not use browser-held bearer tokens as the default steady-state downstream identity transport.
 - Use `authorization_code` with PKCE for desktop login.
 - Treat refresh-capable credentials as high-sensitivity secrets.

@@ -28,7 +28,7 @@
 - Treat `tenant_id` as mandatory for every tenant-scoped action; do not infer tenant context from headers, query params, or bodies.
 - Use the executor actor as the only actor identity for authorization input.
 - Keep actor types unambiguous across boundaries; do not collapse `service` or `ops` actors into human semantics.
-- Establish browser identity only at the BFF boundary.
+- Establish browser identity only at the entry boundary.
 - Propagate internal identity only through verified session or token claims.
 - Evaluate authorization against stable operation semantics, not transport details alone.
 - Keep delegation, impersonation, and claims-set expansion explicit, versioned, and rollout-governed.
@@ -37,14 +37,14 @@
 
 ## Boundary Rules
 
-- Do not treat browser requests as identity-establishing on their own at the browser-to-BFF boundary.
-- Reject browser-originated `authorization` headers by default at the browser-to-BFF boundary.
-- Use the BFF as the browser authentication termination point.
-- Prefer a first-party BFF-managed session after browser login completion.
-- Validate session state and normalize principal context before internal calls at the BFF boundary.
-- Forward only verified principal context from BFF to gateway.
-- Do not forward browser cookies downstream from BFF to gateway.
-- Do not inject identity through `x-actor-*` style headers from BFF to gateway.
+- Do not treat browser requests as identity-establishing on their own at the browser-to-entry boundary.
+- Reject browser-originated `authorization` headers by default at the browser-to-entry boundary.
+- Use the entry as the browser authentication termination point.
+- Prefer a first-party entry-managed session after browser login completion.
+- Validate session state and normalize principal context before internal calls at the entry boundary.
+- Forward only verified principal context from entry to gateway.
+- Do not forward browser cookies downstream from entry to gateway.
+- Do not inject identity through `x-actor-*` style headers from entry to gateway.
 - Authenticate with a verified bearer token only from gateway to adapter.
 - Preserve verified identity context, operation identity, and tenant context through verified token claims only from gateway to adapter.
 - Require one normalized internal claims set for the gateway-to-adapter edge.
@@ -53,7 +53,7 @@
 ## Policy Evaluation and Enforcement
 
 - Keep the authorization policy decision point at the adapter boundary.
-- Allow gateway and BFF to perform early rejection, but do not let them replace the final semantic decision.
+- Allow gateway and entry to perform early rejection, but do not let them replace the final semantic decision.
 - Keep policy enforcement separate from policy decision.
 - Do not let upstream normalization erase the meaning of downstream denies or policy-type outcomes.
 
@@ -85,7 +85,7 @@
 
 ## Minimum Verified Claims Baseline
 
-- Require a normalized verified claims shape before identity crosses the BFF boundary.
+- Require a normalized verified claims shape before identity crosses the entry boundary.
 - Require `claims_set_version` in the verified claims shape.
 - Require `tenant_id` for tenant-scoped operations in the verified claims shape.
 - Require `actor_id` in the verified claims shape.

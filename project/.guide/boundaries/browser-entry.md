@@ -1,16 +1,16 @@
-# browser-bff.md
+# browser-entry.md
 
 ## Goals
 
-- Keep the browser to BFF edge as the only steady-state browser trust boundary.
-- Let the BFF own browser session and CSRF state.
+- Keep the browser to entry edge as the only steady-state browser trust boundary.
+- Let the entry own browser session and CSRF state.
 - Keep browser-facing security posture explicit, narrow, and reviewable.
 - Preserve browser-originated operation intent without trusting browser-originated security assertions.
-- Ensure browser session and CSRF cookies are issued only by the BFF.
+- Ensure browser session and CSRF cookies are issued only by the entry.
 - Ensure state-changing browser requests fail closed when CSRF or origin validation is missing or invalid.
 - Ensure browser-specific headers, cookies, and trust assumptions do not cross internal boundaries.
 - Ensure browser-facing responses keep an explicit security-header baseline with endpoint-scoped exceptions only.
-- Ensure browser request identifiers and idempotency keys are handled as BFF-governed edge inputs rather than trusted identity signals.
+- Ensure browser request identifiers and idempotency keys are handled as entry-governed edge inputs rather than trusted identity signals.
 
 ## Qualities
 
@@ -20,8 +20,8 @@
 
 ## Constraints
 
-- Let the BFF be the only issuer of browser session and CSRF cookies.
-- Use browser cookies only between browser and BFF.
+- Let the entry be the only issuer of browser session and CSRF cookies.
+- Use browser cookies only between browser and entry.
 - Do not propagate browser cookies downstream.
 - Use `__Host-*` style cookies by default and avoid domain-wide cookie sharing.
 - Require CSRF protection for state-changing browser requests that use cookie credentials.
@@ -41,7 +41,7 @@
   - `Permissions-Policy`
   - cross-origin isolation headers when applicable
 - Keep browser response-header exceptions explicit and endpoint-scoped.
-- Session cookies are BFF-owned.
+- Session cookies are entry-owned.
 - Session rotation must be possible.
 - Session lifetime and extension rules must be explicit.
 - Logout and revoke must invalidate session use without leaking cookie concerns downstream.

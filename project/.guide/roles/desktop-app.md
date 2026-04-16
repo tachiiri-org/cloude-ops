@@ -3,7 +3,7 @@
 ## Roles
 
 - Let the renderer process follow front principles.
-- Let the main process act as a local BFF.
+- Let the main process act as a local entry.
 - Let the main process own OS management.
 - Let the main process own file management.
 - Let the main process own window management.
@@ -19,7 +19,7 @@
 - Let `component` render reusable shell fragments rather than orchestrate full screens.
 - Let `screen` compose application-facing surfaces from layout, component, and state.
 - Let `interaction` own user-flow interpretation and UI transitions rather than layout geometry or DOM structure.
-- Let `bff` translate repository-local policy and runtime-owned data into renderer-facing inputs rather than call cloud APIs directly.
+- Let `entry` translate repository-local policy and runtime-owned data into renderer-facing inputs rather than call cloud APIs directly.
 
 ## Constraints
 

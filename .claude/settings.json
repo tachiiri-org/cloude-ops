@@ -16,32 +16,29 @@
   "permissions": {
     "allow": [
       "mcp__serena__*",
-      "Bash(bun run prettier*)",
-      "Bash(bun run format*)",
-      "Bash(bun run lint*)",
-      "Bash(bun run typecheck*)",
-      "Bash(bun run tsc*)",
-      "Bash(bun run build*)",
-      "Bash(bun run test*)",
+
+      "Bash(bun run *)",
+      "Bash(bun install*)",
+      "Bash(bunx *)",
+
       "Bash(git status)",
+      "Bash(git status *)",
       "Bash(git diff *)",
       "Bash(git log *)",
       "Bash(git show *)",
       "Bash(git fetch origin)",
       "Bash(git add *)",
+      "Bash(git mv *)",
+      "Bash(git rm *)",
+      "Bash(git commit *)",
       "Bash(git pull --ff-only *)",
       "Bash(git branch *)",
       "Bash(git ls-files *)",
       "Bash(git push -u origin *)",
-      "Bash(git -C * push -u origin *)",
-      "Bash(git checkout *)",
       "Bash(git push origin --delete *)",
-      "Bash(ls*)",
-      "Bash(find *)",
-      "Bash(cat *)",
-      "Bash(rg *)",
-      "Bash(grep *)",
-      "Bash(git commit *)",
+      "Bash(git checkout *)",
+      "Bash(git -C * *)",
+
       "Bash(gh --version)",
       "Bash(gh auth status)",
       "Bash(gh repo view *)",
@@ -49,23 +46,39 @@
       "Bash(gh repo edit *)",
       "Bash(gh api *)",
       "Bash(gh pr *)",
-      "Bash(gh pr create *)",
       "Bash(gh run *)",
-      "WebFetch(domain:raw.githubusercontent.com)",
+
+      "Bash(ls*)",
+      "Bash(find *)",
+      "Bash(cat *)",
+      "Bash(head *)",
+      "Bash(tail *)",
+      "Bash(wc *)",
+      "Bash(echo *)",
+      "Bash(grep *)",
+      "Bash(rg *)",
+      "Bash(sed *)",
+      "Bash(xargs *)",
+
+      "Bash(mv *)",
+      "Bash(mkdir *)",
+      "Bash(rmdir *)",
+
+      "Bash(python3 *)",
+
       "Bash(npx wrangler dev*)",
       "Bash(npx wrangler whoami)",
       "Bash(npx wrangler --version)",
-      "Bash(bun install*)",
-      "Bash(bun run deploy:staging)"
+      "Bash(bun run deploy:staging)",
+
+      "WebFetch(domain:raw.githubusercontent.com)"
     ],
     "ask": [
-      
       "Bash(git push *)",
       "Bash(git rebase *)",
       "Bash(git reset *)",
       "Bash(curl *)",
       "Bash(rm -rf *)",
-
       "Bash(bun add*)"
     ],
     "deny": [
@@ -77,6 +90,12 @@
       "Bash(npx wrangler deploy*)",
       "Bash(bunx wrangler deploy*)",
       "Bash(npm run deploy*)",
+      "Bash(bun run deploy:dev)",
+      "Bash(npm run deploy:dev)",
+      "Bash(npx wrangler deploy --env dev*)",
+      "Bash(npx wrangler deploy --config wrangler.dev.toml*)",
+      "Bash(bunx wrangler deploy --env dev*)",
+      "Bash(bunx wrangler deploy --config wrangler.dev.toml*)",
       "Bash(wrangler pages deploy*)",
       "Bash(npx wrangler pages deploy*)",
       "Bash(bunx wrangler pages deploy*)"

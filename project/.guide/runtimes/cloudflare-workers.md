@@ -2,7 +2,7 @@
 
 ## Use Cases
 
-- a BFF, gateway, or adapter must execute as a request-scoped edge service
+- an entry, gateway, or adapter must execute as a request-scoped edge service
 - the repository needs Cloudflare-managed bindings for secrets or selected platform-native services
 - provider-facing or browser-adjacent logic should run without assuming a long-lived server process
 

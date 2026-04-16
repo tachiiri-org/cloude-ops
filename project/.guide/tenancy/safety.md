@@ -21,7 +21,7 @@
 
 - Every tenant-scoped resource belongs to a single tenant.
 - Final ownership enforcement belongs to adapters.
-- Gateway and BFF may narrow access early but do not make final record-level ownership decisions.
+- Gateway and entry may narrow access early but do not make final record-level ownership decisions.
 - Use stable identifiers only for ownership and containment checks.
 - Do not use mutable profile attributes such as email or display name for ownership checks.
 

@@ -1,15 +1,30 @@
-model = "gpt-5.4"
+model = "gpt-5.4-mini"
 model_reasoning_effort = "medium"
+
 [mcp_servers.serena]
 command = "uvx"
-args = [
-  "--from",
-  "git+https://github.com/oraios/serena",
-  "serena",
-  "start-mcp-server",
-]
-startup_timeout_sec = 30
-tool_timeout_sec = 120
+args = ["--from", "git+https://github.com/oraios/serena", "serena", "start-mcp-server"]
+startup_timeout_sec = 30.0
+tool_timeout_sec = 120.0
+
+[mcp_servers.entry]
+url = "https://entry-dev.tachiiri.workers.dev/mcp"
+bearer_token_env_var = "MCP_BFF_TOKEN"
+
+[mcp_servers.entry.tools."gateway.health"]
+approval_mode = "approve"
+
+[mcp_servers.entry.tools."r2-control.health"]
+approval_mode = "approve"
+
+[mcp_servers.entry.tools."r2-s3.health"]
+approval_mode = "approve"
+
+[mcp_servers.entry.tools."d1.databases"]
+approval_mode = "approve"
+
+[mcp_servers.entry.tools."d1.query"]
+approval_mode = "approve"
 
 [projects."/home/tachiiri"]
 trust_level = "trusted"
@@ -22,3 +37,36 @@ trust_level = "trusted"
 
 [projects."/home/tachiiri/project/code-atlas"]
 trust_level = "trusted"
+
+[projects."/home/tachiiri/project/ui-spec-editor"]
+trust_level = "trusted"
+
+[projects."/home/tachiiri/project/cloudflare-r2-service"]
+trust_level = "trusted"
+
+[projects."/home/tachiiri/project/google-drive-service"]
+trust_level = "trusted"
+
+[projects."/home/tachiiri/project/system-route-test"]
+trust_level = "trusted"
+
+[projects."/home/tachiiri/project/google-drive-adapter"]
+trust_level = "trusted"
+
+[projects."/home/tachiiri/project/github-adapter"]
+trust_level = "trusted"
+
+[projects."/home/tachiiri/project/recipe-ingredient-mapper"]
+trust_level = "trusted"
+
+[projects."/home/tachiiri/project/cloudflare-r2-adapter"]
+trust_level = "trusted"
+
+[projects."/home/tachiiri/project/directed-graph-outliner"]
+trust_level = "trusted"
+
+[plugins."github@openai-curated"]
+enabled = true
+
+[apps.connector_76869538009648d5b282a4bb21c3d157.tools.github_create_pull_request]
+approval_mode = "approve"
